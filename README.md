@@ -26,7 +26,7 @@ Import the Raml.Parser namespace, and then use the RamlParser object to build an
 
     using Raml.Parser;
     
-    void async ParseRamlFile()
+    async Task ParseRamlFile()
     {
       // load a RAML file
       var parser = new RamlParser();
