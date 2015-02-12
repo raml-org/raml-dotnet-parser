@@ -24,17 +24,17 @@ of the [RAML specification](http://raml.org/spec.html).
 
 Import the Raml.Parser namespace, and then use the RamlParser object to build an in-memory model of a RAML definition:
 
-using Raml.Parser;
-
-void async ParseRamlFile()
-{
-  // load a RAML file
-  var parser = new RamlParser();
-  var raml = await parser.LoadAsync("my.raml");
-
-  // print the number of resources that this RAML definition contains
-  Console.WriteLine(raml.Resources.Count);
-}
+    using Raml.Parser;
+    
+    void async ParseRamlFile()
+    {
+      // load a RAML file
+      var parser = new RamlParser();
+      var raml = await parser.LoadAsync("my.raml");
+    
+      // print the number of resources that this RAML definition contains
+      Console.WriteLine(raml.Resources.Count);
+    }
 
 The Load methods of the parser return a RamlDocument instance, from which all properties of the RAML definition may
 be discovered.
