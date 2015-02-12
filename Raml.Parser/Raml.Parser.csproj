@@ -417,9 +417,7 @@
     <None Include="node_modules\raml-parser\test\specs\validator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RAML.NET.nuspec">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="RAML.Parser.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <None Include="edge\x64\edge.node">
