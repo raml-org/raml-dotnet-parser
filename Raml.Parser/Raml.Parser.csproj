@@ -102,15 +102,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="install.ps1" />
-    <None Include="node_modules\raml-parser\dist\raml-parser.js">
+    <Content Include="node_modules\raml-parser\dist\raml-parser.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\dist\raml-parser.min.js">
+    </Content>
+    <Content Include="node_modules\raml-parser\dist\raml-parser.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\Gruntfile.js">
+    </Content>
+    <Content Include="node_modules\raml-parser\Gruntfile.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="node_modules\raml-parser\lib\composer.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -426,27 +426,27 @@
     <None Include="edge\x86\edge.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-parser\.editorconfig">
+    <Content Include="node_modules\raml-parser\.editorconfig">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\.jshintrc">
+    </Content>
+    <Content Include="node_modules\raml-parser\.jshintrc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\.npmignore">
+    </Content>
+    <Content Include="node_modules\raml-parser\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\.travis.yml">
+    </Content>
+    <Content Include="node_modules\raml-parser\.travis.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\bower.json">
+    </Content>
+    <Content Include="node_modules\raml-parser\bower.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="node_modules\raml-parser\dist\raml-parser.min.js.map">
       <DependentUpon>raml-parser.min.js</DependentUpon>
     </None>
-    <None Include="node_modules\raml-parser\legal\apache_license.pdf">
+    <Content Include="node_modules\raml-parser\legal\apache_license.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="node_modules\raml-parser\node_modules\inflection\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -552,12 +552,12 @@
     <None Include="node_modules\raml-parser\node_modules\xmlhttprequest\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-parser\package.json">
+    <Content Include="node_modules\raml-parser\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-parser\README.md">
+    </Content>
+    <Content Include="node_modules\raml-parser\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="node_modules\raml-parser\src\composer.coffee">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
