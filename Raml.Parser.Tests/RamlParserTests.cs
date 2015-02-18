@@ -15,7 +15,7 @@ namespace Raml.Parser.Tests
 		{
 			var ramlText = File.ReadAllText("test.raml");
 			var parser = new RamlParser();
-			var raml = await parser.LoadRamlAsync(ramlText, @"\desarrollo\_raml\Raml.Parser\Raml.Parser.Tests\");
+			var raml = await parser.LoadRamlAsync(ramlText);
 
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
@@ -25,7 +25,7 @@ namespace Raml.Parser.Tests
 		{
 			var ramlText = File.ReadAllText("congo-drones-5-f.raml");
 			var parser = new RamlParser();
-			var raml = await parser.LoadRamlAsync(ramlText, @"\desarrollo\_raml\Raml.Parser\Raml.Parser.Tests\");
+			var raml = await parser.LoadRamlAsync(ramlText);
 
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
