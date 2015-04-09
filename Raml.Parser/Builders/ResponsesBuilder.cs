@@ -45,6 +45,9 @@ namespace Raml.Parser.Builders
 
 		public IDictionary<string, Response> GetAsDictionary()
 		{
+            if(dynamicRaml == null)
+                return new Dictionary<string, Response>();
+
 			return dynamicRaml
 				.ToDictionary(kv => kv.Key,
 					kv =>

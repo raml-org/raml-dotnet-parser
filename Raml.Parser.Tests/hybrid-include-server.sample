@@ -1,0 +1,13 @@
+{
+  id: "s-1",
+  organizationId: "xxx",
+  name: "QA-1",
+  status: "CONNECTED",
+  serverGroupId: "sg-1",
+  ipAddress: "10.20.30.40",
+  muleVersion: "3.6",
+  agentVersion: "3.6",
+  timeLastMessageReceived: "2014-12-02T19:28:25Z",
+  timeCreated: "...",
+  timeUpdated: "..."
+}
