@@ -68,5 +68,14 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(2, raml.Resources.Count());
 			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
 		}
+
+        [Test]
+        public async Task ShouldParse_Hybrid()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("hybrid-api.raml");
+
+            Assert.AreEqual(4, raml.Resources.Count());
+        }
 	}
 }

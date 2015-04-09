@@ -15,6 +15,9 @@ namespace Raml.Parser.Builders
 
 		public IDictionary<string, MimeType> GetAsDictionary()
 		{
+            if(dynamicRaml == null)
+                return new Dictionary<string, MimeType>();
+
 			return dynamicRaml.ToDictionary(kv => kv.Key, pair =>
 				{
 					var value = pair.Value as IDictionary<string, object>;
@@ -27,11 +30,17 @@ namespace Raml.Parser.Builders
 
 		public IDictionary<string,Parameter> GetParameters(IDictionary<string, object> dictionary)
 		{
+            if (dynamicRaml == null)
+                return new Dictionary<string, Parameter>();
+
 			return dictionary.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>)kv.Value));
 		}
 
 		public IEnumerable<MimeType> Get()
 		{
+            if (dynamicRaml == null)
+                return new List<MimeType>();
+
 			return dynamicRaml.Select(pair =>
 			                          {
 				                          var value = (IDictionary<string, object>)pair.Value;
