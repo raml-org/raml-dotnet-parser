@@ -19,7 +19,7 @@ namespace Raml.Parser.Builders
 			parameter.Example = dynamicRaml.ContainsKey("example") ? dynamicRaml["example"].ToString() : null;
 			parameter.Default = dynamicRaml.ContainsKey("default") ? (dynamicRaml["default"] != null ? dynamicRaml["default"].ToString() : null) : null;
 			parameter.Pattern = dynamicRaml.ContainsKey("pattern") ? (string) dynamicRaml["pattern"] : null;
-			parameter.MinLength = dynamicRaml.ContainsKey("minLength") ? Convert.ToInt32(dynamicRaml["default"]) : (int?) null;
+			parameter.MinLength = dynamicRaml.ContainsKey("minLength") ? Convert.ToInt32(dynamicRaml["minLength"]) : (int?) null;
 			parameter.MaxLength = dynamicRaml.ContainsKey("maxLength") ? Convert.ToInt32(dynamicRaml["maxLength"]) : (int?) null;
 			parameter.Minimum = dynamicRaml.ContainsKey("minimum") ? Convert.ToDecimal(dynamicRaml["minimum"]) : (decimal?) null;
 			parameter.Maximum = dynamicRaml.ContainsKey("maximum") ? Convert.ToDecimal(dynamicRaml["maximum"]) : (decimal?) null;
