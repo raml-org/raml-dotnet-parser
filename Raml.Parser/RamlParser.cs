@@ -18,21 +18,21 @@ namespace Raml.Parser
             using(var sr = new StreamReader(filePath))
             {
                 var content = await sr.ReadToEndAsync();
-	            var raml = await LoadRamlAsync(content);
+	            var raml = await LoadRamlAsync(content, Path.GetDirectoryName(filePath));
 
                 return raml;
             }
         }
 
-	    public async Task<RamlDocument> LoadRamlAsync(string raml)
+	    public async Task<RamlDocument> LoadRamlAsync(string raml, string path)
 		{
             if (string.IsNullOrWhiteSpace(raml))
                 throw new ArgumentException("raml");
 
 			var load = Edge.Func(@"
-                return function (content, callback) {
+                return function (obj, callback) {
                     var raml = require('raml-parser');
-                    raml.load(content).then( function(parsed) {
+                    raml.load(obj.content, obj.path).then( function(parsed) {
                         callback(null, parsed);
                     }, function(error) {
                         callback(null, 'Error parsing: ' + error);
@@ -40,7 +40,7 @@ namespace Raml.Parser
                 }
             ");
 
-			var rawresult = await load(raml);
+			var rawresult = await load(new { content = raml, path } );
 			var error = rawresult as string;
 			if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
 				throw new FormatException(error);

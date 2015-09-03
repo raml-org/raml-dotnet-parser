@@ -14,8 +14,9 @@ namespace Raml.Parser.Tests
 		public async Task ShouldLoad_WhenValidRAML()
 		{
 			var ramlText = File.ReadAllText("test.raml");
+		    var path = new FileInfo("test.raml").FullName;
 			var parser = new RamlParser();
-			var raml = await parser.LoadRamlAsync(ramlText);
+			var raml = await parser.LoadRamlAsync(ramlText, path);
 
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
@@ -24,8 +25,9 @@ namespace Raml.Parser.Tests
 		public async Task ShouldLoad_WhenHasIncludes()
 		{
 			var ramlText = File.ReadAllText("congo-drones-5-f.raml");
+            var path = new FileInfo("test.raml").FullName;
 			var parser = new RamlParser();
-			var raml = await parser.LoadRamlAsync(ramlText);
+            var raml = await parser.LoadRamlAsync(ramlText, path);
 
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
