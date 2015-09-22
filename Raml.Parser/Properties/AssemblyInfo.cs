@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Raml.Parser")]
-[assembly: AssemblyDescription("RAML Parser for .NET")]
+[assembly: AssemblyTitle("RAML.Parser")]
+[assembly: AssemblyDescription("A RAML Parser implementation in .NET for all CLR languages. RESTful API Modeling Language (RAML) is a simple and succinct way of describing practically-RESTful APIs. It encourages reuse, enables discovery and pattern-sharing, and aims for merit-based emergence of best practices.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mulesoft Inc")]
 [assembly: AssemblyProduct("Raml.Parser")]
