@@ -13,40 +13,23 @@ namespace Raml.Parser.Builders
 			this.dynamicRaml = dynamicRaml;
 		}
 
-		public IEnumerable<Parameter> Get()
-		{
-		    if (dynamicRaml == null)
-		        return new List<Parameter>();
-
-		    var list = new List<Parameter>();
-		    foreach (var pair in dynamicRaml)
-		    {
-		        if (pair.Value != null)
-		        {
-		            var value = pair.Value as IDictionary<string, object>;
-		            if (value != null)
-		            {
-		                list.Add((new ParameterBuilder()).Build((IDictionary<string, object>) pair.Value));
-		            }
-                    else if(pair.Value is string)
-                    {
-                        list.Add(new Parameter
-                        {
-                            DisplayName = pair.Key,
-                            Type = "string"
-                        });
-                    }
-		        }
-		    }
-		    return list;
-		}
-
 		public IDictionary<string, Parameter> GetAsDictionary()
 		{
             if (dynamicRaml == null)
                 return new Dictionary<string, Parameter>();
 
-			return dynamicRaml.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>) kv.Value));
+		    var dictionary = new Dictionary<string, Parameter>();
+		    foreach (var keyValuePair in dynamicRaml)
+		    {
+                var value = keyValuePair.Value as IDictionary<string, object>;
+                if(value != null)
+		            dictionary.Add(keyValuePair.Key, (new ParameterBuilder()).Build(value));
+
+		        var val = keyValuePair.Value as string;
+		        if (val != null)
+		            dictionary.Add(keyValuePair.Key, new Parameter {Type = "string"});
+		    }
+		    return dictionary;
 		}
 
 		public static IDictionary<string, Parameter> GetUriParameters(IDictionary<string, object> dynamicRaml, string name)

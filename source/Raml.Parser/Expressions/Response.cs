@@ -6,7 +6,7 @@ namespace Raml.Parser.Expressions
 	{
 		public string Code { get; set; }
 		public string Description { get; set; }
-        public IEnumerable<Parameter> Headers { get; set; }
+        public IDictionary<string, Parameter> Headers { get; set; }
 		public IDictionary<string, MimeType> Body { get; set; }
 	}
 }

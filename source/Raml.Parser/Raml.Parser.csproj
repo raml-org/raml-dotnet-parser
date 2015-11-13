@@ -62,10 +62,13 @@
     <Compile Include="Builders\ProtocolsBuilder.cs" />
     <Compile Include="Builders\RamlBuilder.cs" />
     <Compile Include="Builders\ResourceBuilder.cs" />
+    <Compile Include="Builders\ResourceTypeApplier.cs" />
     <Compile Include="Builders\ResourceTypeBuilder.cs" />
     <Compile Include="Builders\SecuritySchemeBuilder.cs" />
     <Compile Include="Builders\SecuritySchemeDescriptorBuilder.cs" />
     <Compile Include="Builders\SecuritySettingsBuilder.cs" />
+    <Compile Include="Builders\TraitsApplier.cs" />
+    <Compile Include="Builders\TypeExtractor.cs" />
     <Compile Include="Expressions\Method.cs" />
     <Compile Include="Expressions\Protocol.cs" />
     <Compile Include="Expressions\ResourceType.cs" />

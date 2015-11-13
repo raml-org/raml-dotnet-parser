@@ -142,7 +142,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\desarrollo\mulesoft\raml-dotnet-parser-raml1-bundle\Raml.Parser\Raml.Parser.csproj">
+    <ProjectReference Include="..\Raml.Parser\Raml.Parser.csproj">
       <Project>{5c0d823d-7deb-406a-be6f-1d58bc583046}</Project>
       <Name>Raml.Parser</Name>
     </ProjectReference>

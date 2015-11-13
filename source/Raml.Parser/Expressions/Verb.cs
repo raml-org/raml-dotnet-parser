@@ -22,13 +22,13 @@ namespace Raml.Parser.Expressions
 
 		public string Description { get { return dynamicRaml.ContainsKey("description") ? (string)dynamicRaml["description"]: null; } }
 
-		public IEnumerable<Parameter> Headers
+		public IDictionary<string,Parameter> Headers
 		{
 			get
 			{
 				return dynamicRaml.ContainsKey("headers")
-					? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).Get()
-					: new List<Parameter>();
+					? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).GetAsDictionary()
+					: new Dictionary<string, Parameter>();
 			}
 		}
 

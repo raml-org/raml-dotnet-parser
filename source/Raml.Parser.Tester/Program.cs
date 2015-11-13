@@ -27,12 +27,13 @@ namespace Raml.Parser.Tester
             await ShouldLoad_WhenParams();
             await ShouldLoad_WhenExternalRefs();
 
-            // highLevel error
-            await ShouldLoad_IncludeWithQuotes();
             await ShouldThrowError_WhenInvalidRAML();
+
             
+            // freeze
+            await ShouldLoad_WhenEpi();
             await ShouldParse_Hybrid();
-            await ShouldLoad_WhenEpi();            
+            await ShouldLoad_IncludeWithQuotes();
         }
 
         public static async Task ShouldLoad_WhenExternalRefs()

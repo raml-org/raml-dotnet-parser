@@ -4,6 +4,8 @@ namespace Raml.Parser.Expressions
 {
 	public class ResourceType
 	{
+	    public string Type { get; set; }
+	    public IEnumerable<string> Is { get; set; }
 		public Verb Get { get; set; }
 
 		public Verb Post { get; set; }

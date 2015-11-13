@@ -15,8 +15,8 @@ namespace Raml.Parser.Builders
 
 			method.Verb = dynamicRaml.ContainsKey("method") ? (string) dynamicRaml["method"] : null;
 			method.Headers = dynamicRaml.ContainsKey("headers")
-				? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).Get()
-				: new List<Parameter>();
+				? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).GetAsDictionary()
+				: new Dictionary<string, Parameter>();
 
 			method.Responses = dynamicRaml.ContainsKey("responses")
 				? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get()

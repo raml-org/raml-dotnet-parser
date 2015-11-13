@@ -24,16 +24,17 @@ namespace Raml.Parser.Builders
 			doc.ResourceTypes = GetResourceTypes(dynamicRaml);
 			doc.Traits = GetTraits(dynamicRaml);
 			doc.Schemas = GetSchemas(dynamicRaml);
-			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes);
+			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits);
 			return doc;
 		}
 
-		private ICollection<Resource> GetResources(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, ResourceType>> resourceTypes)
+		private ICollection<Resource> GetResources(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, ResourceType>> resourceTypes, 
+            IEnumerable<IDictionary<string, Method>> traits)
 		{
 			var resources = new Collection<Resource>();
 		    foreach (var key in dynamicRaml.Keys.Where(k => k.StartsWith("/")))
 		    {
-		        var resource = new ResourceBuilder().Build(dynamicRaml, key, resourceTypes);
+		        var resource = new ResourceBuilder().Build(dynamicRaml, key, resourceTypes, traits);
 		        resources.Add(resource);
 		    }
 

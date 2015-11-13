@@ -36,8 +36,8 @@ namespace Raml.Parser.Builders
 							         ? new BodyBuilder(value["body"] as IDictionary<string, object>).GetAsDictionary()
 							         : null,
 							 Headers = value.ContainsKey("headers")
-										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).Get()
-										: new List<Parameter>()
+										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).GetAsDictionary()
+										: new Dictionary<string, Parameter>()
 				         });
 			}
 			return list;

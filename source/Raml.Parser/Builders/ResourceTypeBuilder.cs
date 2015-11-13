@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -10,6 +11,8 @@ namespace Raml.Parser.Builders
 		{
 			var resourceType = new ResourceType
 			{
+                Type = TypeExtractor.Get(dynamicRaml),
+                Is = TypeExtractor.GetIs(dynamicRaml),
 			    Get = getVerb(dynamicRaml, "get", VerbType.GET),
 			    Post = getVerb(dynamicRaml, "post", VerbType.POST),
 			    Put = getVerb(dynamicRaml, "put", VerbType.PUT),
@@ -20,6 +23,7 @@ namespace Raml.Parser.Builders
 
 		    return resourceType;
 		}
+
 
 	    private Verb getVerb(IDictionary<string,object> dynamicRaml, string key, VerbType typeOfVerb)
 	    {

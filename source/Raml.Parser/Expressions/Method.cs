@@ -6,7 +6,7 @@ namespace Raml.Parser.Expressions
 	{
 		public Method()
 		{
-			Headers = new List<Parameter>();
+			Headers = new Dictionary<string, Parameter>();
 			Responses = new List<Response>();
 			QueryParameters = new Dictionary<string, Parameter>();
 			Body = new Dictionary<string, MimeType>();
@@ -18,7 +18,7 @@ namespace Raml.Parser.Expressions
 
 		public string Verb { get; set; }
 
-		public IEnumerable<Parameter> Headers { get; set; }
+        public IDictionary<string, Parameter> Headers { get; set; }
 
 		public IEnumerable<Response> Responses { get; set; }
 
