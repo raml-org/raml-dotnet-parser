@@ -28,17 +28,17 @@ namespace Raml.Parser.Builders
 
             resource.RelativeUri = key;
 
-	        if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] != null)
-	        {
-	            resource.Methods = ResourceTypeApplier.Apply(resourceTypes, dynamicRaml, resource.Methods.ToList(), traits);
-	        }
+            //if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] != null)
+            //{
+            //    resource.Methods = ResourceTypeApplier.Apply(resourceTypes, dynamicRaml, resource.Methods.ToList(), traits);
+            //}
 
-	        if (dynamicRaml.ContainsKey("is") && dynamicRaml["is"] != null)
-	        {
-	            var methods = resource.Methods.ToList();
-                TraitsApplier.ApplyTraitsToMethods(methods, traits, TypeExtractor.GetIs(dynamicRaml));
-	            resource.Methods = methods;
-	        }
+            //if (dynamicRaml.ContainsKey("is") && dynamicRaml["is"] != null)
+            //{
+            //    var methods = resource.Methods.ToList();
+            //    TraitsApplier.ApplyTraitsToMethods(methods, traits, TypeExtractor.GetIs(dynamicRaml));
+            //    resource.Methods = methods;
+            //}
 
 	        return resource;
 		}
@@ -55,8 +55,8 @@ namespace Raml.Parser.Builders
 	            var method = new MethodBuilder().Build((IDictionary<string, object>) dynamicRaml[key]);
 	            method.Verb = key;
 
-                if(method.Is != null && method.Is.Any())
-                    TraitsApplier.ApplyTraitsToMethod(method, traits, method.Is);
+                //if(method.Is != null && method.Is.Any())
+                //    TraitsApplier.ApplyTraitsToMethod(method, traits, method.Is);
 
 	            methods.Add(method);
 	        }
