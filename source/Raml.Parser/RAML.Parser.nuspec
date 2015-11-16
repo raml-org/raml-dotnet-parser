@@ -8,7 +8,7 @@
         <owners>$author$</owners>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>$description$</description>
-        <releaseNotes>RAML Parser for .NET</releaseNotes>
+        <releaseNotes>RAML Parser 2 for .NET</releaseNotes>
         <copyright>$copyright$</copyright>
 	    <projectUrl>https://github.com/raml-org/raml-dotnet-parser</projectUrl>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
@@ -19,7 +19,7 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="node_modules\raml-parser\**\*.*" target="content\net45\node_modules\raml-parser"/>
+        <file src="node_modules\raml-1-0-parser\**\*.*" target="content\net45\node_modules\raml-1-0-parser"/>
         <file src="install.ps1" target="tools\net45"/>
     </files>
 </package>
