@@ -38,7 +38,7 @@ namespace Raml.Parser.Expressions
 		#region equality operators
 		protected bool Equals(Resource other)
 		{
-			throw new NotImplementedException();
+			return this.RelativeUri == other.RelativeUri && this.BaseUriParameters == other.BaseUriParameters && this.UriParameters == other.UriParameters && this.Methods.Count() == other.Methods.Count();
 		}
 
 		public override bool Equals(object obj)
