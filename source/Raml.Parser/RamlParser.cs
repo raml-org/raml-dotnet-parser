@@ -25,7 +25,7 @@ namespace Raml.Parser
 
                     var api = RAML.loadApi(path).getOrElse(null);
 
-                    if(api === null)
+                    if(api == null)
                         callback(null, 'Error: ' + path + ' returned null');
 
                     if(api.errors() != null && api.errors().length > 0){
