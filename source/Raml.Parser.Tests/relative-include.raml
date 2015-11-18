@@ -10,36 +10,6 @@ mediaType: application/json
       200:
         body:
           schema: !include "movies.schema"
-          example: |
-            [
-              {
-                 "id" : "1",
-                 "name": "Big Fish",
-                 "director": "Tim Burton",
-                 "genre": "Drama, Fantasy",
-                 "cast": "Ewan McGregor, Albert Finney, Billy Crudup",
-                 "language": "English",
-                 "rented": false
-              },
-              {
-                 "id" : "2",
-                 "name": "Midnight in Paris",
-                 "director": "Woody Allen",
-                 "genre": "Comedy",
-                 "cast": "Owen Wilson, Rachel McAdams, Kathy Bates",
-                 "language": "English",
-                 "rented": false
-              },
-              {
-                 "id" : "3",
-                 "name": "Relatos Salvajes",
-                 "director": "Dami�n Szifr�n",
-                 "genre": "Comedy, Drama",
-                 "cast": " Ricardo Dar�n, Oscar Mart�nez, Leonardo Sbaraglia",
-                 "language": "Spanish",
-                 "rented": true
-              }
-            ]
   /{id}:
     get:
       description: get the info of a movie
@@ -66,7 +36,7 @@ mediaType: application/json
                 }
               example: |
                 {
-                  "id" : "1",
+                  "id" : 1,
                   "name": "Big Fish",
                   "director": "Tim Burton",
                   "genre": "Drama, Fantasy",
