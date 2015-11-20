@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using Raml.Parser.Expressions;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace Raml.Parser.Tests
         private async Task<RamlDocument> GetRaml()
         {
             var parser = new RamlParser();
-            var raml = await parser.LoadAsync("test.raml");
+            var fi = new FileInfo("test.raml");
+            var raml = await parser.LoadAsync(fi.FullName);
 
             return raml;
         }
@@ -75,7 +77,8 @@ namespace Raml.Parser.Tests
 		public async Task ShouldParseSecuritySchemes()
 		{
 			var parser = new RamlParser();
-			var result = await parser.LoadAsync("box.raml");
+            var fi = new FileInfo("box.raml");
+            var result = await parser.LoadAsync(fi.FullName);
 			
 			Assert.AreEqual(1, result.SecuritySchemes.Count());
 		}
