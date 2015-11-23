@@ -25,6 +25,7 @@ namespace Raml.Parser.Builders
 			doc.Traits = GetTraits(dynamicRaml);
 			doc.Schemas = GetSchemas(dynamicRaml);
 			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits);
+		    doc.Types = TypeBuilder.Get(dynamicRaml);
 			return doc;
 		}
 

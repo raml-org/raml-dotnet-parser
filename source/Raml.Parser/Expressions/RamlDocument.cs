@@ -53,5 +53,6 @@ namespace Raml.Parser.Expressions
 		public IEnumerable<IDictionary<string, string>> Schemas { get; set; }
 
 		public ICollection<Resource> Resources { get; set; }
+	    public ICollection<RamlType> Types { get; set; }
 	}
 }

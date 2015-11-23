@@ -79,9 +79,11 @@
     <Compile Include="Builders\SecuritySchemeDescriptorBuilder.cs" />
     <Compile Include="Builders\SecuritySettingsBuilder.cs" />
     <Compile Include="Builders\TraitsApplier.cs" />
+    <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
     <Compile Include="Expressions\Method.cs" />
     <Compile Include="Expressions\Protocol.cs" />
+    <Compile Include="Expressions\RamlType.cs" />
     <Compile Include="Expressions\ResourceType.cs" />
     <Compile Include="Expressions\BasicInfo.cs" />
     <Compile Include="Expressions\SecuritySchemeDescriptor.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Expressions\RamlDocument.cs" />
     <Compile Include="Builders\BodyBuilder.cs" />
     <Compile Include="Expressions\Resource.cs" />
+    <Compile Include="Expressions\TypeKind.cs" />
     <Compile Include="Expressions\VerbType.cs" />
     <Compile Include="RamlParser.cs" />
     <Compile Include="Expressions\Response.cs" />
