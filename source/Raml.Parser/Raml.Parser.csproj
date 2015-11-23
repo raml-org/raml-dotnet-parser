@@ -82,6 +82,8 @@
     <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
     <Compile Include="Expressions\Method.cs" />
+    <Compile Include="Expressions\NumberFormat.cs" />
+    <Compile Include="Expressions\Property.cs" />
     <Compile Include="Expressions\Protocol.cs" />
     <Compile Include="Expressions\RamlType.cs" />
     <Compile Include="Expressions\ResourceType.cs" />
