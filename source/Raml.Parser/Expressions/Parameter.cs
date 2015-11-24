@@ -4,6 +4,11 @@ namespace Raml.Parser.Expressions
 {
 	public class Parameter
 	{
+        public Parameter()
+        {
+            Type = "string";
+        }
+
 		public string Type { get; set; }
 		public bool Required { get; set; }
 		public string DisplayName { get; set; }

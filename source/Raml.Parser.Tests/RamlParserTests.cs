@@ -13,6 +13,17 @@ namespace Raml.Parser.Tests
 	{
 	    private static RamlParser parser;
 
+        [Test]
+        public async Task ShouldGetAnnotationsTypes()
+        {
+            var raml = await Parse("Specifications/annotations.raml");
+
+            Assert.AreEqual(6, raml.AnnotationTypes.Count());
+            Assert.AreEqual(1, raml.AnnotationTypes["experimental"].Parameters.Count);
+            Assert.AreEqual(2, raml.AnnotationTypes["clearanceLevel"].Parameters.Count);
+        }
+
+
 	    [Test]
 		public async Task ShouldLoad_WhenValidRAML()
 		{

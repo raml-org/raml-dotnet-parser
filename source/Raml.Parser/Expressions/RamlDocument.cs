@@ -54,5 +54,6 @@ namespace Raml.Parser.Expressions
 
 		public ICollection<Resource> Resources { get; set; }
 	    public ICollection<RamlType> Types { get; set; }
+	    public IDictionary<string, AnnotationType> AnnotationTypes { get; set; }
 	}
 }

@@ -26,10 +26,11 @@ namespace Raml.Parser.Builders
 			doc.Schemas = GetSchemas(dynamicRaml);
 			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits, doc.MediaType);
 		    doc.Types = TypeBuilder.Get(dynamicRaml);
+            doc.AnnotationTypes = AnnotationTypesBuilder.Get(dynamicRaml);
 			return doc;
 		}
 
-		private ICollection<Resource> GetResources(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, ResourceType>> resourceTypes,
+	    private ICollection<Resource> GetResources(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, ResourceType>> resourceTypes,
             IEnumerable<IDictionary<string, Method>> traits, string defaultMediaType)
 		{
 			var resources = new Collection<Resource>();

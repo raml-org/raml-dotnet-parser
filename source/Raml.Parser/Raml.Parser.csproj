@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\AnnotationTypesBuilder.cs" />
     <Compile Include="Builders\BasicInfoBuilder.cs" />
     <Compile Include="Builders\DocumentationItemBuilder.cs" />
     <Compile Include="Builders\MethodBuilder.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Builders\TraitsApplier.cs" />
     <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
+    <Compile Include="Expressions\AnnotationType.cs" />
     <Compile Include="Expressions\Method.cs" />
     <Compile Include="Expressions\NumberFormat.cs" />
     <Compile Include="Expressions\Property.cs" />
