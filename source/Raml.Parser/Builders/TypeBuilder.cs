@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -19,32 +20,35 @@ namespace Raml.Parser.Builders
                     Name = type.Key,
                     Properties = GetProperties((IDictionary<string, object>) type.Value),
                     Type = GetTypeKind((IDictionary<string, object>)type.Value),
-                    Example = GetExample((IDictionary<string, object>)type.Value)
+                    Example = GetExample((IDictionary<string, object>)type.Value),
+                    Facets = GetFacets((IDictionary<string, object>)type.Value),
+                    OtherProperties = GetOtherProperties((IDictionary<string, object>)type.Value)
                 };
                 ramlTypes.Add(ramlType);
             }
             return ramlTypes;
         }
 
-        private static TypeKind GetTypeKind(IDictionary<string, object> dynamicRaml)
+        private static IDictionary<string, object> GetOtherProperties(IDictionary<string, object> value)
+        {
+            // TODO
+            return value;
+        }
+
+        private static IDictionary<string, object> GetFacets(IDictionary<string, object> value)
+        {
+            if (!value.ContainsKey("facets"))
+                return new Dictionary<string, object>();
+
+            return ((IDictionary<string, object>) value["facets"]);
+        }
+
+        private static string GetTypeKind(IDictionary<string, object> dynamicRaml)
         {
             if (!dynamicRaml.ContainsKey("type") || dynamicRaml["type"] == null)
-                return TypeKind.Object;
+                return "object";
 
-            var type = (string)dynamicRaml["type"];
-            switch (type)
-            {
-                case "object":
-                    return TypeKind.Object;
-                case "array":
-                    return TypeKind.Array;
-                case "external":
-                    return TypeKind.External;
-                case "scalar":
-                    return TypeKind.Scalar;
-                default:
-                    throw new ArgumentException("Cannot determine type " + type);
-            }
+            return (string)dynamicRaml["type"];
         }
 
         private static string GetExample(IDictionary<string, object> dynamicRaml)

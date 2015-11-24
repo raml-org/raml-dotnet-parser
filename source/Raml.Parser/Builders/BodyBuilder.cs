@@ -13,16 +13,21 @@ namespace Raml.Parser.Builders
 			this.dynamicRaml = dynamicRaml;
 		}
 
-		public IDictionary<string, MimeType> GetAsDictionary()
+		public IDictionary<string, MimeType> GetAsDictionary(string defaultMediaType)
 		{
             if(dynamicRaml == null)
                 return new Dictionary<string, MimeType>();
+
+		    if (dynamicRaml.ContainsKey("type"))
+		    {
+		        return new Dictionary<string, MimeType> {{defaultMediaType, GetMimeType(dynamicRaml)}};
+		    }
 
 			return dynamicRaml.ToDictionary(kv => kv.Key, pair =>
 				{
 					var value = pair.Value as IDictionary<string, object>;
 					if(value != null)
-						return GetMimeType(value, pair.Key);
+						return GetMimeType(value);
 
 					return new MimeType { Schema = (string) pair.Value};
 				});
@@ -44,12 +49,12 @@ namespace Raml.Parser.Builders
 			return dynamicRaml.Select(pair =>
 			                          {
 				                          var value = (IDictionary<string, object>)pair.Value;
-				                          return GetMimeType(value, pair.Key);
+				                          return GetMimeType(value);
 			                          })
 									  .ToArray();
 		}
 
-		public MimeType GetMimeType(IDictionary<string, object> value, string type)
+		public MimeType GetMimeType(IDictionary<string, object> value)
 		{
 			if (value == null)
 				return null;
@@ -59,7 +64,7 @@ namespace Raml.Parser.Builders
 
 			return new MimeType
 			       {
-				       Type = type,
+                       Type = value.ContainsKey("type") ? (string)value["type"] : null,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
 				       Example = value.ContainsKey("example") ? (string) value["example"] : null,
 				       Schema = value.ContainsKey("schema") ? (string) value["schema"] : null,

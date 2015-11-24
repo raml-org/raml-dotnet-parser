@@ -8,7 +8,7 @@ namespace Raml.Parser.Builders
 {
 	public class MethodBuilder
 	{
-		public Method Build(IDictionary<string, object> dynamicRaml)
+        public Method Build(IDictionary<string, object> dynamicRaml, string defaultMediaType)
 		{
 			var method = new Method();
 			new BasicInfoBuilder().Set(dynamicRaml, method);
@@ -19,7 +19,7 @@ namespace Raml.Parser.Builders
 				: new Dictionary<string, Parameter>();
 
 			method.Responses = dynamicRaml.ContainsKey("responses")
-				? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get()
+				? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get(defaultMediaType)
 				: new List<Response>();
 
 			method.QueryParameters = dynamicRaml.ContainsKey("queryParameters")
@@ -27,7 +27,7 @@ namespace Raml.Parser.Builders
 				: null;
 
 			method.Body = dynamicRaml.ContainsKey("body")
-				? new BodyBuilder((IDictionary<string, object>) dynamicRaml["body"]).GetAsDictionary()
+                ? new BodyBuilder((IDictionary<string, object>)dynamicRaml["body"]).GetAsDictionary(defaultMediaType)
 				: new Dictionary<string, MimeType>();
 
 			method.BaseUriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "baseUriParameters");

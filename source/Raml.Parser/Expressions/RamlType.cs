@@ -5,7 +5,7 @@ namespace Raml.Parser.Expressions
     public class RamlType
     {
         public string Name { get; set; }
-        public TypeKind Type { get; set; }
+        public string Type { get; set; }
         public IDictionary<string,Parameter> Properties { get; set; }
         public string Example { get; set; }
 
@@ -40,5 +40,7 @@ namespace Raml.Parser.Expressions
         public int MinItems { get; set; }
 
         public int MaxItems { get; set; }
+        public IDictionary<string, object> Facets { get; set; }
+        public IDictionary<string, object> OtherProperties { get; set; }
     }
 }
