@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -47,11 +48,11 @@ namespace Raml.Parser.Builders
             if (!annotationType.ContainsKey("parameters"))
                 return parameters;
 
-            foreach (var parameter in (IDictionary<string, object>)annotationType["parameters"])
+            foreach (var pair in (IDictionary<string, object>)annotationType["parameters"])
             {
-                var dynamicRaml = parameter.Value as IDictionary<string, object>;
-                var value = dynamicRaml != null ? new ParameterBuilder().Build(dynamicRaml) : new Parameter();
-                parameters.Add(parameter.Key, value);
+                var dynamicRaml = pair.Value as IDictionary<string, object>;
+                var parameter = dynamicRaml != null ? new ParameterBuilder().Build(dynamicRaml) : new Parameter();
+                parameters.Add(pair.Key, parameter);
             }
             return parameters;
         }
@@ -60,18 +61,21 @@ namespace Raml.Parser.Builders
         private static ICollection<string> GetAllowedTargets(IDictionary<string, object> annotationType)
         {
             var allowedTargets = new List<string>();
-            if (!annotationType.ContainsKey("AllowedTargets"))
+            if (!annotationType.ContainsKey("allowedTargets"))
                 return allowedTargets;
 
             var allowedTarget = annotationType["allowedTargets"] as string;
             if (allowedTarget != null)
+            {
                 allowedTargets.Add(allowedTarget);
+                return allowedTargets;
+            }
 
-            var targets = annotationType["allowedTargets"] as List<string>;
+            var targets = annotationType["allowedTargets"] as object[];
             if(targets == null)
                 throw new InvalidOperationException("Cannot parse allowed targets");
 
-            return targets;
+            return targets.Cast<string>().ToList();
         }
         
     }

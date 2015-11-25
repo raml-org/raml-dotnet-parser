@@ -63,6 +63,9 @@
     <Compile Include="TypesTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Specifications\annotations-targets.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Specifications\annotations.raml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

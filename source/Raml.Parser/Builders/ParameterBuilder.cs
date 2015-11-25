@@ -10,7 +10,7 @@ namespace Raml.Parser.Builders
 		public Parameter Build(IDictionary<string, object> dynamicRaml)
 		{
 			var parameter = new Parameter();
-			parameter.Type = dynamicRaml.ContainsKey("type") ? (string) dynamicRaml["type"] : null;
+			parameter.Type = dynamicRaml.ContainsKey("type") ? (string) dynamicRaml["type"] : "string";
 			parameter.Required = dynamicRaml.ContainsKey("required") && Convert.ToBoolean(dynamicRaml["required"]);
 			parameter.DisplayName = dynamicRaml.ContainsKey("displayName") ? (string) dynamicRaml["displayName"] : null;
 			parameter.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;

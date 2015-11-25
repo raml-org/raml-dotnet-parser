@@ -14,6 +14,16 @@ namespace Raml.Parser.Tests
 	    private static RamlParser parser;
 
         [Test]
+        public async Task ShouldGetAnnotationsTypes_WithAllowedTargets()
+        {
+            var raml = await Parse("Specifications/annotations-targets.raml");
+
+            Assert.AreEqual(6, raml.AnnotationTypes.Count());
+            Assert.AreEqual(3, raml.AnnotationTypes["feedbackRequested"].AllowedTargets.Count);
+            Assert.AreEqual(1, raml.AnnotationTypes["assertion"].AllowedTargets.Count);
+        }
+
+        [Test]
         public async Task ShouldGetAnnotationsTypes()
         {
             var raml = await Parse("Specifications/annotations.raml");
