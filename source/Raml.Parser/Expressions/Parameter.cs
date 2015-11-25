@@ -22,5 +22,6 @@ namespace Raml.Parser.Expressions
 		public int? MaxLength { get; set; }
 		public decimal? Minimum { get; set; }
 		public decimal? Maximum { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

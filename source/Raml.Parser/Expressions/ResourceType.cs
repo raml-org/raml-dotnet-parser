@@ -17,5 +17,6 @@ namespace Raml.Parser.Expressions
 		public Verb Patch { get; set; }
 
 		public Verb Options { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

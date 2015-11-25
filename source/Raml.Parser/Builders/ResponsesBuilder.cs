@@ -37,7 +37,8 @@ namespace Raml.Parser.Builders
 							         : null,
 							 Headers = value.ContainsKey("headers")
 										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).GetAsDictionary()
-										: new Dictionary<string, Parameter>()
+										: new Dictionary<string, Parameter>(),
+                            Annotations = AnnotationsBuilder.GetAnnotations(value)
 				         });
 			}
 			return list;

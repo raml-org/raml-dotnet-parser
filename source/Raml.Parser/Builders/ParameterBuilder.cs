@@ -23,6 +23,7 @@ namespace Raml.Parser.Builders
 			parameter.MaxLength = dynamicRaml.ContainsKey("maxLength") ? Convert.ToInt32(dynamicRaml["maxLength"]) : (int?) null;
 			parameter.Minimum = dynamicRaml.ContainsKey("minimum") ? Convert.ToDecimal(dynamicRaml["minimum"]) : (decimal?) null;
 			parameter.Maximum = dynamicRaml.ContainsKey("maximum") ? Convert.ToDecimal(dynamicRaml["maximum"]) : (decimal?) null;
+		    parameter.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 			return parameter;
 		}
 

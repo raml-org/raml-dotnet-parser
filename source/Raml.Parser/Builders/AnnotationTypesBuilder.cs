@@ -9,24 +9,61 @@ namespace Raml.Parser.Builders
     {
         public static IDictionary<string, AnnotationType> Get(IDictionary<string, object> dynamicRaml)
         {
-            var annotationTypes = new Dictionary<string, AnnotationType>();
             if (!dynamicRaml.ContainsKey("annotationTypes"))
-                return annotationTypes;
+                return new Dictionary<string, AnnotationType>();
 
-            foreach (var annotationType in (IDictionary<string, object>) dynamicRaml["annotationTypes"])
-            {
-                var dictionary = annotationType.Value as IDictionary<string, object>;
+            return GetAnnotationTypes(dynamicRaml);
+        }
 
-                var annotation = dictionary != null
-                    ? GetAnnotationType(dictionary)
-                    : new AnnotationType
-                    {
-                        Parameters = new Dictionary<string, Parameter> {{annotationType.Key, new Parameter()}}
-                    };
+        private static IDictionary<string, AnnotationType> GetAnnotationTypes(IDictionary<string, object> dynamicRaml)
+        {
+            var annotationTypes = new Dictionary<string, AnnotationType>();
+            var annotationTypesInRaml = dynamicRaml["annotationTypes"];
+            var objects = annotationTypesInRaml as IDictionary<string, object>;
+            if (objects != null)
+                GetAnnotationTypesInDictionary(annotationTypesInRaml, annotationTypes);
+            else
+                GetAnnotationTypesInList(annotationTypes, annotationTypesInRaml);
 
-                annotationTypes.Add(annotationType.Key, annotation);
-            }
             return annotationTypes;
+        }
+
+        private static void GetAnnotationTypesInList(Dictionary<string, AnnotationType> annotationTypes, object annotationTypesInRaml)
+        {
+            var array = annotationTypesInRaml as object[];
+            foreach (var annotationType in array)
+            {
+                GetAnnotationTypesInDictionary(annotationType, annotationTypes);
+            }
+        }
+
+        private static void GetAnnotationTypesInDictionary(object annotationType, Dictionary<string, AnnotationType> annotationTypes)
+        {
+            var dic = annotationType as IDictionary<string, object>;
+            if (dic == null) return;
+            GetAnnotationTypes(dic, annotationTypes);
+        }
+
+        private static void GetAnnotationTypes(IDictionary<string, object> objects, Dictionary<string, AnnotationType> annotationTypes)
+        {
+            foreach (var annotationType in objects)
+            {
+                GetAnnotationType(annotationType, annotationTypes);
+            }
+        }
+
+        private static void GetAnnotationType(KeyValuePair<string, object> annotationType, Dictionary<string, AnnotationType> annotationTypes)
+        {
+            var dictionary = annotationType.Value as IDictionary<string, object>;
+
+            var annotation = dictionary != null
+                ? GetAnnotationType(dictionary)
+                : new AnnotationType
+                {
+                    Parameters = new Dictionary<string, Parameter> {{annotationType.Key, new Parameter()}}
+                };
+
+            annotationTypes.Add(annotationType.Key, annotation);
         }
 
         private static AnnotationType GetAnnotationType(IDictionary<string, object> annotationType)
@@ -39,6 +76,7 @@ namespace Raml.Parser.Builders
                 Usage = annotationType.ContainsKey("usage") ? (string)annotationType["usage"] : string.Empty,
                 Parameters = GetParameters(annotationType),
                 AllowedTargets = GetAllowedTargets(annotationType),
+                Annotations = AnnotationsBuilder.GetAnnotations(annotationType)
             };
         }
 

@@ -36,6 +36,8 @@ namespace Raml.Parser.Builders
 			method.Is = GetIs(dynamicRaml);
 			method.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
 
+            method.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+
 			return method;
 		}
 

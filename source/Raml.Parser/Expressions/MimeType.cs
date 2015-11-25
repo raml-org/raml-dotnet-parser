@@ -9,5 +9,6 @@ namespace Raml.Parser.Expressions
 		public string Example { get; set; }
 		public string Description { get; set; }
 		public IDictionary<string, Parameter> FormParameters { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

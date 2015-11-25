@@ -26,6 +26,8 @@ namespace Raml.Parser.Builders
 
             resource.Methods = GetMethods(dynamicRaml, traits, defaultMediaType);
 
+            resource.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+
             resource.RelativeUri = key;
 
             //if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] != null)

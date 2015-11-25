@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\AnnotationsBuilder.cs" />
     <Compile Include="Builders\AnnotationTypesBuilder.cs" />
     <Compile Include="Builders\BasicInfoBuilder.cs" />
     <Compile Include="Builders\DocumentationItemBuilder.cs" />

@@ -8,10 +8,13 @@ namespace Raml.Parser.Builders
 	{
 		public DocumentationItem Build(IDictionary<string, object> dynamicRaml)
 		{
-			var item = new DocumentationItem();
-			item.Title = dynamicRaml.ContainsKey("title") ? (string)dynamicRaml["title"] : null;
-			item.Content = dynamicRaml.ContainsKey("content") ? (string)dynamicRaml["content"] : null;
-			return item;
+		    var item = new DocumentationItem
+		    {
+		        Title = dynamicRaml.ContainsKey("title") ? (string) dynamicRaml["title"] : null,
+		        Content = dynamicRaml.ContainsKey("content") ? (string) dynamicRaml["content"] : null,
+		        Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
+		    };
+		    return item;
 		}
 	}
 }

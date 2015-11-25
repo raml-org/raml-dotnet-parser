@@ -19,6 +19,8 @@ namespace Raml.Parser.Builders
 				? new SecuritySettingsBuilder().Build((IDictionary<string, object>) dynamicRaml["settings"])
 				: null;
 
+            securityScheme.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+
 			return securityScheme;
 		}
 	}

@@ -29,8 +29,9 @@ namespace Raml.Parser.Expressions
 		public IEnumerable<Method> Methods { get; set; }
 
 		public ICollection<Resource> Resources { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 
-		public string GetResourceType()
+	    public string GetResourceType()
 		{
 			return Type.First().Key;
 		}

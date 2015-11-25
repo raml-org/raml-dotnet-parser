@@ -25,11 +25,7 @@ namespace Raml.Parser.Builders
 
 			return dynamicRaml.ToDictionary(kv => kv.Key, pair =>
 				{
-					var value = pair.Value as IDictionary<string, object>;
-					if(value != null)
-						return GetMimeType(value);
-
-					return new MimeType { Schema = (string) pair.Value};
+					return GetMimeType(pair.Value);
 				});
 		}
 
@@ -54,13 +50,17 @@ namespace Raml.Parser.Builders
 									  .ToArray();
 		}
 
-		public MimeType GetMimeType(IDictionary<string, object> value)
+		public MimeType GetMimeType(object mimeType)
 		{
-			if (value == null)
-				return null;
+            var value = mimeType as IDictionary<string, object>;
+		    if (value == null)
+		    {
+		        var schema = mimeType as string;
+                return !string.IsNullOrWhiteSpace(schema) ? new MimeType { Schema = schema } : null;
+		    }
 
-			if (value.ContainsKey("body"))
-				value = value["body"] as IDictionary<string, object>;
+            if (value.ContainsKey("body") && value["body"] is IDictionary<string, object>)
+				value = (IDictionary<string, object>) value["body"];
 
 			return new MimeType
 			       {
@@ -71,6 +71,7 @@ namespace Raml.Parser.Builders
 				       FormParameters = value.ContainsKey("formParameters")
 					       ? GetParameters((IDictionary<string, object>) value["formParameters"])
 					       : null,
+                       Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
 			       };
 		}
 	}

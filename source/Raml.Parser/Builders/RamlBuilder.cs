@@ -27,6 +27,7 @@ namespace Raml.Parser.Builders
 			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits, doc.MediaType);
 		    doc.Types = TypeBuilder.Get(dynamicRaml);
             doc.AnnotationTypes = AnnotationTypesBuilder.Get(dynamicRaml);
+		    doc.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 			return doc;
 		}
 

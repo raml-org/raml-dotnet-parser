@@ -14,6 +14,17 @@ namespace Raml.Parser.Tests
 	    private static RamlParser parser;
 
         [Test]
+        public async Task ShouldGetAnnotations()
+        {
+            var raml = await Parse("Specifications/annotations-targets.raml");
+
+            Assert.AreEqual(2, raml.Annotations.Count());
+            Assert.AreEqual(2, raml.Resources.First().Annotations.Count());
+            Assert.AreEqual(2, raml.Resources.Last().Methods.First().Annotations.Count());
+            Assert.AreEqual(2, raml.Resources.Last().Methods.First().Responses.First().Annotations.Count());
+        }
+
+        [Test]
         public async Task ShouldGetAnnotationsTypes_WithAllowedTargets()
         {
             var raml = await Parse("Specifications/annotations-targets.raml");
@@ -59,7 +70,7 @@ namespace Raml.Parser.Tests
 		}
 
 		[Test]
-		public async Task ShouldLoadFile_WhenValidRAML()
+		public async Task ShouldLoadValidRaml_WithAnnotations()
 		{
             var raml = await Parse("Specifications/parameters.raml");
 

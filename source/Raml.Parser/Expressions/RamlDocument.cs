@@ -18,9 +18,12 @@ namespace Raml.Parser.Expressions
 			ResourceTypes = new Collection<IDictionary<string, ResourceType>>();
 			Traits = new Collection<IDictionary<string, Method>>();
 			Schemas = new Collection<IDictionary<string, string>>();
+            Annotations = new Dictionary<string, object>();
 		}
 
-		public RamlDocument(IDictionary<string, object> dynamicRaml)
+	    public IDictionary<string, object> Annotations { get; set; }
+
+	    public RamlDocument(IDictionary<string, object> dynamicRaml)
 		{
 			this.dynamicRaml = dynamicRaml;
 		}

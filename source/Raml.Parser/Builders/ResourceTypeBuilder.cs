@@ -18,7 +18,8 @@ namespace Raml.Parser.Builders
                 Put = GetVerb(dynamicRaml, "put", VerbType.PUT, defaultMediaType),
                 Delete = GetVerb(dynamicRaml, "delete", VerbType.DELETE, defaultMediaType),
                 Patch = GetVerb(dynamicRaml, "patch", VerbType.PATCH, defaultMediaType),
-                Options = GetVerb(dynamicRaml, "options", VerbType.OPTIONS, defaultMediaType)
+                Options = GetVerb(dynamicRaml, "options", VerbType.OPTIONS, defaultMediaType),
+                Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
 			};
 
 		    return resourceType;

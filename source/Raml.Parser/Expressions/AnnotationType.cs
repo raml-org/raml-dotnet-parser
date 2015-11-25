@@ -15,5 +15,6 @@ namespace Raml.Parser.Expressions
         public bool AllowMultiple { get; set; }
 
         public ICollection<string> AllowedTargets { get; set; }
+        public IDictionary<string, object> Annotations { get; set; }
     }
 }
