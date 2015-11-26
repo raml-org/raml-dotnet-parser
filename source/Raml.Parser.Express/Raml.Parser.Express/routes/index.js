@@ -49,10 +49,15 @@ router.get('/', function (req, res) {
             }); //+1 stands for '\n'    
             
             var errors = '';
-            
+
+            var isError = false;
+
             for (var i = 0; i < api.errors().length; i++) {
 
                 var pos = position(api.errors()[i].start, arr);
+                
+                if (!api.errors()[i].isWarning)
+                    isError = true;
 
                 errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
                 errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
@@ -60,9 +65,11 @@ router.get('/', function (req, res) {
                 if(api.errors()[i].path != null)
 		            errors += 'In: ' + api.errors()[i].path + '\r\n';
 		    }
-					
-			res.send('Error: when parsing.\r\n' + errors);
-
+            
+            if(isError)	
+                res.send('Error: when parsing.\r\n' + errors);
+            else
+                res.send(parser.toJSON(api));
 		}
         
         res.send(parser.toJSON(api));
