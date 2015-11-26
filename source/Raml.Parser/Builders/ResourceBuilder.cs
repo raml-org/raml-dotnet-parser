@@ -54,7 +54,14 @@ namespace Raml.Parser.Builders
             var methods = new Collection<Method>();
 	        foreach (var key in dynamicRaml.Keys.Where(k => Methods.Contains(k)))
 	        {
-                var method = new MethodBuilder().Build((IDictionary<string, object>)dynamicRaml[key], defaultMediaType);
+                var dictionary = dynamicRaml[key] as IDictionary<string, object>;
+	            Method method;
+
+                if(dictionary != null)
+	                method = new MethodBuilder().Build(dictionary, defaultMediaType);
+                else
+                    method = new Method();
+
 	            method.Verb = key;
 
                 //if(method.Is != null && method.Is.Any())

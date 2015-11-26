@@ -121,6 +121,16 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(raml);
         }
 
+        [Test]
+        public async Task ShouldLoad_WhenContacts()
+        {
+            var raml = await Parse("Specifications/raml08/contacts.raml");
+
+            Assert.AreEqual(2, raml.Resources.Count());
+            Assert.AreEqual(1, raml.Resources.Last().Methods.Count());
+            Assert.AreEqual(1, raml.Resources.Last().Resources.First().Methods.Count());
+        }
+
         private static async Task<RamlDocument> Parse(string filePath)
         {
             parser = new RamlParser();
