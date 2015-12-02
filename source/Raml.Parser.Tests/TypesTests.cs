@@ -11,12 +11,35 @@ namespace Raml.Parser.Tests
         private static RamlParser parser;
 
         [Test]
+        public async Task ShouldParseMapTypes()
+        {
+            var raml = await Parse("specifications/maps.raml");
+
+            Assert.AreEqual(4, raml.Types.Count());
+            Assert.AreEqual("object", raml.Types["Person"].Type);
+        }
+
+        [Test]
+        public async Task ShouldParseComplexTypes()
+        {
+            var raml = await Parse("specifications/complextypes.raml");
+
+            Assert.AreEqual(2, raml.Types["Movie"].Object.Properties["director"].Object.Properties.Count);
+            
+            Assert.AreEqual("Movie[]", raml.Types["Movies"].Type);
+            Assert.IsNotNull(raml.Types["Movies"].Array);
+
+            Assert.AreEqual(2, raml.Types["SomeArray"].Array.Items.Object.Properties.Count);
+            Assert.AreEqual("integer", raml.Types["SomeArray"].Array.Items.Object.Properties["prop1"].Scalar.Type);
+        }
+
+        [Test]
         public async Task ShouldParseTypes_Movies1()
         {
             var raml = await Parse("specifications/movietype.raml");
 
             Assert.AreEqual(1, raml.Types.Count());
-            Assert.AreEqual("object", raml.Types.First().Type);
+            Assert.AreEqual("object", raml.Types["Movie"].Type);
         }
 
         [Test]
@@ -24,10 +47,10 @@ namespace Raml.Parser.Tests
         {
             var raml = await Parse("specifications/movietype.raml");
 
-            Assert.AreEqual(255, raml.Types.First().Properties.First(p => p.Key == "name").Value.MaxLength);
-            Assert.AreEqual(1, raml.Types.First().Properties.First(p => p.Key == "duration").Value.Minimum);
-            Assert.AreEqual(false, raml.Types.First().Properties.First(p => p.Key == "duration").Value.Required);
-            Assert.AreEqual(9, raml.Types.First().Properties.Count());
+            Assert.AreEqual(255, raml.Types["Movie"].Object.Properties.First(p => p.Key == "name").Value.Scalar.MaxLength);
+            Assert.AreEqual(1, raml.Types["Movie"].Object.Properties.First(p => p.Key == "duration").Value.Scalar.Minimum);
+            Assert.AreEqual(false, raml.Types["Movie"].Object.Properties.First(p => p.Key == "duration").Value.Required);
+            Assert.AreEqual(9, raml.Types["Movie"].Object.Properties.Count());
         }
 
         [Test]
@@ -46,8 +69,8 @@ namespace Raml.Parser.Tests
             var raml = await Parse("specifications/customscalar.raml");
 
             Assert.AreEqual(2, raml.Types.Count);
-            Assert.AreEqual("format", raml.Types.First(t => t.Name == "mydate").Facets.First().Key);
-            Assert.IsTrue(raml.Types.First(t => t.Name == "customDate").OtherProperties.ContainsKey("format"));
+            Assert.AreEqual("format", raml.Types["mydate"].Facets.First().Key);
+            Assert.IsTrue(raml.Types["customDate"].OtherProperties.ContainsKey("format"));
         }
 
         private static async Task<RamlDocument> Parse(string filePath)

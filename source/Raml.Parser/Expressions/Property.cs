@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mime;
 
 namespace Raml.Parser.Expressions
 {
@@ -8,8 +7,8 @@ namespace Raml.Parser.Expressions
         public object Facets { get; set; }
 
         // number
-        public NumberFormat Format { get; set; }
-        public int MultipleOf { get; set; }
+        public NumberFormat? Format { get; set; }
+        public int? MultipleOf { get; set; }
 
         // file
         public ICollection<string> FileTypes { get; set; }

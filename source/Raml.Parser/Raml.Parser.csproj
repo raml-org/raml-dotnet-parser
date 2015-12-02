@@ -70,8 +70,10 @@
     <Compile Include="Builders\AnnotationTypesBuilder.cs" />
     <Compile Include="Builders\BasicInfoBuilder.cs" />
     <Compile Include="Builders\DocumentationItemBuilder.cs" />
+    <Compile Include="Builders\DynamicRamlParser.cs" />
     <Compile Include="Builders\MethodBuilder.cs" />
     <Compile Include="Builders\ParameterBuilder.cs" />
+    <Compile Include="Builders\PropertyBuilder.cs" />
     <Compile Include="Builders\ProtocolsBuilder.cs" />
     <Compile Include="Builders\RamlBuilder.cs" />
     <Compile Include="Builders\ResourceBuilder.cs" />
@@ -84,8 +86,11 @@
     <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
     <Compile Include="Expressions\AnnotationType.cs" />
+    <Compile Include="Expressions\ArrayType.cs" />
+    <Compile Include="Expressions\ExternalType.cs" />
     <Compile Include="Expressions\Method.cs" />
     <Compile Include="Expressions\NumberFormat.cs" />
+    <Compile Include="Expressions\ObjectType.cs" />
     <Compile Include="Expressions\Property.cs" />
     <Compile Include="Expressions\Protocol.cs" />
     <Compile Include="Expressions\RamlType.cs" />

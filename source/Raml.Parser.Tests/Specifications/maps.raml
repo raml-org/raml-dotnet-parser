@@ -1,0 +1,70 @@
+#%RAML 1.0
+title: Maps
+version: 1.0
+baseUri: http://maps.com/api
+mediaType: application/json
+types:
+    Map:
+        type: object
+        properties:
+            []:
+                type: string
+        example: |
+            {
+                "id" : 1,
+                "name": "Big Fish",
+                "director": "Tim Burton",
+                "genre": "Drama, Fantasy",
+                "cast": "Ewan McGregor, Albert Finney, Billy Crudup",
+                "language": "English"
+            }
+    MapOfNumbers:
+        type: object
+        properties:
+            []:
+                type: number
+        example: |
+            {
+                "id" : 1,
+                "name": 22,
+                "director": 33,
+            }
+    Person:
+        type: object
+        properties:
+            firstname: string
+            lastname: string
+            age: integer
+    MapOfPersons:
+        type: object
+        properties:
+            []:
+                type: Person
+        example: |
+            {
+                "john" : 
+                    {
+                        "firstname": "john",
+                        "lastname": "smith",
+                        "age": 55
+                    },
+                "john" : 
+                    {
+                        "firstname": "jack",
+                        "lastname": "foo",
+                        "age": 22
+                    }
+            }
+
+/persons:
+  get:
+    description: gets all movies in the catalogue
+    responses:
+      200:
+        body:
+          type: MapOfPersons
+  post:
+    description: adds a movie to the catalogue
+    body:
+      application/json:
+        type: MapOfNumbers
