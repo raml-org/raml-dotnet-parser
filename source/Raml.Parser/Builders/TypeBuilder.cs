@@ -139,8 +139,7 @@ namespace Raml.Parser.Builders
             RamlType items = null;
             if (dynamicRaml.ContainsKey("items"))
             {
-                items = GetRamlType(new KeyValuePair<string, object>("ItemOf" + key,  (IDictionary<string, object>)dynamicRaml["items"]));
-                
+                items = GetRamlType(new KeyValuePair<string, object>("", (IDictionary<string, object>)dynamicRaml["items"]));
             }
             array.Items = items;
 
