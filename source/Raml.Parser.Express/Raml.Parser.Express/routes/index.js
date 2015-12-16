@@ -19,60 +19,68 @@ router.get('/', function (req, res) {
         return { row: row, col: col };
     }
 
-    var path = req.query.path;
+    var filePath = req.query.path;
     
 	var fs = require('fs');
 	try {
-		stats = fs.lstatSync(path);
+		stats = fs.lstatSync(filePath);
 		
         if (!stats.isFile())
-            res.send('Error: ' + path + ' does not exist or is not a file');
+            res.send('Error: ' + filePath + ' does not exist or is not a file');
 			
         var parser = require('raml-1-0-parser');
 			
-		var api = parser.loadApi(path).getOrElse(null);
-			
-		if (api == null)
-			res.send('Error: ' + path + ' returned null');
+		parser.loadApi(filePath).then(function(api) {
 
-				
-		if (api != null && api.errors() != null && api.errors().length > 0) {
+
+
+
+            if (api == null)
+                res.send('Error: ' + filePath + ' returned null');
             
-            var arr = [];
-            var content = fs.readFileSync(path).toString();
-            content.split('\n').forEach(function (x, i) {
-                if (i == 0) {
-                    arr.push(x.length + 1);
-                } else {
-                    arr.push(arr[i - 1] + x.length + 1);
-                }
-            }); //+1 stands for '\n'    
             
-            var errors = '';
-
-            var isError = false;
-
-            for (var i = 0; i < api.errors().length; i++) {
-
-                var pos = position(api.errors()[i].start, arr);
+            if (api != null && api.errors() != null && api.errors().length > 0) {
                 
-                if (!api.errors()[i].isWarning)
-                    isError = true;
-
-                errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
-                errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
-                errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
-                if(api.errors()[i].path != null)
-		            errors += 'In: ' + api.errors()[i].path + '\r\n';
-		    }
+                var arr = [];
+                var content = fs.readFileSync(filePath).toString();
+                content.split('\n').forEach(function (x, i) {
+                    if (i == 0) {
+                        arr.push(x.length + 1);
+                    } else {
+                        arr.push(arr[i - 1] + x.length + 1);
+                    }
+                }); //+1 stands for '\n'    
+                
+                var errors = '';
+                
+                var isError = false;
+                
+                for (var i = 0; i < api.errors().length; i++) {
+                    
+                    var pos = position(api.errors()[i].start, arr);
+                    
+                    if (!api.errors()[i].isWarning)
+                        isError = true;
+                    
+                    errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
+                    errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
+                    errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
+                    if (api.errors()[i].path != null)
+                        errors += 'In: ' + api.errors()[i].path + '\r\n';
+                }
+                
+                if (isError)
+                    res.send('Error: when parsing.\r\n' + errors);
+                else
+                    res.send(api.toJSON());
+            }
             
-            if(isError)	
-                res.send('Error: when parsing.\r\n' + errors);
-            else
-                res.send(parser.toJSON(api));
-		}
-        
-        res.send(parser.toJSON(api));
+            res.send(api.toJSON());
+		    
+
+		});
+			
+
 	}
     catch (e) {
 		
