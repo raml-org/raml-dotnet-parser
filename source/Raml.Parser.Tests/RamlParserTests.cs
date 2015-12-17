@@ -43,8 +43,7 @@ namespace Raml.Parser.Tests
 			var parser = new RamlParser();
 			var raml = await parser.LoadAsync("Specifications/annotations-targets.raml");
 
-			Assert.AreEqual(10, raml.Resources.Count());
-			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+			Assert.AreEqual(2, raml.Resources.Count());
 		}
 
         [Test]
@@ -53,8 +52,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/annotations.raml");
 
-            Assert.AreEqual(10, raml.Resources.Count());
-            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+            Assert.AreEqual(2, raml.Resources.Count());
         }
 
         [Test]
@@ -92,8 +90,8 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/movies-v1.raml");
 
-            Assert.AreEqual(10, raml.Resources.Count());
-            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+            Assert.AreEqual(2, raml.Resources.Count());
+            Assert.AreEqual(2, raml.Resources.First().Methods.Count());
         }
 
         [Test]
@@ -102,8 +100,8 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/movietype.raml");
 
-            Assert.AreEqual(10, raml.Resources.Count());
-            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+            Assert.AreEqual(1, raml.Types.Count());
+            Assert.AreEqual(1, raml.Resources.Count());
         }
 
         [Test]
@@ -112,8 +110,8 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/typeexpressions.raml");
 
-            Assert.AreEqual(10, raml.Resources.Count());
-            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+            Assert.AreEqual(1, raml.Types.Count());
+            Assert.AreEqual(3, raml.Resources.First().Methods.Count());
         }
 
 		[Test]
@@ -133,17 +131,8 @@ namespace Raml.Parser.Tests
 			var raml = await parser.LoadAsync("congo-drones-5-f.raml");
 
 			Assert.AreEqual(2, raml.Resources.Count());
-			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
+			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
 		}
-
-        [Test]
-        public async Task ShouldParse_Hybrid()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("hybrid-api.raml");
-
-            Assert.AreEqual(4, raml.Resources.Count());
-        }
 
         [Test]
         public async Task ShouldParse_Movies()
