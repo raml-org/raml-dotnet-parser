@@ -42,23 +42,12 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EdgeJs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f2aaadbe4bc9b581, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Edge.js.0.9.2\lib\EdgeJs.dll</HintPath>
+    <Reference Include="EdgeJs, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Edge.js.4.0.0\lib\EdgeJs.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -114,16 +103,13 @@
     <Compile Include="Expressions\Verb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="edge\double_edge.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="edge\edge.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="edge\x64\node.dll">
+    <None Include="edge\x64\edge.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="edge\x86\node.dll">
+    <None Include="edge\x86\edge.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="install.ps1" />
@@ -397,51 +383,20 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\media-typer\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\.npmignore">
+    <None Include="node_modules\raml-1-0-parser\node_modules\pluralize\LICENSE" />
+    <Content Include="edge\double_edge.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\.travis.yml">
+    </Content>
+    <Content Include="edge\x64\node.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\appveyor.yml">
+    </Content>
+    <Content Include="edge\x86\node.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\lib\json-buffer\LICENSE">
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\pluralize\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\lib\json-buffer\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\.editorconfig">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\.npmignore">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\.travis.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\Makefile">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <None Include="node_modules\raml-1-0-parser\node_modules\pluralize\Readme.md" />
     <None Include="node_modules\raml-1-0-parser\node_modules\then-request\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -538,33 +493,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\then-request\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\.editorconfig">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\.npmignore">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\AUTHORS.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\bin\tsc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\bin\tsserver">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\CONTRIBUTING.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\typescript\tslint.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\underscore\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -595,6 +523,13 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\xmldom\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\.jshintrc" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\.npmignore" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\LICENSE" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\README.md" />
     <None Include="node_modules\raml-1-0-parser\node_modules\z-schema\bin\z-schema">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1078,16 +1013,8 @@
     <None Include="node_modules\raml-1-0-parser\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RAML.Parser.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="edge\x64\edge.node">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="edge\x86\edge.node">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
+    <None Include="RAML.Parser.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1285,40 +1212,7 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\media-typer\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\lib\json-buffer\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\lib\spawn-sync.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\lib\worker.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\lib\os.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\node_modules\os-shim\test\osSpec.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\postinstall.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\test\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\test\test-empty.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\test\test-spawn-fail.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\test\test-spawn-timeout.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\spawn-sync\test\test-spawn.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\pluralize\pluralize.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\browser.js">
@@ -1420,33 +1314,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\test\server.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\.gitattributes">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\CopyrightNotice.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\Jakefile.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\lib\tsc.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\lib\tsserver.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\lib\typescript.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\lib\typescriptServices.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\LICENSE.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\typescript\ThirdPartyNoticeText.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\underscore\underscore-min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1463,6 +1330,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\xmldom\__package__.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\lib\XMLHttpRequest.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\z-schema\dist\ZSchema-browser-min.js">
@@ -1792,7 +1662,7 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\z-schema\src\ZSchema.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\src\bundle.js">
+    <Content Include="node_modules\raml-1-0-parser\src\raml1Parser.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="parser.js" />
@@ -1808,11 +1678,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

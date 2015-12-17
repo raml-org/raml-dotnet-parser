@@ -4,17 +4,11 @@ version: 1.0
 baseUri: http://maps.com/api
 mediaType: application/json
 types:
-    MapOfInt: 
-        type: object
-        properties:
-            []:
-                type: integer
-        example: |
-            {
-                "id" : 1,
-                "code": 22323,
-                "token": 343432423
-            }
+    ArrayOfInt: 
+        type: array
+        items:
+            type: integer
+        example: [1,2,3,4,5]
     Person:
         type: object
         properties:
@@ -23,40 +17,36 @@ types:
                 required: true
                 maxLength: 255
             firstname: string
-    MapOfPerson:
-        type: object
-        properties:
-            []:
-                type: Person
+    ArrayOfPerson:
+        type: Person[]
         example: |
-            {
-                "john": {
+            [
+                {
                     "lastname": "smith"
                     "firstname" : "john"
                 },
-                "peter": {
+                {
                     "lastname": "jackson"
                     "firstname" : "peter"
                 }
-            }
-    MapOfObject:
-        type: object
-        properties:
-            []:
-                type: object
-                properties:
-                    lastname: 
-                        type: string
-                        required: true
-                        maxLength: 255
-                    firstname: string
+            ]
+    ArrayOfObject:
+        type: array
+        items:
+            type: object
+            properties:
+                lastname: 
+                    type: string
+                    required: true
+                    maxLength: 255
+                firstname: string
         example: |
             {
-                "john": {
+                {
                     "lastname": "smith"
                     "firstname" : "john"
                 },
-                "peter": {
+                {
                     "lastname": "jackson"
                     "firstname" : "peter"
                 }
@@ -67,9 +57,9 @@ types:
     responses:
       200:
         body:
-          schema: MapOfPerson
+          schema: ArrayOfPerson
   post:
     description: adds a movie to the catalogue
     body:
       application/json:
-        schema: MapOfInt
+        schema: ArrayOfInt

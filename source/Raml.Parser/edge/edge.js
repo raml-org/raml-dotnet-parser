@@ -5,7 +5,9 @@ var fs = require('fs')
 
 var versionMap = [
     [ /^0\.8\./, '0.8.22' ],
-    [ /^0\.10\./, '0.10.0' ]
+    [ /^0\.10\./, '0.10.0' ],
+    [ /^0\.12\./, '0.12.0' ],
+    [ /^4\./, '4.1.1' ],
 ];
 
 function determineVersion() {
@@ -35,7 +37,7 @@ else {
         + 'If you need to build edge.node, follow build instructions for your platform at https://github.com/tjanczuk/edge');
 }
 if (process.env.EDGE_DEBUG) {
-    //console.log('Load edge native library from: ' + edgeNative);
+    console.log('Load edge native library from: ' + edgeNative);
 }
 edge = require(edgeNative);
 
