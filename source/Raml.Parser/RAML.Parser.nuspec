@@ -15,7 +15,7 @@
 		<iconUrl>http://raml.org/images/logo.png</iconUrl>
         <tags>RAML REST API SCHEMA MARKUP</tags>
         <dependencies>
-            <dependency id="Edge.js" version="0.9.0" />
+            <dependency id="Edge.js" version="4.0.0" />
         </dependencies>
     </metadata>
     <files>
