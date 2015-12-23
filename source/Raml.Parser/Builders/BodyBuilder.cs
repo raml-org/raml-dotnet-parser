@@ -7,8 +7,9 @@ namespace Raml.Parser.Builders
 	public class BodyBuilder
 	{
 		private readonly IDictionary<string, object> dynamicRaml;
+        private readonly string[] bodyKeys = { "type", "example", "schema", "formParameters", "description" };
 
-		public BodyBuilder(IDictionary<string, object> dynamicRaml)
+	    public BodyBuilder(IDictionary<string, object> dynamicRaml)
 		{
 			this.dynamicRaml = dynamicRaml;
 		}
@@ -18,36 +19,12 @@ namespace Raml.Parser.Builders
             if(dynamicRaml == null)
                 return new Dictionary<string, MimeType>();
 
-		    if (dynamicRaml.ContainsKey("type"))
+            if (!string.IsNullOrWhiteSpace(defaultMediaType) && dynamicRaml.Keys.Any(k => bodyKeys.Contains(k)))
 		    {
 		        return new Dictionary<string, MimeType> {{defaultMediaType, GetMimeType(dynamicRaml)}};
 		    }
 
-			return dynamicRaml.ToDictionary(kv => kv.Key, pair =>
-				{
-					return GetMimeType(pair.Value);
-				});
-		}
-
-		public IDictionary<string,Parameter> GetParameters(IDictionary<string, object> dictionary)
-		{
-            if (dynamicRaml == null)
-                return new Dictionary<string, Parameter>();
-
-			return dictionary.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>)kv.Value));
-		}
-
-		public IEnumerable<MimeType> Get()
-		{
-            if (dynamicRaml == null)
-                return new List<MimeType>();
-
-			return dynamicRaml.Select(pair =>
-			                          {
-				                          var value = (IDictionary<string, object>)pair.Value;
-				                          return GetMimeType(value);
-			                          })
-									  .ToArray();
+			return dynamicRaml.ToDictionary(kv => kv.Key, pair => GetMimeType(pair.Value));
 		}
 
 		public MimeType GetMimeType(object mimeType)
@@ -74,5 +51,13 @@ namespace Raml.Parser.Builders
                        Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
 			       };
 		}
+
+        private IDictionary<string, Parameter> GetParameters(IDictionary<string, object> dictionary)
+        {
+            if (dynamicRaml == null)
+                return new Dictionary<string, Parameter>();
+
+            return dictionary.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>)kv.Value));
+        }
 	}
 }

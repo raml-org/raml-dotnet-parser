@@ -31,11 +31,6 @@ namespace Raml.Parser.Expressions
 		public ICollection<Resource> Resources { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
 
-	    public string GetResourceType()
-		{
-			return Type.First().Key;
-		}
-
 		#region equality operators
 		protected bool Equals(Resource other)
 		{
