@@ -10,5 +10,6 @@ namespace Raml.Parser.Expressions
 		public string Description { get; set; }
 		public IDictionary<string, Parameter> FormParameters { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
+	    public RamlType InlineType { get; set; }
 	}
 }

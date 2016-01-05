@@ -152,5 +152,15 @@ namespace Raml.Parser.Tests
 
             Assert.IsNotNull(raml);
         }
+
+        [Test]
+        public async Task ShouldLoadInlinedTypes()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/inlinetype.raml");
+
+            Assert.IsNotNull(raml.Resources.First().Methods.First().Responses.First().Body.First().Value.InlineType);
+            Assert.IsNotNull(raml.Resources.First().Methods.Last().Body.First().Value.InlineType);
+        }
 	}
 }

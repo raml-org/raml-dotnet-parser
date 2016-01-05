@@ -39,9 +39,16 @@ namespace Raml.Parser.Builders
             if (value.ContainsKey("body") && value["body"] is IDictionary<string, object>)
 				value = (IDictionary<string, object>) value["body"];
 
-			return new MimeType
+		    RamlType ramlType = null;
+            if (value.ContainsKey("type") && value.ContainsKey("properties"))
+		    {
+                ramlType = TypeBuilder.GetRamlType(new KeyValuePair<string, object>("obj", mimeType));
+		    }
+
+		    return new MimeType
 			       {
                        Type = value.ContainsKey("type") ? (string)value["type"] : null,
+                       InlineType = ramlType,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
 				       Example = value.ContainsKey("example") ? (string) value["example"] : null,
 				       Schema = value.ContainsKey("schema") ? (string) value["schema"] : null,

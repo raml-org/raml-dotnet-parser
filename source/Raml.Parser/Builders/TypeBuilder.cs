@@ -22,7 +22,7 @@ namespace Raml.Parser.Builders
             return ramlTypes;
         }
 
-        private static RamlType GetRamlType(KeyValuePair<string, object> type)
+        public static RamlType GetRamlType(KeyValuePair<string, object> type)
         {
             var key = type.Key;
             var required = true;
