@@ -54,14 +54,22 @@ traits: !include congo-traits.raml
     queryParameters:
       sinceDate:
         type: date
-        example: Mon, 14 Jul 2014 07:00:00 GMT
+        example: "Mon, 14 Jul 2014 07:00:00 GMT"
       throughDate:
         type: date
-        example: Mon, 18 Jul 2014 07:00:00 GMT
+        example: "Mon, 18 Jul 2014 07:00:00 GMT"
   /{deliveryId}:
     type: 
       member: 
-        example-member: *delivery
+        example-member: &delivery |
+            { 
+              "id": "987",
+              "at": "Sun, 20 Jul 2014 21:20:00 GMT",
+              "toAddressId": "273hh79",
+              "orderItemId": "9877292",
+              "status": "scheduled",
+              "droneId": "f"
+            }
         example-partialmember: |
           { 
             "at": "Mon, 21 Jul 2014 00:00:00 GMT"
@@ -116,7 +124,14 @@ traits: !include congo-traits.raml
   /{droneId}:
     type: 
       member: 
-        example-member: *drone
+        example-member:  &drone |
+            {
+              "id": "f",
+              "latitude": 37.852519,
+              "longitude": -122.237390,
+              "altitude": 56.9,
+              "name": "Camelot"
+            }
         example-partialmember: |
           {
             "name": "Arthur"
