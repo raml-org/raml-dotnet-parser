@@ -162,5 +162,14 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(raml.Resources.First().Methods.First().Responses.First().Body.First().Value.InlineType);
             Assert.IsNotNull(raml.Resources.First().Methods.Last().Body.First().Value.InlineType);
         }
+
+        [Test]
+        public async Task ShouldParseFileType()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/chinook-v1.raml");
+
+            Assert.AreEqual("file", raml.Types["Person"].Object.Properties["Picture"].Type);
+        }
 	}
 }

@@ -7,7 +7,7 @@ namespace Raml.Parser.Builders
 {
     public class TypeBuilder
     {
-        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date" };
+        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date", "file" };
         private static IDictionary<string, RamlType> ramlTypes = new Dictionary<string, RamlType>();
         public static IDictionary<string, RamlType> Get(IDictionary<string, object> dynamicRaml)
         {
