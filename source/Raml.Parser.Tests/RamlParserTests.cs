@@ -171,5 +171,15 @@ namespace Raml.Parser.Tests
 
             Assert.AreEqual("file", raml.Types["Person"].Object.Properties["Picture"].Type);
         }
+
+        [Test]
+        public async Task ShouldHandleOverlay()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/librarybooks-overlay.raml");
+
+            Assert.AreEqual(2, raml.Documentation.Count());
+            Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First(d => d.Title == "Introducción").Content);
+        }
 	}
 }
