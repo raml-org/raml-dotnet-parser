@@ -12,7 +12,7 @@ namespace Raml.Parser.Builders
 		{
 			var doc = new RamlDocument(dynamicRaml);
 			doc.BaseUri = dynamicRaml.ContainsKey("baseUri") ? (string) dynamicRaml["baseUri"] : string.Empty;
-			doc.Title = (string)dynamicRaml["title"];
+            doc.Title = dynamicRaml.ContainsKey("title") ? (string)dynamicRaml["title"] : string.Empty;
 			doc.Version = dynamicRaml.ContainsKey("version") ? (string)dynamicRaml["version"] : null;
 			doc.MediaType = dynamicRaml.ContainsKey("mediaType") ? (string)dynamicRaml["mediaType"] : null;
 			doc.Documentation = GetDocumentation(dynamicRaml);
@@ -89,12 +89,28 @@ namespace Raml.Parser.Builders
 			if (!dynamicRaml.ContainsKey("resourceTypes"))
 				return new List<IDictionary<string, ResourceType>>();
 
-			var dynamicResourceTypes = (object[])dynamicRaml["resourceTypes"];
-			return (from IDictionary<string, object> dynamicResourceType in dynamicResourceTypes
-					select dynamicResourceType
-                        .ToDictionary(kv => kv.Key, kv => new ResourceTypeBuilder().Build((IDictionary<string, object>)kv.Value, defaultMediaType)))
-				.Cast<IDictionary<string, ResourceType>>()
-				.ToList();
+			var resourceTypes = dynamicRaml["resourceTypes"] as object[];
+            if (resourceTypes != null)
+            {
+                return (from IDictionary<string, object> dynamicResourceType in resourceTypes
+                    select dynamicResourceType
+                        .ToDictionary(kv => kv.Key,
+                            kv =>
+                                new ResourceTypeBuilder().Build((IDictionary<string, object>) kv.Value, defaultMediaType)))
+                    .Cast<IDictionary<string, ResourceType>>()
+                    .ToList();
+            }
+
+            var dynamicResourceTypes = dynamicRaml["resourceTypes"] as IDictionary<string, object>;
+
+            var dic = new Dictionary<string, ResourceType>();
+            foreach (var keyValuePair in dynamicResourceTypes)
+            {
+                var resourceType = new ResourceTypeBuilder().Build((IDictionary<string, object>) keyValuePair.Value, defaultMediaType);
+                dic.Add(keyValuePair.Key, resourceType);
+            }
+
+            return new List<IDictionary<string, ResourceType>> { dic };
 		}
 
         private IEnumerable<IDictionary<string, Method>> GetTraits(IDictionary<string, object> dynamicRaml, string defaultMediaType)
