@@ -176,10 +176,22 @@ namespace Raml.Parser.Tests
         public async Task ShouldHandleOverlay()
         {
             var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/librarybooks-overlay.raml");
+            var raml = await parser.LoadAsync("Specifications/librarybooks.raml", new[] {"Specifications/librarybooks-overlay.raml"});
 
             Assert.AreEqual(2, raml.Documentation.Count());
-            Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First(d => d.Title == "Introducción").Content);
+            Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First().Content);
+            Assert.AreEqual("Book Library API", raml.Title);
+            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+        }
+
+        [Test]
+        public async Task ShouldHandleLibraries()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/file-libraries.raml");
+
+            Assert.AreEqual(1, raml.ResourceTypes.Count());
+            Assert.AreEqual("files.file-type.File", raml.ResourceTypes.First()["file"].Get.Responses.First().Body["application/json"].Type);
         }
 	}
 }
