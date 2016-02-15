@@ -126,6 +126,11 @@ namespace Raml.Parser.Builders
                 }
             }
 
+            if (ramlType.Type.Contains("|")) // Union Type
+            {
+                return;
+            }
+
             throw new InvalidOperationException("Cannot parse type: " + dynamicRaml["type"]);
         }
 

@@ -193,5 +193,14 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, raml.ResourceTypes.Count());
             Assert.AreEqual("files.file-type.File", raml.ResourceTypes.First()["file"].Get.Responses.First().Body["application/json"].Type);
         }
+
+        [Test]
+        public async Task ShouldHandleUnionTypes()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/uniontypes.raml");
+
+            Assert.AreEqual(3, raml.Types.Count());
+        }
 	}
 }
