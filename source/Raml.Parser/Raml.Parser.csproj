@@ -503,6 +503,34 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\underscore\underscore-min.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\.npmignore" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\Cakefile" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\CONTRIBUTING.md" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\src\000-xml_http_request_event_target.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\src\001-xml_http_request.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\src\errors.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\src\progress_event.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\src\xml_http_request_upload.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\fixtures\hello.json" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\events_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\event_target_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\headers_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\helpers\browser_mocha_runner.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\helpers\browser_mocha_setup.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\helpers\setup.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\helpers\xhr_server.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\nodejs_set_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\redirect_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\response_type_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\send_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\status_test.coffee" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\src\xhr_test.coffee" />
     <None Include="node_modules\raml-1-0-parser\node_modules\xmldom\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -524,6 +552,18 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\.jshintrc" />
     <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\.npmignore" />
     <None Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\LICENSE" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\lib\browser.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\lib\xhr2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\fixtures\hello.txt" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\fixtures\xhr2.png" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xhr2\test\html\browser_test.html" />
     <Content Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
