@@ -81,6 +81,8 @@
     <Compile Include="Expressions\Property.cs" />
     <Compile Include="Expressions\Protocol.cs" />
     <Compile Include="Expressions\RamlType.cs" />
+    <Compile Include="Expressions\RamlTypesOrderedDictionary.cs" />
+    <Compile Include="Expressions\RamlVersion.cs" />
     <Compile Include="Expressions\ResourceType.cs" />
     <Compile Include="Expressions\BasicInfo.cs" />
     <Compile Include="Expressions\SecuritySchemeDescriptor.cs" />

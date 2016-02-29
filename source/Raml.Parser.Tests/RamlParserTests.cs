@@ -62,7 +62,7 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/arrays.raml");
 
             Assert.AreEqual(1, raml.Resources.Count());
-            Assert.AreEqual(4, raml.Types.Count());
+            Assert.AreEqual(4, raml.Types.Count);
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/customscalar.raml");
 
-            Assert.AreEqual(2, raml.Types.Count());
+            Assert.AreEqual(2, raml.Types.Count);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/maps.raml");
 
-            Assert.AreEqual(4, raml.Types.Count());
+            Assert.AreEqual(4, raml.Types.Count);
             Assert.AreEqual(1, raml.Resources.Count());
         }
 
@@ -100,7 +100,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/movietype.raml");
 
-            Assert.AreEqual(1, raml.Types.Count());
+            Assert.AreEqual(1, raml.Types.Count);
             Assert.AreEqual(1, raml.Resources.Count());
         }
 
@@ -110,7 +110,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/typeexpressions.raml");
 
-            Assert.AreEqual(1, raml.Types.Count());
+            Assert.AreEqual(1, raml.Types.Count);
             Assert.AreEqual(3, raml.Resources.First().Methods.Count());
         }
 
@@ -200,7 +200,7 @@ namespace Raml.Parser.Tests
             var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/uniontypes.raml");
 
-            Assert.AreEqual(3, raml.Types.Count());
+            Assert.AreEqual(3, raml.Types.Count);
         }
 	}
 }

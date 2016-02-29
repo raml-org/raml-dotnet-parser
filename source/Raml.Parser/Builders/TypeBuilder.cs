@@ -8,10 +8,10 @@ namespace Raml.Parser.Builders
     public class TypeBuilder
     {
         private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date", "file" };
-        private static IDictionary<string, RamlType> ramlTypes = new Dictionary<string, RamlType>();
-        public static IDictionary<string, RamlType> Get(IDictionary<string, object> dynamicRaml)
+        private static RamlTypesOrderedDictionary ramlTypes = new RamlTypesOrderedDictionary();
+        public static RamlTypesOrderedDictionary Get(IDictionary<string, object> dynamicRaml)
         {
-            ramlTypes = new Dictionary<string, RamlType>();
+            ramlTypes = new RamlTypesOrderedDictionary();
             if (!dynamicRaml.ContainsKey("types"))
                 return ramlTypes;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 
 namespace Raml.Parser.Expressions
 {
@@ -9,6 +10,7 @@ namespace Raml.Parser.Expressions
 
 		public RamlDocument()
 		{
+		    RamlVersion = RamlVersion.Version08;
 			Resources = new Collection<Resource>();
 			Documentation = new Collection<DocumentationItem>();
 			BaseUriParameters = new Dictionary<string, Parameter>();
@@ -19,7 +21,10 @@ namespace Raml.Parser.Expressions
 			Traits = new Collection<IDictionary<string, Method>>();
 			Schemas = new Collection<IDictionary<string, string>>();
             Annotations = new Dictionary<string, object>();
+            Types = new RamlTypesOrderedDictionary();
 		}
+
+	    public RamlVersion RamlVersion { get; set; }
 
 	    public IDictionary<string, object> Annotations { get; set; }
 
@@ -56,7 +61,7 @@ namespace Raml.Parser.Expressions
 		public IEnumerable<IDictionary<string, string>> Schemas { get; set; }
 
 		public ICollection<Resource> Resources { get; set; }
-	    public IDictionary<string, RamlType> Types { get; set; }
+	    public RamlTypesOrderedDictionary Types { get; set; }
 	    public IDictionary<string, AnnotationType> AnnotationTypes { get; set; }
 	}
 }
