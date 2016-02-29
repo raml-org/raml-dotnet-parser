@@ -1,43 +1,43 @@
-﻿
+﻿console.log('Start');
+
 if (process.argv.length <= 2) {
 
     console.log('Error: Path not specified');
 
 } else {
 
-    var path = process.argv[2];
+    var filepath = process.argv[2];
 
     var fs = require('fs');
     try {
-        stats = fs.lstatSync(path);
+        stats = fs.lstatSync(filepath);
 
         if (stats.isFile()) {
 
-            require('raml-1-0-parser');
 
-            var RAML = global.RAML;
+            var path = require('path');
+            var raml1Parser = require('raml-1-0-parser');
 
-            var api = RAML.loadApi(path).getOrElse(null);
+            raml1Parser.loadApi(filepath)
+               .then(function (api) {
+                   
+                   console.log('End a');
 
-            if (!(api != null)) {
+                   api.errors().forEach(function (x) {
+                       console.log(JSON.stringify({
+                           code: x.code,
+                           message: x.message,
+                           path: x.path,
+                           start: x.start,
+                           end: x.end,
+                           isWarning: x.isWarning
+                       }, null, 2));
+                   });
 
-                console.log('Error: ' + path + ' returned null');
-
-            } else {
-
-                if (api != null && api.errors() != null && api.errors().length > 0) {
-
-                    var errors = '';
-                    for (var i = 0; i < api.errors().length; i++)
-                        errors += api.errors()[i].message;
-
-                    console.log('Error: ' + errors);
-
-                } else {
-
-                    console.log(JSON.stringify(RAML.toJSON(api)));
-                }
-            }
+                   console.log(JSON.stringify(api.toJSON(), null, 2));
+               });
+               
+               console.log('End s');
 
         } else {
             

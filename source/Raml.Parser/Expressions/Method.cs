@@ -33,5 +33,6 @@ namespace Raml.Parser.Expressions
 		public IEnumerable<Protocol> Protocols { get; set; }
 
 		public IEnumerable<string> Is { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

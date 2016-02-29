@@ -7,66 +7,64 @@ namespace Raml.Parser.Builders
 	public class BodyBuilder
 	{
 		private readonly IDictionary<string, object> dynamicRaml;
+        private readonly string[] bodyKeys = { "type", "example", "schema", "formParameters", "description" };
 
-		public BodyBuilder(IDictionary<string, object> dynamicRaml)
+	    public BodyBuilder(IDictionary<string, object> dynamicRaml)
 		{
 			this.dynamicRaml = dynamicRaml;
 		}
 
-		public IDictionary<string, MimeType> GetAsDictionary()
+		public IDictionary<string, MimeType> GetAsDictionary(string defaultMediaType)
 		{
             if(dynamicRaml == null)
                 return new Dictionary<string, MimeType>();
 
-			return dynamicRaml.ToDictionary(kv => kv.Key, pair =>
-				{
-					var value = pair.Value as IDictionary<string, object>;
-					if(value != null)
-						return GetMimeType(value, pair.Key);
+            if (!string.IsNullOrWhiteSpace(defaultMediaType) && dynamicRaml.Keys.Any(k => bodyKeys.Contains(k)))
+		    {
+		        return new Dictionary<string, MimeType> {{defaultMediaType, GetMimeType(dynamicRaml)}};
+		    }
 
-					return new MimeType { Schema = (string) pair.Value};
-				});
+			return dynamicRaml.ToDictionary(kv => kv.Key, pair => GetMimeType(pair.Value));
 		}
 
-		public IDictionary<string,Parameter> GetParameters(IDictionary<string, object> dictionary)
+		public MimeType GetMimeType(object mimeType)
 		{
-            if (dynamicRaml == null)
-                return new Dictionary<string, Parameter>();
+            var value = mimeType as IDictionary<string, object>;
+		    if (value == null)
+		    {
+		        var schema = mimeType as string;
+                return !string.IsNullOrWhiteSpace(schema) ? new MimeType { Schema = schema } : null;
+		    }
 
-			return dictionary.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>)kv.Value));
-		}
+            if (value.ContainsKey("body") && value["body"] is IDictionary<string, object>)
+				value = (IDictionary<string, object>) value["body"];
 
-		public IEnumerable<MimeType> Get()
-		{
-            if (dynamicRaml == null)
-                return new List<MimeType>();
+		    RamlType ramlType = null;
+            if (value.ContainsKey("type") && value.ContainsKey("properties"))
+		    {
+                ramlType = TypeBuilder.GetRamlType(new KeyValuePair<string, object>("obj", mimeType));
+		    }
 
-			return dynamicRaml.Select(pair =>
-			                          {
-				                          var value = (IDictionary<string, object>)pair.Value;
-				                          return GetMimeType(value, pair.Key);
-			                          })
-									  .ToArray();
-		}
-
-		public MimeType GetMimeType(IDictionary<string, object> value, string type)
-		{
-			if (value == null)
-				return null;
-
-			if (value.ContainsKey("body"))
-				value = value["body"] as IDictionary<string, object>;
-
-			return new MimeType
+		    return new MimeType
 			       {
-				       Type = type,
+                       Type = value.ContainsKey("type") ? (string)value["type"] : null,
+                       InlineType = ramlType,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
 				       Example = value.ContainsKey("example") ? (string) value["example"] : null,
 				       Schema = value.ContainsKey("schema") ? (string) value["schema"] : null,
 				       FormParameters = value.ContainsKey("formParameters")
 					       ? GetParameters((IDictionary<string, object>) value["formParameters"])
 					       : null,
+                       Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
 			       };
 		}
+
+        private IDictionary<string, Parameter> GetParameters(IDictionary<string, object> dictionary)
+        {
+            if (dynamicRaml == null)
+                return new Dictionary<string, Parameter>();
+
+            return dictionary.ToDictionary(kv => kv.Key, kv => (new ParameterBuilder()).Build((IDictionary<string, object>)kv.Value));
+        }
 	}
 }

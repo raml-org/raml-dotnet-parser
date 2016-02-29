@@ -17,31 +17,142 @@ namespace Raml.Parser
 
             var load = Edge.Func(@"
 
-                return function (path, callback) {
+                function position(pos, positions) {
 
-                    require('raml-1-0-parser');
+                    var row = -1;
+                    var col = -1;
+                    for (var i = 0; i < positions.length; i++) {
+                        if (positions[i] >= pos) {
+                            row = i + 1;
+                            col = positions[i-1] - pos;
+                            return { row: row, col: col };
+                        }
+                    }
+                    return { row: row, col: col };
+                }
 
-                    var RAML = global.RAML;
+                return function (filepath, callback) {
 
-                    var api = RAML.loadApi(path).getOrElse(null);
+                    var raml1Parser = require('raml-1-0-parser');
+                    var path = require('path');
 
-                    if(api == null)
-                        callback(null, 'Error: ' + path + ' returned null');
+                    var api = raml1Parser.loadApiSync(filepath);
 
-                    if(api.errors() != null && api.errors().length > 0){
+	                var fs = require('fs');
 
-                        var errors = '';
-                        for(var i = 0; i < api.errors().length; i++)
-                            errors += api.errors()[i].message;
-
-                        callback(null, 'Error: ' + errors);
+                    var arr = [];
+                    var content = fs.readFileSync(filepath).toString();
+                    content.split('\n').forEach(function (x, i) {
+                        if (i == 0) {
+                            arr.push(x.length + 1);
+                        } else {
+                            arr.push(arr[i - 1] + x.length + 1);
+                        }
+                    }); //+1 stands for '\n'    
+                
+                    var errors = '';
+                
+                    var isError = false;
+                
+                    for (var i = 0; i < api.errors().length; i++) {
+                    
+                        var pos = position(api.errors()[i].start, arr);
+                    
+                        if (!api.errors()[i].isWarning)
+                            isError = true;
+                    
+                        errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
+                        errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
+                        errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
+                        if (api.errors()[i].path != null)
+                            errors += 'In: ' + api.errors()[i].path + '\r\n';
                     }
 
-                    callback(null, RAML.toJSON(api));
+                    if (isError)
+                        callback(null, 'Error: when parsing.\r\n' + errors);
+                    else
+                        callback(null, api.toJSON())
+
                 }
             ");
 
             var rawresult = await load(filePath);
+            var error = rawresult as string;
+            if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
+                throw new FormatException(error);
+
+            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult);
+
+            return ramlDocument;
+        }
+
+        public async Task<RamlDocument> LoadAsync(string filePath, string[] extensionPaths)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                throw new ArgumentException("filePath");
+
+            var load = Edge.Func(@"
+
+                function position(pos, positions) {
+
+                    var row = -1;
+                    var col = -1;
+                    for (var i = 0; i < positions.length; i++) {
+                        if (positions[i] >= pos) {
+                            row = i + 1;
+                            col = positions[i-1] - pos;
+                            return { row: row, col: col };
+                        }
+                    }
+                    return { row: row, col: col };
+                }
+
+                return function (obj, callback) {
+
+                    var raml1Parser = require('raml-1-0-parser');
+                    var path = require('path');
+
+                    var api = raml1Parser.loadApiSync(obj.Filepath, obj.Extensions);
+
+	                var fs = require('fs');
+
+                    var arr = [];
+                    var content = fs.readFileSync(obj.Filepath).toString();
+                    content.split('\n').forEach(function (x, i) {
+                        if (i == 0) {
+                            arr.push(x.length + 1);
+                        } else {
+                            arr.push(arr[i - 1] + x.length + 1);
+                        }
+                    }); //+1 stands for '\n'    
+                
+                    var errors = '';
+                
+                    var isError = false;
+                
+                    for (var i = 0; i < api.errors().length; i++) {
+                    
+                        var pos = position(api.errors()[i].start, arr);
+                    
+                        if (!api.errors()[i].isWarning)
+                            isError = true;
+                    
+                        errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
+                        errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
+                        errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
+                        if (api.errors()[i].path != null)
+                            errors += 'In: ' + api.errors()[i].path + '\r\n';
+                    }
+
+                    if (isError)
+                        callback(null, 'Error: when parsing.\r\n' + errors);
+                    else
+                        callback(null, api.toJSON())
+
+                }
+            ");
+
+            var rawresult = await load(new { Filepath = filePath, Extensions = extensionPaths });
             var error = rawresult as string;
             if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
                 throw new FormatException(error);

@@ -4,6 +4,11 @@ namespace Raml.Parser.Expressions
 {
 	public class Parameter
 	{
+        public Parameter()
+        {
+            Type = "string";
+        }
+
 		public string Type { get; set; }
 		public bool Required { get; set; }
 		public string DisplayName { get; set; }
@@ -17,5 +22,6 @@ namespace Raml.Parser.Expressions
 		public int? MaxLength { get; set; }
 		public decimal? Minimum { get; set; }
 		public decimal? Maximum { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

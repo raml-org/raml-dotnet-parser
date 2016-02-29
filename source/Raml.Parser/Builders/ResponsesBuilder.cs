@@ -14,7 +14,7 @@ namespace Raml.Parser.Builders
 			this.dynamicRaml = dynamicRaml;
 		}
 
-		public IEnumerable<Response> Get()
+        public IEnumerable<Response> Get(string defaultMediaType)
 		{
 			var list = new List<Response>();
 
@@ -33,17 +33,18 @@ namespace Raml.Parser.Builders
 					         Code = pair.Key,
 					         Description = value.ContainsKey("description") ? value["description"] as string : null,
 					         Body = value.ContainsKey("body")
-							         ? new BodyBuilder(value["body"] as IDictionary<string, object>).GetAsDictionary()
+							         ? new BodyBuilder(value["body"] as IDictionary<string, object>).GetAsDictionary(defaultMediaType)
 							         : null,
 							 Headers = value.ContainsKey("headers")
 										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).GetAsDictionary()
-										: new Dictionary<string, Parameter>()
+										: new Dictionary<string, Parameter>(),
+                            Annotations = AnnotationsBuilder.GetAnnotations(value)
 				         });
 			}
 			return list;
 		}
 
-		public IDictionary<string, Response> GetAsDictionary()
+        public IDictionary<string, Response> GetAsDictionary(string defaultMediaType)
 		{
             if(dynamicRaml == null)
                 return new Dictionary<string, Response>();
@@ -63,7 +64,7 @@ namespace Raml.Parser.Builders
 							       Body =
 								       value.ContainsKey("body")
 									       ? new BodyBuilder(
-								       value["body"] as IDictionary<string, object>).GetAsDictionary()
+                                       value["body"] as IDictionary<string, object>).GetAsDictionary(defaultMediaType)
 									       : null
 						       };
 					});

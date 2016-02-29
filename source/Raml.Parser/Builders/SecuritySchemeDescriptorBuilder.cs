@@ -5,7 +5,7 @@ namespace Raml.Parser.Builders
 {
 	public class SecuritySchemeDescriptorBuilder
 	{
-		public SecuritySchemeDescriptor Build(IDictionary<string, object> dynamicRaml)
+        public SecuritySchemeDescriptor Build(IDictionary<string, object> dynamicRaml, string defaultMediaType)
 		{
 			var descriptor = new SecuritySchemeDescriptor();
 			
@@ -16,7 +16,7 @@ namespace Raml.Parser.Builders
 				descriptor.QueryParameters = new ParametersBuilder((IDictionary<string, object>)dynamicRaml["queryParameters"]).GetAsDictionary();
 
 			if (dynamicRaml.ContainsKey("responses"))
-				descriptor.Responses = new ResponsesBuilder((IDictionary<string, object>)dynamicRaml["responses"]).GetAsDictionary();
+                descriptor.Responses = new ResponsesBuilder((IDictionary<string, object>)dynamicRaml["responses"]).GetAsDictionary(defaultMediaType);
 
 			return descriptor;
 		}

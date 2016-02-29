@@ -24,8 +24,8 @@ namespace Raml.Parser.Tests
 
 			Assert.AreEqual(2, raml.Resources.Count());
 			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
-			Assert.IsTrue(raml.Resources.First().Methods.Last().Body["application/json"].Example.Contains("machineId"));
-			Assert.AreEqual(1, raml.Resources.First().Methods.First().Responses.Count());
+			Assert.IsTrue(raml.Resources.First(r => r.RelativeUri == "/sales").Methods.First(m => m.Verb == "post").Body["application/json"].Example.Contains("machineId"));
+            Assert.AreEqual(1, raml.Resources.First(r => r.RelativeUri == "/sales").Methods.First(m => m.Verb == "get").Responses.Count());
 		}
 
 		[Test]

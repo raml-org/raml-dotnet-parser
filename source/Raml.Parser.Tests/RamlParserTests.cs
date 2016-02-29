@@ -38,14 +38,81 @@ namespace Raml.Parser.Tests
 		}
 
 		[Test]
-		public async Task ShouldLoadFile_WhenValidRAML()
+		public async Task ShouldLoad_WhenAnnotationsTargets()
 		{
 			var parser = new RamlParser();
-			var raml = await parser.LoadAsync("parameters.raml");
+			var raml = await parser.LoadAsync("Specifications/annotations-targets.raml");
 
-			Assert.AreEqual(10, raml.Resources.Count());
-			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+			Assert.AreEqual(2, raml.Resources.Count());
 		}
+
+        [Test]
+        public async Task ShouldLoad_WhenAnnotations()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/annotations.raml");
+
+            Assert.AreEqual(2, raml.Resources.Count());
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenArrays()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/arrays.raml");
+
+            Assert.AreEqual(1, raml.Resources.Count());
+            Assert.AreEqual(4, raml.Types.Count);
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenCustomScalar()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/customscalar.raml");
+
+            Assert.AreEqual(2, raml.Types.Count);
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenMaps()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/maps.raml");
+
+            Assert.AreEqual(4, raml.Types.Count);
+            Assert.AreEqual(1, raml.Resources.Count());
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenMoviesV1()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/movies-v1.raml");
+
+            Assert.AreEqual(2, raml.Resources.Count());
+            Assert.AreEqual(2, raml.Resources.First().Methods.Count());
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenMovieType()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/movietype.raml");
+
+            Assert.AreEqual(1, raml.Types.Count);
+            Assert.AreEqual(1, raml.Resources.Count());
+        }
+
+        [Test]
+        public async Task ShouldLoad_WhenTypeExpressions()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/typeexpressions.raml");
+
+            Assert.AreEqual(1, raml.Types.Count);
+            Assert.AreEqual(3, raml.Resources.First().Methods.Count());
+        }
 
 		[Test]
 		public async Task ShouldParse_WhenHasInclude()
@@ -64,17 +131,8 @@ namespace Raml.Parser.Tests
 			var raml = await parser.LoadAsync("congo-drones-5-f.raml");
 
 			Assert.AreEqual(2, raml.Resources.Count());
-			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
+			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
 		}
-
-        [Test]
-        public async Task ShouldParse_Hybrid()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("hybrid-api.raml");
-
-            Assert.AreEqual(4, raml.Resources.Count());
-        }
 
         [Test]
         public async Task ShouldParse_Movies()
@@ -93,6 +151,56 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("relative-include.raml");
 
             Assert.IsNotNull(raml);
+        }
+
+        [Test]
+        public async Task ShouldLoadInlinedTypes()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/inlinetype.raml");
+
+            Assert.IsNotNull(raml.Resources.First().Methods.First().Responses.First().Body.First().Value.InlineType);
+            Assert.IsNotNull(raml.Resources.First().Methods.Last().Body.First().Value.InlineType);
+        }
+
+        [Test]
+        public async Task ShouldParseFileType()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/chinook-v1.raml");
+
+            Assert.AreEqual("file", raml.Types["Person"].Object.Properties["Picture"].Type);
+        }
+
+        [Test, Ignore]
+        public async Task ShouldHandleOverlay()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/librarybooks.raml", new[] {"Specifications/librarybooks-overlay.raml"});
+
+            Assert.AreEqual(2, raml.Documentation.Count());
+            Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First().Content);
+            Assert.AreEqual("Book Library API", raml.Title);
+            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+        }
+
+        [Test]
+        public async Task ShouldHandleLibraries()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/file-libraries.raml");
+
+            Assert.AreEqual(1, raml.ResourceTypes.Count());
+            Assert.AreEqual("files.file-type.File", raml.ResourceTypes.First()["file"].Get.Responses.First().Body["application/json"].Type);
+        }
+
+        [Test]
+        public async Task ShouldHandleUnionTypes()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/uniontypes.raml");
+
+            Assert.AreEqual(3, raml.Types.Count);
         }
 	}
 }

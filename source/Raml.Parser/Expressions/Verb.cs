@@ -7,13 +7,15 @@ namespace Raml.Parser.Expressions
 	{
 		private readonly IDictionary<string, object> dynamicRaml;
 		private readonly VerbType type;
-		private readonly bool isOptional;
+	    private readonly string defaultMediaType;
+	    private readonly bool isOptional;
 
-		public Verb(IDictionary<string, object> dynamicRaml, VerbType type, bool isOptional = false)
+		public Verb(IDictionary<string, object> dynamicRaml, VerbType type, string defaultMediaType, bool isOptional = false)
 		{
 			this.dynamicRaml = dynamicRaml;
 			this.type = type;
-			this.isOptional = isOptional;
+		    this.defaultMediaType = defaultMediaType;
+		    this.isOptional = isOptional;
 		}
 
 		public VerbType Type { get { return type; } }
@@ -37,7 +39,7 @@ namespace Raml.Parser.Expressions
 			get
 			{
 				return dynamicRaml != null && dynamicRaml.ContainsKey("responses")
-					? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get()
+                    ? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get(defaultMediaType)
 					: new List<Response>();
 			}
 		}
@@ -50,7 +52,7 @@ namespace Raml.Parser.Expressions
 					return null;
 
 				return dynamicRaml.ContainsKey("body")
-					? new BodyBuilder((IDictionary<string, object>) dynamicRaml["body"]).GetMimeType((IDictionary<string, object>) dynamicRaml["body"], string.Empty)
+					? new BodyBuilder((IDictionary<string, object>) dynamicRaml["body"]).GetMimeType((IDictionary<string, object>) dynamicRaml["body"])
 					: null;
 			}
 		}

@@ -8,5 +8,6 @@ namespace Raml.Parser.Expressions
 		public string Description { get; set; }
         public IDictionary<string, Parameter> Headers { get; set; }
 		public IDictionary<string, MimeType> Body { get; set; }
+	    public IDictionary<string, object> Annotations { get; set; }
 	}
 }

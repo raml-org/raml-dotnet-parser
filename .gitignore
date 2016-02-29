@@ -182,3 +182,4 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 /Raml.Parser/test.js
+/source/Raml.Parser.Express/Raml.Parser.Express/*.dat
