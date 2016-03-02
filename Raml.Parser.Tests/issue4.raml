@@ -1,0 +1,16 @@
+#%RAML 0.8
+title: Fragomen Connect
+version: v1
+protocols: [HTTP,HTTPS]
+baseUri: http://ims-uat.rst.fragomen.net
+traits: !include traits/status_codes.raml
+securitySchemes:
+  - basic:
+      type: Basic Authentication
+/utl/v1/network:
+  /connect:
+    get:
+      !include v1/utl/network/route/get/connect.raml
+    /anonymous:
+      get:
+        !include v1/utl/network/route/get/connect_anonymous.raml

@@ -40,6 +40,9 @@ namespace Raml.Parser
                 }
             ");
 
+	        if (!string.IsNullOrWhiteSpace(path) && !path.EndsWith(Path.DirectorySeparatorChar.ToString()))
+	            path += Path.DirectorySeparatorChar;
+
 			var rawresult = await load(new { content = raml, path } );
 			var error = rawresult as string;
 			if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
