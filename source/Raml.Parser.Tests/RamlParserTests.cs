@@ -211,6 +211,7 @@ namespace Raml.Parser.Tests
 
             Assert.AreEqual(2, raml.Types.Count);
             Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["PurchaseOrderType"].External.Xml));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["ItemsType"].External.Xml));
         }
 	}
 }
