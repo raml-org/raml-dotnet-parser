@@ -210,6 +210,7 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/ordersXml-v1.raml");
 
             Assert.AreEqual(2, raml.Types.Count);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["PurchaseOrderType"].External.Xml));
         }
 	}
 }

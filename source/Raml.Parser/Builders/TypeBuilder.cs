@@ -44,6 +44,21 @@ namespace Raml.Parser.Builders
             var simpleProperty = type.Value as string;
             if (simpleProperty != null)
             {
+                if (simpleProperty.StartsWith("<"))
+                {
+                    ramlType.External = new ExternalType
+                    {
+                        Xml = simpleProperty
+                    };
+                }
+                if (simpleProperty.StartsWith("{"))
+                {
+                    ramlType.External = new ExternalType
+                    {
+                        Schema = simpleProperty
+                    };                    
+                }
+
                 ramlType.Scalar = GetScalar(type, required);
                 return ramlType;
             }
