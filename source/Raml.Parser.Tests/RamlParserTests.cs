@@ -14,7 +14,7 @@ namespace Raml.Parser.Tests
 		public async Task ShouldLoad_WhenValidRAML()
 		{
 			var parser = new RamlParser();
-			var raml = await parser.LoadAsync("test.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/test.raml");
 
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
@@ -34,7 +34,7 @@ namespace Raml.Parser.Tests
 		public async Task ShouldThrowError_WhenInvalidRAML()
 		{
 			var parser = new RamlParser();
-			await parser.LoadAsync("invalid.raml");
+            await parser.LoadAsync("Specifications/raml08/invalid.raml");
 		}
 
 		[Test]
@@ -118,7 +118,7 @@ namespace Raml.Parser.Tests
 		public async Task ShouldParse_WhenHasInclude()
 		{
 			var parser = new RamlParser();
-			var raml = await parser.LoadAsync("include.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/include.raml");
 
 			Assert.AreEqual(2, raml.Resources.Count());
 			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
@@ -128,7 +128,7 @@ namespace Raml.Parser.Tests
 		public async Task ShouldParse_Congo()
 		{
 			var parser = new RamlParser();
-			var raml = await parser.LoadAsync("congo-drones-5-f.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/congo-drones-5-f.raml");
 
 			Assert.AreEqual(2, raml.Resources.Count());
 			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
@@ -138,7 +138,7 @@ namespace Raml.Parser.Tests
         public async Task ShouldParse_Movies()
         {
             var parser = new RamlParser();
-            var raml = await parser.LoadAsync("movies.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/movies.raml");
 
             Assert.AreEqual(2, raml.Resources.Count());
             Assert.AreEqual("oauth_2_0", raml.Resources.First().Methods.First(m => m.Verb == "post").SecuredBy.First());
@@ -148,7 +148,7 @@ namespace Raml.Parser.Tests
         public async Task ShouldLoad_IncludeWithQuotes()
         {
             var parser = new RamlParser();
-            var raml = await parser.LoadAsync("relative-include.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/relative-include.raml");
 
             Assert.IsNotNull(raml);
         }
@@ -201,6 +201,15 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/uniontypes.raml");
 
             Assert.AreEqual(3, raml.Types.Count);
+        }
+
+        [Test]
+        public async Task ShouldHandleXmlExternal()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/ordersXml-v1.raml");
+
+            Assert.AreEqual(2, raml.Types.Count);
         }
 	}
 }

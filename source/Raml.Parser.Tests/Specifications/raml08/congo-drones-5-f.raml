@@ -35,7 +35,7 @@ traits: !include congo-traits.raml
             "droneId": "f"
           }
         ]
-      example-member: &delivery |
+      example-member: |
         { 
           "id": "987",
           "at": "Sun, 20 Jul 2014 21:20:00 GMT",
@@ -61,7 +61,7 @@ traits: !include congo-traits.raml
   /{deliveryId}:
     type: 
       member: 
-        example-member: &delivery |
+        example-member: |
             { 
               "id": "987",
               "at": "Sun, 20 Jul 2014 21:20:00 GMT",
@@ -94,7 +94,7 @@ traits: !include congo-traits.raml
             "name": "Camelot"
           }
         ]
-      example-member: &drone |
+      example-member: |
         {
           "id": "f",
           "latitude": 37.852519,
@@ -124,7 +124,7 @@ traits: !include congo-traits.raml
   /{droneId}:
     type: 
       member: 
-        example-member:  &drone |
+        example-member:  |
             {
               "id": "f",
               "latitude": 37.852519,

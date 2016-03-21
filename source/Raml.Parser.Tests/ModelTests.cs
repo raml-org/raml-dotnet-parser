@@ -12,7 +12,7 @@ namespace Raml.Parser.Tests
         private async Task<RamlDocument> GetRaml()
         {
             var parser = new RamlParser();
-            var raml = await parser.LoadAsync("test.raml");
+            var raml = await parser.LoadAsync("Specifications/raml08/test.raml");
 
             return raml;
         }
@@ -75,7 +75,7 @@ namespace Raml.Parser.Tests
 		public async Task ShouldParseSecuritySchemes()
 		{
 			var parser = new RamlParser();
-			var result = await parser.LoadAsync("box.raml");
+            var result = await parser.LoadAsync("Specifications/raml08/box.raml");
 			
 			Assert.AreEqual(1, result.SecuritySchemes.Count());
 		}

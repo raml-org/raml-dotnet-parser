@@ -15,7 +15,11 @@ namespace Raml.Parser.Builders
             if (!dynamicRaml.ContainsKey("types"))
                 return ramlTypes;
 
-            foreach (var type in (IDictionary<string, object>)dynamicRaml["types"])
+            var types = dynamicRaml["types"] as IDictionary<string, object>;
+            if (types == null)
+                return ramlTypes;
+
+            foreach (var type in types)
             {
                 ramlTypes.Add(type.Key, GetRamlType(type));
             }
