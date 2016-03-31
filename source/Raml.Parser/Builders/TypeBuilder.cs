@@ -15,6 +15,20 @@ namespace Raml.Parser.Builders
             if (!dynamicRaml.ContainsKey("types"))
                 return ramlTypes;
 
+            var dynamicTypes = dynamicRaml["types"] as object[];
+            if (dynamicTypes != null)
+            {
+                foreach (var dynamicType in dynamicTypes)
+                {
+                    var dic = dynamicType as IDictionary<string, object>;
+                    foreach (var kv in dic)
+                    {
+                        ramlTypes.Add(kv.Key, GetRamlType(kv));
+                    }
+                }
+                return ramlTypes;
+            }
+
             var types = dynamicRaml["types"] as IDictionary<string, object>;
             if (types == null)
                 return ramlTypes;
@@ -72,7 +86,7 @@ namespace Raml.Parser.Builders
             ramlType = new RamlType
             {
                 Name = type.Key,
-                Type = GetRamlTypeType((IDictionary<string, object>) type.Value),
+                Type = TypeExtractor.GetType((IDictionary<string, object>)type.Value, "object"),
                 Example = DynamicRamlParser.GetStringOrNull((IDictionary<string, object>)type.Value, "example"),
                 Facets = DynamicRamlParser.GetDictionaryOrNull<object>((IDictionary<string, object>) type.Value, "facets"),
                 OtherProperties = GetOtherProperties((IDictionary<string, object>) type.Value)
@@ -107,14 +121,14 @@ namespace Raml.Parser.Builders
                 return;
             }
 
-            if (dynamicRaml.ContainsKey("schema"))
+            if (ramlType.Type.StartsWith("{"))
             {
-                ramlType.External = new ExternalType {Schema = DynamicRamlParser.GetStringOrNull(dynamicRaml,"schema")};
+                ramlType.External = new ExternalType {Schema = ramlType.Type};
                 return;
             }
-            if (dynamicRaml.ContainsKey("xml"))
+            if (ramlType.Type.StartsWith("<"))
             {
-                ramlType.External = new ExternalType { Schema = DynamicRamlParser.GetStringOrNull(dynamicRaml, "xml") };
+                ramlType.External = new ExternalType { Xml = ramlType.Type };
                 return;
             }
 
@@ -124,7 +138,7 @@ namespace Raml.Parser.Builders
                 return;
             }
 
-            if (ramlType.Type == "array" || dynamicRaml["type"].ToString().EndsWith("[]"))
+            if (ramlType.Type == "array" || ramlType.Type.EndsWith("[]"))
             {
                 ramlType.Array = GetArray(dynamicRaml, pair.Key);
                 return;

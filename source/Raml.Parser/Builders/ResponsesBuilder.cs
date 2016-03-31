@@ -32,9 +32,7 @@ namespace Raml.Parser.Builders
 				         {
 					         Code = pair.Key,
 					         Description = value.ContainsKey("description") ? value["description"] as string : null,
-					         Body = value.ContainsKey("body")
-							         ? new BodyBuilder(value["body"] as IDictionary<string, object>).GetAsDictionary(defaultMediaType)
-							         : null,
+					         Body = GetBody(defaultMediaType, value),
 							 Headers = value.ContainsKey("headers")
 										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).GetAsDictionary()
 										: new Dictionary<string, Parameter>(),
@@ -44,7 +42,20 @@ namespace Raml.Parser.Builders
 			return list;
 		}
 
-        public IDictionary<string, Response> GetAsDictionary(string defaultMediaType)
+	    private static IDictionary<string, MimeType> GetBody(string defaultMediaType, IDictionary<string, object> value)
+	    {
+	        if (!value.ContainsKey("body"))
+	            return null;
+
+            var objArr = value["body"] as object[];
+            if(objArr != null)
+                return new BodyBuilder((IDictionary<string, object>) objArr.First()).GetAsDictionary(defaultMediaType);
+
+	        var dictionary = value["body"] as IDictionary<string, object>;
+	        return new BodyBuilder(dictionary).GetAsDictionary(defaultMediaType);
+	    }
+
+	    public IDictionary<string, Response> GetAsDictionary(string defaultMediaType)
 		{
             if(dynamicRaml == null)
                 return new Dictionary<string, Response>();

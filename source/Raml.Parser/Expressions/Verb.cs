@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Raml.Parser.Builders;
 
 namespace Raml.Parser.Expressions
@@ -51,9 +52,17 @@ namespace Raml.Parser.Expressions
 				if (dynamicRaml == null)
 					return null;
 
-				return dynamicRaml.ContainsKey("body")
-					? new BodyBuilder((IDictionary<string, object>) dynamicRaml["body"]).GetMimeType((IDictionary<string, object>) dynamicRaml["body"])
-					: null;
+			    if (!dynamicRaml.ContainsKey("body"))
+			        return null;
+
+                var mimeType = dynamicRaml["body"] as object[];
+			    if (mimeType != null && mimeType.Any())
+			    {
+                    return new BodyBuilder((IDictionary<string, object>) mimeType.First()).GetMimeType(mimeType);
+			    }
+			    var body = dynamicRaml["body"] as IDictionary<string, object>;
+
+                return new BodyBuilder(body).GetMimeType(body);
 			}
 		}
 	}

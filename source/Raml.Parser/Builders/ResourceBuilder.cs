@@ -9,15 +9,14 @@ namespace Raml.Parser.Builders
 	{
 	    private static readonly string[] Methods = { "get", "post", "put", "delete", "patch", "options"};
 
-	    public Resource Build(IDictionary<string, object> parentDynamicRaml, string key, IEnumerable<IDictionary<string, ResourceType>> resourceTypes, 
+	    public Resource Build(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, ResourceType>> resourceTypes, 
             IEnumerable<IDictionary<string, Method>> traits, string defaultMediaType)
 		{
-            var dynamicRaml = (IDictionary<string, object>)parentDynamicRaml[key];
             var resource = new Resource();
 
 			new BasicInfoBuilder().Set(dynamicRaml, resource);
 
-			//resource.RelativeUri = dynamicRaml.ContainsKey("relativeUri") ? (string) dynamicRaml["relativeUri"] : null;
+			resource.RelativeUri = dynamicRaml.ContainsKey("relativeUri") ? (string) dynamicRaml["relativeUri"] : null;
 			resource.BaseUriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "baseUriParameters");
 			resource.UriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "uriParameters");
 			resource.DisplayName = dynamicRaml.ContainsKey("displayName") ? (string) dynamicRaml["displayName"] : null;
@@ -27,20 +26,6 @@ namespace Raml.Parser.Builders
             resource.Methods = GetMethods(dynamicRaml, traits, defaultMediaType);
 
             resource.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
-
-            resource.RelativeUri = key;
-
-            //if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] != null)
-            //{
-            //    resource.Methods = ResourceTypeApplier.Apply(resourceTypes, dynamicRaml, resource.Methods.ToList(), traits);
-            //}
-
-            //if (dynamicRaml.ContainsKey("is") && dynamicRaml["is"] != null)
-            //{
-            //    var methods = resource.Methods.ToList();
-            //    TraitsApplier.ApplyTraitsToMethods(methods, traits, TypeExtractor.GetIs(dynamicRaml));
-            //    resource.Methods = methods;
-            //}
 
 	        return resource;
 		}
@@ -52,20 +37,17 @@ namespace Raml.Parser.Builders
         private static IEnumerable<Method> GetMethods(IDictionary<string, object> dynamicRaml, IEnumerable<IDictionary<string, Method>> traits, string defaultMediaType)
 	    {
             var methods = new Collection<Method>();
-	        foreach (var key in dynamicRaml.Keys.Where(k => Methods.Contains(k)))
-	        {
-                var dictionary = dynamicRaml[key] as IDictionary<string, object>;
-	            Method method;
+            if (!dynamicRaml.ContainsKey("methods"))
+                return methods;
 
+            var dynamicMethods = dynamicRaml["methods"] as object[];
+            foreach (var dynamicMethod in dynamicMethods)
+	        {
+	            Method method = new Method();
+
+                var dictionary = dynamicMethod as IDictionary<string, object>;
                 if(dictionary != null)
 	                method = new MethodBuilder().Build(dictionary, defaultMediaType);
-                else
-                    method = new Method();
-
-	            method.Verb = key;
-
-                //if(method.Is != null && method.Is.Any())
-                //    TraitsApplier.ApplyTraitsToMethod(method, traits, method.Is);
 
 	            methods.Add(method);
 	        }
@@ -76,10 +58,15 @@ namespace Raml.Parser.Builders
             IEnumerable<IDictionary<string, Method>> traits, string defaultMediaType)
 		{
             var resources = new Collection<Resource>();
-            foreach (var key in dynamicRaml.Keys.Where(k => k.StartsWith("/")))
+  	        if (!dynamicRaml.ContainsKey("resources"))
+	            return resources;
+
+	        var dynamicResources = dynamicRaml["resources"] as object[];
+
+            foreach (var res in dynamicResources)
             {
-                var resource = new ResourceBuilder().Build(dynamicRaml, key, resourceTypes, traits, defaultMediaType);
-                resource.RelativeUri = key;
+                var dynamicRes = res as IDictionary<string, object>;
+                var resource = new ResourceBuilder().Build(dynamicRes, resourceTypes, traits, defaultMediaType);
                 resources.Add(resource);
             }
 

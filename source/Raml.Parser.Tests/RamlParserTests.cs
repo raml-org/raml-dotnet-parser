@@ -132,6 +132,7 @@ namespace Raml.Parser.Tests
 
 			Assert.AreEqual(2, raml.Resources.Count());
 			Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+            Assert.IsNotNull(raml.ResourceTypes.First(x => x.ContainsKey("collection"))["collection"].Get);
 		}
 
         [Test]
@@ -142,6 +143,19 @@ namespace Raml.Parser.Tests
 
             Assert.AreEqual(2, raml.Resources.Count());
             Assert.AreEqual("oauth_2_0", raml.Resources.First().Methods.First(m => m.Verb == "post").SecuredBy.First());
+            Assert.IsNotNull(raml.Resources.First(r => r.RelativeUri == "/movies").Methods.First(m => m.Verb == "get")
+                .Responses.First(r => r.Code == "200").Body["application/json"].Schema);
+        }
+
+        [Test]
+        public async Task ShouldParse_Traits()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/raml08/issue37.raml");
+
+            Assert.AreEqual(1, raml.Traits.Count());
+            Assert.AreEqual(2, raml.Traits.First()["with2Responses"].Responses.Count());
+            Assert.IsTrue(raml.Traits.First()["with2Responses"].Responses.All(r => r.Body["application/json"].Schema != null));
         }
 
         [Test]
@@ -151,6 +165,8 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/raml08/relative-include.raml");
 
             Assert.IsNotNull(raml);
+            Assert.IsNotNull(raml.Resources.First(r => r.RelativeUri == "/movies").Methods.First(m => m.Verb == "get")
+                .Responses.First(r => r.Code == "200").Body["application/json"].Schema);
         }
 
         [Test]
@@ -172,7 +188,17 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("file", raml.Types["Person"].Object.Properties["Picture"].Type);
         }
 
-        [Test, Ignore]
+        [Test]
+        public async Task ShouldParseCustomerAsObject()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/chinook-v1.raml");
+
+            Assert.AreEqual("Person", raml.Types["Customer"].Type);
+            Assert.AreEqual("string", raml.Types["Customer"].Object.Properties["Company"].Type);
+        }
+
+        [Test]
         public async Task ShouldHandleOverlay()
         {
             var parser = new RamlParser();
@@ -182,16 +208,6 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First().Content);
             Assert.AreEqual("Book Library API", raml.Title);
             Assert.AreEqual(1, raml.Resources.First().Methods.Count());
-        }
-
-        [Test]
-        public async Task ShouldHandleLibraries()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/file-libraries.raml");
-
-            Assert.AreEqual(1, raml.ResourceTypes.Count());
-            Assert.AreEqual("files.file-type.File", raml.ResourceTypes.First()["file"].Get.Responses.First().Body["application/json"].Type);
         }
 
         [Test]

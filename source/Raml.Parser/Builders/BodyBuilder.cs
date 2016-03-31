@@ -19,10 +19,18 @@ namespace Raml.Parser.Builders
             if(dynamicRaml == null)
                 return new Dictionary<string, MimeType>();
 
-            if (!string.IsNullOrWhiteSpace(defaultMediaType) && dynamicRaml.Keys.Any(k => bodyKeys.Contains(k)))
-		    {
-		        return new Dictionary<string, MimeType> {{defaultMediaType, GetMimeType(dynamicRaml)}};
+            if (!string.IsNullOrWhiteSpace(defaultMediaType) && dynamicRaml.ContainsKey(defaultMediaType))
+            {
+                var dynamicMimeType = dynamicRaml[defaultMediaType] as IDictionary<string, object>;
+                if(dynamicMimeType != null && dynamicMimeType.Any(k => bodyKeys.Contains(k.Key)))
+                    return new Dictionary<string, MimeType> { { defaultMediaType, GetMimeType(dynamicMimeType) } };
 		    }
+
+            if (!string.IsNullOrWhiteSpace(defaultMediaType) && dynamicRaml.Any(k => bodyKeys.Contains(k.Key)))
+            {
+                return new Dictionary<string, MimeType> { { defaultMediaType, GetMimeType(dynamicRaml) } };
+            }
+
 
 			return dynamicRaml.ToDictionary(kv => kv.Key, pair => GetMimeType(pair.Value));
 		}
@@ -47,7 +55,7 @@ namespace Raml.Parser.Builders
 
 		    return new MimeType
 			       {
-                       Type = value.ContainsKey("type") ? (string)value["type"] : null,
+                       Type = TypeExtractor.GetType(value),
                        InlineType = ramlType,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
 				       Example = value.ContainsKey("example") ? (string) value["example"] : null,

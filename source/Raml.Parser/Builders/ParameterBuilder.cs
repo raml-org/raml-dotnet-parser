@@ -16,7 +16,7 @@ namespace Raml.Parser.Builders
 
 	    public static void SetProperties(IDictionary<string, object> dynamicRaml, Parameter parameter)
 	    {
-	        parameter.Type = dynamicRaml.ContainsKey("type") ? (string) dynamicRaml["type"] : "string";
+            parameter.Type = TypeExtractor.GetType(dynamicRaml);
 	        parameter.Required = dynamicRaml.ContainsKey("required") && Convert.ToBoolean(dynamicRaml["required"]);
 	        parameter.DisplayName = dynamicRaml.ContainsKey("displayName") ? (string) dynamicRaml["displayName"] : null;
 	        parameter.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
@@ -34,7 +34,7 @@ namespace Raml.Parser.Builders
 	        parameter.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 	    }
 
-	    private static IEnumerable<string> GetEnum(IDictionary<string, object> dynamicRaml)
+        private static IEnumerable<string> GetEnum(IDictionary<string, object> dynamicRaml)
 		{
 			if (!dynamicRaml.ContainsKey("enum")) return null;
 

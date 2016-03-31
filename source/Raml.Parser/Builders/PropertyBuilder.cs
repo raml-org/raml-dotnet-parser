@@ -11,7 +11,7 @@ namespace Raml.Parser.Builders
         {
             var prop = new Property();
             ParameterBuilder.SetProperties(dynamicRaml, prop);
-            prop.Facets = dynamicRaml.ContainsKey("type") ? (string)dynamicRaml["type"] : "string";
+            prop.Facets = TypeExtractor.GetType(dynamicRaml, "string");
             prop.Format = GetFormat(dynamicRaml);
             prop.MultipleOf = dynamicRaml.ContainsKey("multipleOf") ? Convert.ToInt32(dynamicRaml["multipleOf"]) : (int?)null;
             prop.FileTypes = GetFileTypes(dynamicRaml).ToList();

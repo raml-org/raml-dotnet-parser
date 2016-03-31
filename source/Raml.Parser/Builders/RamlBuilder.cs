@@ -35,9 +35,13 @@ namespace Raml.Parser.Builders
             IEnumerable<IDictionary<string, Method>> traits, string defaultMediaType)
 		{
 			var resources = new Collection<Resource>();
-		    foreach (var key in dynamicRaml.Keys.Where(k => k.StartsWith("/")))
+	        if (!dynamicRaml.ContainsKey("resources"))
+	            return resources;
+
+	        var dynamicResources = dynamicRaml["resources"] as object[];
+	        foreach (var res in dynamicResources)
 		    {
-                var resource = new ResourceBuilder().Build(dynamicRaml, key, resourceTypes, traits, defaultMediaType);
+                var resource = new ResourceBuilder().Build((IDictionary<string, object>) res, resourceTypes, traits, defaultMediaType);
 		        resources.Add(resource);
 		    }
 

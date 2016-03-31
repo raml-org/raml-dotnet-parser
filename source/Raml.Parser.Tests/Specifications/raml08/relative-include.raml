@@ -2,14 +2,14 @@
 title: Movies
 version: 1.0
 baseUri: http://movies.com/api
-mediaType: application/json
 /movies:
   get:
     description: gets all movies in the catalogue
     responses:
       200:
         body:
-          schema: !include "movies.schema"
+          application/json:
+            schema: !include "movies.schema"
   /{id}:
     get:
       description: get the info of a movie

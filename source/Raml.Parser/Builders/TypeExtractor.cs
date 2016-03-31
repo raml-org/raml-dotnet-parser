@@ -6,6 +6,25 @@ namespace Raml.Parser.Builders
 {
     public static class TypeExtractor
     {
+        public static string GetType(IDictionary<string, object> dynamicRaml, string defaultType = null)
+        {
+            if (!dynamicRaml.ContainsKey("type"))
+                return defaultType;
+
+            var dynamicTypes = dynamicRaml["type"] as object[];
+
+            if (dynamicTypes == null)
+                return dynamicRaml.ContainsKey("type") ? (string)dynamicRaml["type"] : "string";
+
+            if (!dynamicTypes.Any())
+                return defaultType;
+
+            if (dynamicTypes.Count() == 1)
+                return (string)dynamicTypes.First();
+
+            return "[" + string.Join(",", dynamicTypes.Cast<string>()) + "]";
+        }
+
         public static string Get(IDictionary<string, object> dynamicRaml)
         {
             if (!dynamicRaml.ContainsKey("type"))
