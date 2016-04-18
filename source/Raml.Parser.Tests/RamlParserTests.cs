@@ -229,5 +229,14 @@ namespace Raml.Parser.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["PurchaseOrderType"].External.Xml));
             Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["ItemsType"].External.Xml));
         }
+
+        [Test, Ignore]
+        public async Task ShouldBuild_SalesOrder()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/salesOrders.raml");
+
+            Assert.AreEqual(18, raml.Types.Count);
+        }
 	}
 }

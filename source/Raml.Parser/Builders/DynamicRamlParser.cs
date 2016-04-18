@@ -18,7 +18,7 @@ namespace Raml.Parser.Builders
                 return null;
 
             int res;
-            if (!int.TryParse((string)obj, out res))
+            if (!int.TryParse(obj.ToString(), out res))
                 return res;
 
             return null;

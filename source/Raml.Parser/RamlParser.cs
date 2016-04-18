@@ -37,7 +37,7 @@ namespace Raml.Parser
                     var path = require('path');
 
                     var api = raml1Parser.loadApiSync(filepath);
-
+/*
 	                var fs = require('fs');
 
                     var arr = [];
@@ -49,21 +49,21 @@ namespace Raml.Parser
                             arr.push(arr[i - 1] + x.length + 1);
                         }
                     }); //+1 stands for '\n'    
-                
+*/                
                     var errors = '';
                 
                     var isError = false;
                 
                     for (var i = 0; i < api.errors().length; i++) {
                     
-                        var pos = position(api.errors()[i].start, arr);
+                        // var pos = position(api.errors()[i].start, arr);
                     
                         if (!api.errors()[i].isWarning)
                             isError = true;
                     
                         errors += (api.errors()[i].isWarning ? 'Warning: ' : 'Error: ') + api.errors()[i].message + '\r\n';
                         errors += 'Start: ' + api.errors()[i].start + ' - end: ' + api.errors()[i].end + '\r\n';
-                        errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
+                        // errors += 'Line: ' + pos.row + ', col: ' + pos.col + '\r\n';
                         if (api.errors()[i].path != null)
                             errors += 'In: ' + api.errors()[i].path + '\r\n';
                     }

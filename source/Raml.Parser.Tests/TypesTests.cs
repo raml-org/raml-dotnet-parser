@@ -15,7 +15,7 @@ namespace Raml.Parser.Tests
         {
             var raml = await Parse("specifications/maps.raml");
 
-            Assert.AreEqual(4, raml.Types.Count());
+            Assert.AreEqual(4, raml.Types.Count);
             Assert.AreEqual("object", raml.Types["Person"].Type);
         }
 
@@ -38,7 +38,7 @@ namespace Raml.Parser.Tests
         {
             var raml = await Parse("specifications/movietype.raml");
 
-            Assert.AreEqual(1, raml.Types.Count());
+            Assert.AreEqual(1, raml.Types.Count);
             Assert.AreEqual("object", raml.Types["Movie"].Type);
         }
 
@@ -70,7 +70,6 @@ namespace Raml.Parser.Tests
 
             Assert.AreEqual(2, raml.Types.Count);
             Assert.AreEqual("format", raml.Types["mydate"].Facets.First().Key);
-            Assert.IsTrue(raml.Types["customDate"].OtherProperties.ContainsKey("format"));
         }
 
         private static async Task<RamlDocument> Parse(string filePath)

@@ -8,9 +8,27 @@ namespace Raml.Parser.Builders
 {
 	public class RamlBuilder
 	{
+        
 		public RamlDocument Build(IDictionary<string, object> dynamicRaml)
 		{
+            
 			var doc = new RamlDocument(dynamicRaml);
+            doc.Types = new RamlTypesOrderedDictionary();
+
+		    if (dynamicRaml.ContainsKey("uses"))
+		    {
+		        var uses = dynamicRaml["uses"] as IDictionary<string, object>;
+		        if (uses != null)
+		        {
+		            foreach (var library in uses)
+		            {
+		                var lib = library.Value as IDictionary<string, object>;
+                        TypeBuilder.AddTypes(doc.Types, lib, library.Key);
+		            }
+		        }
+		    }
+
+
 			doc.BaseUri = dynamicRaml.ContainsKey("baseUri") ? (string) dynamicRaml["baseUri"] : string.Empty;
             doc.Title = dynamicRaml.ContainsKey("title") ? (string)dynamicRaml["title"] : string.Empty;
 			doc.Version = dynamicRaml.ContainsKey("version") ? (string)dynamicRaml["version"] : null;
@@ -25,7 +43,9 @@ namespace Raml.Parser.Builders
 			doc.Traits = GetTraits(dynamicRaml, doc.MediaType);
 			doc.Schemas = GetSchemas(dynamicRaml);
 			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits, doc.MediaType);
-		    doc.Types = TypeBuilder.Get(dynamicRaml);
+		    
+            TypeBuilder.AddTypes(doc.Types, dynamicRaml);
+
             doc.AnnotationTypes = AnnotationTypesBuilder.Get(dynamicRaml);
 		    doc.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 			return doc;

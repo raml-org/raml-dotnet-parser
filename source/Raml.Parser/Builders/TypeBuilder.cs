@@ -8,12 +8,14 @@ namespace Raml.Parser.Builders
     public class TypeBuilder
     {
         private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date", "file" };
-        private static RamlTypesOrderedDictionary ramlTypes = new RamlTypesOrderedDictionary();
-        public static RamlTypesOrderedDictionary Get(IDictionary<string, object> dynamicRaml)
+        private static RamlTypesOrderedDictionary ramlTypes;
+        private static string preffix;
+        public static void AddTypes(RamlTypesOrderedDictionary ramlTypes_, IDictionary<string, object> dynamicRaml, string preffix_ = null)
         {
-            ramlTypes = new RamlTypesOrderedDictionary();
+            preffix = preffix_;
+            ramlTypes = ramlTypes_;
             if (!dynamicRaml.ContainsKey("types"))
-                return ramlTypes;
+                return;
 
             var dynamicTypes = dynamicRaml["types"] as object[];
             if (dynamicTypes != null)
@@ -23,21 +25,27 @@ namespace Raml.Parser.Builders
                     var dic = dynamicType as IDictionary<string, object>;
                     foreach (var kv in dic)
                     {
-                        ramlTypes.Add(kv.Key, GetRamlType(kv));
+                        var key = kv.Key;
+                        if (preffix != null)
+                            key = preffix + "." + key;
+                        ramlTypes.Add(key, GetRamlType(kv));
                     }
                 }
-                return ramlTypes;
+                return;
             }
 
             var types = dynamicRaml["types"] as IDictionary<string, object>;
             if (types == null)
-                return ramlTypes;
+                return;
 
             foreach (var type in types)
             {
-                ramlTypes.Add(type.Key, GetRamlType(type));
+                var key = type.Key;
+                if (preffix != null)
+                    key = preffix + "." + key;
+                ramlTypes.Add(key, GetRamlType(type));
+
             }
-            return ramlTypes;
         }
 
         public static RamlType GetRamlType(KeyValuePair<string, object> type)
@@ -86,7 +94,7 @@ namespace Raml.Parser.Builders
             ramlType = new RamlType
             {
                 Name = type.Key,
-                Type = TypeExtractor.GetType((IDictionary<string, object>)type.Value, "object"),
+                Type = GetType((IDictionary<string, object>)type.Value),
                 Example = DynamicRamlParser.GetStringOrNull((IDictionary<string, object>)type.Value, "example"),
                 Facets = DynamicRamlParser.GetDictionaryOrNull<object>((IDictionary<string, object>) type.Value, "facets"),
                 OtherProperties = GetOtherProperties((IDictionary<string, object>) type.Value)
@@ -95,6 +103,20 @@ namespace Raml.Parser.Builders
             SetPropertiesByType(type, ramlType);
 
             return ramlType;
+        }
+
+        private static string GetType(IDictionary<string, object> typeValue)
+        {
+            var extractedType = TypeExtractor.GetType(typeValue, "object");
+            if (preffix == null) 
+                return extractedType;
+            if (PrimitiveTypes.Contains(extractedType))
+                return extractedType;
+
+            if (extractedType == "object" || extractedType == "array")
+                return extractedType;
+
+            return preffix + "." + extractedType;
         }
 
         private static IDictionary<string, object> GetOtherProperties(IDictionary<string, object> value)
@@ -148,6 +170,7 @@ namespace Raml.Parser.Builders
             {
                 // Inheritance or Specialization
                 var parentType = ramlTypes[ramlType.Type];
+
                 if (parentType.Scalar != null)
                 {
                     ramlType.Scalar = GetScalar(new KeyValuePair<string, object>(ramlType.Name, dynamicRaml), ramlType.Required);
@@ -166,7 +189,7 @@ namespace Raml.Parser.Builders
                 return;
             }
 
-            throw new InvalidOperationException("Cannot parse type: " + dynamicRaml["type"]);
+            throw new InvalidOperationException("Cannot parse type: " + ramlType.Type);
         }
 
         private static ArrayType GetArray(IDictionary<string, object> dynamicRaml, string key)
