@@ -1,14 +1,13 @@
 #%RAML 1.0
-title: Maps
+title: Error reporting
 version: 1.0
-baseUri: http://maps.com/api
-mediaType: application/json
+baseUri: http://errors.com/api
 types:
     ArrayOfInt: 
         type: array
         items:
             type: integer
-        example: [1,2,3,4,5]
+        example: ["1",2,3,4,5]
     Person:
         type: object
         properties:
@@ -22,7 +21,6 @@ types:
         example: |
             [
                 {
-                    "lastname": "smith",
                     "firstname" : "john"
                 },
                 {
@@ -38,7 +36,7 @@ types:
                 lastname: 
                     type: string
                     required: true
-                    maxLength: 255
+                    maxLength: error
                 firstname: string
         example: |
             {

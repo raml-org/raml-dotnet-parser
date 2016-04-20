@@ -238,5 +238,22 @@ namespace Raml.Parser.Tests
 
             Assert.AreEqual(18, raml.Types.Count);
         }
+
+        [Test]
+        public async Task ShouldReportErrors()
+        {
+            var parser = new RamlParser();
+            try
+            {
+                await parser.LoadAsync("Specifications/error-reporting.raml");
+            }
+            catch (FormatException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("Warning: Required property:lastname is missed"));
+                Assert.IsTrue(ex.Message.Contains("Error: the value of maxLength must be a number"));
+                Assert.IsTrue(ex.Message.Contains("Error: invalid media type"));
+            }
+            
+        }
 	}
 }
