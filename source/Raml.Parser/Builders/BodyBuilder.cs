@@ -53,6 +53,9 @@ namespace Raml.Parser.Builders
                 ramlType = TypeBuilder.GetRamlType(new KeyValuePair<string, object>("obj", mimeType));
 		    }
 
+		    if (value.ContainsKey("application/json"))
+		        value = value["application/json"] as IDictionary<string, object>;
+
 		    return new MimeType
 			       {
                        Type = TypeExtractor.GetType(value),

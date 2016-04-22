@@ -237,6 +237,8 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/salesOrders.raml");
 
             Assert.AreEqual(18, raml.Types.Count);
+            Assert.IsNotNull(raml.ResourceTypes.First(r=>  r.ContainsKey("collectionResource"))["collectionResource"].Post.Body);
+            Assert.IsNotNull(raml.ResourceTypes.First(r => r.ContainsKey("collectionResource"))["collectionResource"].Post.Body.Type);
         }
 
         [Test]
