@@ -62,7 +62,7 @@ namespace Raml.Parser.Builders
                        InlineType = ramlType,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
 				       Example = value.ContainsKey("example") ? (string) value["example"] : null,
-				       Schema = value.ContainsKey("schema") ? (string) value["schema"] : null,
+				       Schema = GetSchema(value),
 				       FormParameters = value.ContainsKey("formParameters")
 					       ? GetParameters((IDictionary<string, object>) value["formParameters"])
 					       : null,
@@ -70,7 +70,20 @@ namespace Raml.Parser.Builders
 			       };
 		}
 
-        private IDictionary<string, Parameter> GetParameters(IDictionary<string, object> dictionary)
+	    private static string GetSchema(IDictionary<string, object> value)
+	    {
+	        if (!value.ContainsKey("schema"))
+	            return null;
+
+	        var schema = value["schema"] as object[];
+	        if (schema != null && schema.Any())
+	            return (string)schema[0];
+
+	        var asString = value["schema"] as string;
+	        return asString;
+	    }
+
+	    private IDictionary<string, Parameter> GetParameters(IDictionary<string, object> dictionary)
         {
             if (dynamicRaml == null)
                 return new Dictionary<string, Parameter>();

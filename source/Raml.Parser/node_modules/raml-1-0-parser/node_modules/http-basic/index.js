@@ -61,6 +61,7 @@ function request(method, url, options, callback) {
   if (options.gzip) {
     headers.set('Accept-Encoding', headers.has('Accept-Encoding') ? headers.get('Accept-Encoding') + ',gzip,deflate' : 'gzip,deflate');
     return request(method, urlString, {
+      allowRedirectHeaders: options.allowRedirectHeaders,
       headers: rawHeaders,
       agent: agent,
       followRedirects: options.followRedirects,
@@ -86,6 +87,7 @@ function request(method, url, options, callback) {
   }
   if (options.followRedirects) {
     return request(method, urlString, {
+      allowRedirectHeaders: options.allowRedirectHeaders,
       headers: rawHeaders,
       agent: agent,
       retry: options.retry,
@@ -156,6 +158,7 @@ function request(method, url, options, callback) {
         }
       }
       request('GET', urlString, {
+        allowRedirectHeaders: options.allowRedirectHeaders,
         headers: rawHeaders,
         retry: options.retry,
         retryDelay: options.retryDelay,
@@ -196,6 +199,7 @@ function request(method, url, options, callback) {
 
   function attempt(n) {
     request(method, urlString, {
+      allowRedirectHeaders: options.allowRedirectHeaders,
       headers: rawHeaders,
       agent: agent,
       timeout: options.timeout

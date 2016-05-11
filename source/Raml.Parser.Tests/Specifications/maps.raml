@@ -28,17 +28,6 @@ types:
         properties:
             []:
                 type: Person
-        example: |
-            {
-                "john": {
-                    "lastname": "smith"
-                    "firstname" : "john"
-                },
-                "peter": {
-                    "lastname": "jackson"
-                    "firstname" : "peter"
-                }
-            }
     MapOfObject:
         type: object
         properties:
@@ -50,18 +39,6 @@ types:
                         required: true
                         maxLength: 255
                     firstname: string
-        example: |
-            {
-                "john": {
-                    "lastname": "smith"
-                    "firstname" : "john"
-                },
-                "peter": {
-                    "lastname": "jackson"
-                    "firstname" : "peter"
-                }
-            }
-
 /persons:
   get:
     responses:
