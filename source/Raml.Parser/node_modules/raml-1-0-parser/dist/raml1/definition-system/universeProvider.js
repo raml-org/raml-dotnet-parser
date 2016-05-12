@@ -1,0 +1,4 @@
+"use strict";
+var ramlDS = require("raml-definition-system");
+module.exports = ramlDS.getUniverse;
+//# sourceMappingURL=universeProvider.js.map

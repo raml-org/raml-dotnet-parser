@@ -1,0 +1,4 @@
+"use strict";
+var serv = require("raml-definition-system");
+module.exports = serv;
+//# sourceMappingURL=ramlServices.js.map
