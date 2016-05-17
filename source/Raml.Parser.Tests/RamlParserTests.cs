@@ -256,5 +256,16 @@ namespace Raml.Parser.Tests
             }
             
         }
+
+        [Test]
+        public async Task ShouldParseDisorderedTypes()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/typesordering.raml");
+            Assert.IsNotNull(model);
+            Assert.AreEqual(11, model.Types.Count);
+            Assert.IsNotNull(model.Types["employee"].Object);
+            Assert.IsNotNull(model.Types["SupportRepresentant"].Object);
+        }
 	}
 }
