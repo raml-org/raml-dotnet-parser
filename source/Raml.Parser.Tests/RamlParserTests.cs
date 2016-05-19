@@ -267,5 +267,14 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(model.Types["employee"].Object);
             Assert.IsNotNull(model.Types["SupportRepresentant"].Object);
         }
-	}
+
+        [Test]
+        public async Task ShouldParseDependentTypes()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/dependentTypes.raml");
+            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.Types.Count);
+        }
+    }
 }

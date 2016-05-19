@@ -152,6 +152,9 @@ namespace Raml.Parser.Builders
         {
             var dynamicRaml = pair.Value as IDictionary<string, object>;
 
+            if(ramlType == null)
+                return;
+
             if (PrimitiveTypes.Contains(ramlType.Type))
             {
                 ramlType.Scalar = GetScalar(pair, ramlType.Required);
