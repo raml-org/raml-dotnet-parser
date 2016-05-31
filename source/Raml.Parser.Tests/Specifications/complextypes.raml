@@ -1,0 +1,49 @@
+#%RAML 1.0
+title: Nested Types
+version: 1.0
+baseUri: http://nested.com/api
+mediaType: application/json
+types:
+    Movie: 
+        type: object
+        properties:
+            id: integer
+            name: 
+                type: string
+                required: true
+                maxLength: 255
+            director:
+                type: object
+                properties:
+                    lastname: string
+                    firstname: string
+            genre: string
+            cast: string
+            duration: 
+                type: number
+                minimum: 1
+                required: false
+            storyline?: string
+            language: string
+            rented?: boolean
+    Movies:
+        type: Movie[]
+    SomeArray:
+        type: array
+        items:
+            type: object
+            properties:
+                prop1: integer
+                prop2: string
+/movies:
+  get:
+    description: gets all movies in the catalogue
+    responses:
+      200:
+        body:
+          schema: Movie[]
+  post:
+    description: adds a movie to the catalogue
+    body:
+      application/json:
+        schema: Movie

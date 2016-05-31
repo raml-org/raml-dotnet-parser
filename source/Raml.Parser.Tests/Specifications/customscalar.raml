@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: My API With Types
+types:
+  mydate:
+    type: date
+    facets:
+      format: string
+  customDate:
+    type: mydate
+    format: 'dd.mm.yyyy'

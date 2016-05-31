@@ -1,0 +1,26 @@
+{
+    id: "d-1",
+    artifact: {
+        id: "a-1",
+        type: "APPLICATION",
+        name: "app1",
+        version: 1,
+    },
+    target: {
+        id: "sg-1",
+        type: "SERVER_GROUP",
+    },
+    status: "DEPLOYING",
+    desiredStatus: "DEPLOYED",
+    serverArtifacts: [
+        {
+            artifact: {
+                version: 1,
+            },
+            serverId: "s-1",
+            status: "DEPLOYING",
+            desiredStatus: "DEPLOYED",
+            message: null
+        }
+    ]
+}
