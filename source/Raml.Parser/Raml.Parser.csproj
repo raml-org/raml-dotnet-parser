@@ -6193,9 +6193,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\tsconfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\typings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6461,9 +6458,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\tests\content\jsonschemetest\test1\scheme.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\tsconfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\typings.json">
@@ -6925,9 +6919,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\tsconfig.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\typings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6956,9 +6947,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\tsconfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\typings.json">
@@ -7802,9 +7790,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\yaml-ast-parser\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\yaml-ast-parser\tsconfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\yaml-ast-parser\typings.json">
