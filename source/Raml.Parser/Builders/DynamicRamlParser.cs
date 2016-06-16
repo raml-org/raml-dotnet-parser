@@ -6,6 +6,55 @@ namespace Raml.Parser.Builders
 {
     public class DynamicRamlParser
     {
+        // This is nonsense, why is the example returned as dictionary ?? I need the original string !
+        public static string GetExample(IDictionary<string, object> value)
+        {
+            if (!value.ContainsKey("example"))
+                return null;
+
+            var asString = value["example"] as string;
+            if (asString != null)
+                return asString;
+
+            var asObj = value["example"] as IDictionary<string, object>;
+            if (asObj != null)
+                return Serialize(asObj);
+
+            var asArray = value["example"] as object[];
+            if (asArray == null)
+                return null;
+
+            var res = "[";
+            foreach (var example in asArray)
+            {
+                var ex = example as IDictionary<string, object>;
+                if (ex != null)
+                {
+                    res += Serialize(ex);
+                }
+                else
+                {
+                    res += example.ToString();
+                }
+                res += "," + Environment.NewLine;
+            }
+            res += "]";
+
+            return res;
+        }
+
+        private static string Serialize(IDictionary<string, object> ex)
+        {
+            var res = "{" + Environment.NewLine;
+            foreach (var kv in ex)
+            {
+                res += "  \"" + kv.Key + "\": \"" + kv.Value + "\"," + Environment.NewLine;
+            }
+            res = res.Substring(0, res.Length - ("," + Environment.NewLine).Length);
+            res += "}";
+            return res;
+        }
+
         public static string GetStringOrNull(IDictionary<string, object> dynamicRaml, string key)
         {
             return GetValueOrNull(dynamicRaml, key) as string;

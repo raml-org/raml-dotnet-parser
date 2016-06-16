@@ -106,13 +106,14 @@ namespace Raml.Parser.Builders
             if (dynamicRaml == null)
                 throw new InvalidOperationException("Cannot parse type: " + type.Key);
 
+            var value = (IDictionary<string, object>)type.Value;
             ramlType = new RamlType
             {
                 Name = type.Key,
-                Type = GetType((IDictionary<string, object>)type.Value),
-                Example = DynamicRamlParser.GetStringOrNull((IDictionary<string, object>)type.Value, "example"),
-                Facets = DynamicRamlParser.GetDictionaryOrNull<object>((IDictionary<string, object>) type.Value, "facets"),
-                OtherProperties = GetOtherProperties((IDictionary<string, object>) type.Value)
+                Type = GetType(value),
+                Example = DynamicRamlParser.GetExample(value),
+                Facets = DynamicRamlParser.GetDictionaryOrNull<object>(value, "facets"),
+                OtherProperties = GetOtherProperties(value)
             };
 
             SetPropertiesByType(type, ramlType);

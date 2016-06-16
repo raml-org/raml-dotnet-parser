@@ -73,12 +73,29 @@ namespace Raml.Parser.Builders
 			return dynamicRaml.ContainsKey("schemas")
 					? ((object[])dynamicRaml["schemas"])
 						.Cast<IDictionary<string, object>>()
-						.Select(o => o.ToDictionary(kv => kv.Key, kv => (string)kv.Value))
+						.Select(o => o.ToDictionary(kv => kv.Key, kv => ParseSchema(kv.Value)))
 						.ToArray()
 					: new Dictionary<string, string>[0];
 		}
 
-		private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType)
+	    private string ParseSchema(object val)
+	    {
+	        var asString = val as string;
+	        if (asString != null)
+	            return asString;
+
+	        var value = val as IDictionary<string, object>;
+	        if (!value.ContainsKey("type"))
+	            return null;
+
+	        var arr = value["type"] as object[]; // This is nonsense, why is the schema returned in an object array under the type key ??
+	        if (arr != null)
+	            return arr[0].ToString();
+
+	        return null;
+	    }
+
+	    private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType)
 		{
 			if (!dynamicRaml.ContainsKey("securitySchemes"))
 				return new List<IDictionary<string, SecurityScheme>>();

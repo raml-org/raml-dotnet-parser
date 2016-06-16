@@ -5,7 +5,7 @@ baseUri: http://movies.com/api
 mediaType: application/json
 protocols: [HTTP]
 securitySchemes:
-  - oauth_2_0:
+  oauth_2_0:
       type: OAuth 2.0
       describedBy:
         headers:
@@ -23,7 +23,7 @@ securitySchemes:
       settings:
         authorizationUri: https://localhost:8081/oauth/authorize
         accessTokenUri: https://localhost:8081/oauth/access_token
-        authorizationGrants: [ code, token ]
+        authorizationGrants: [ authorization_code ]
         scopes:
           - read
           - write

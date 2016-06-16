@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Raml.Parser.Expressions;
 
@@ -61,7 +62,7 @@ namespace Raml.Parser.Builders
                        Type = TypeExtractor.GetType(value),
                        InlineType = ramlType,
 				       Description = value.ContainsKey("description") ? (string) value["description"] : null,
-				       Example = value.ContainsKey("example") ? (string) value["example"] : null,
+				       Example = DynamicRamlParser.GetExample(value),
 				       Schema = GetSchema(value),
 				       FormParameters = value.ContainsKey("formParameters")
 					       ? GetParameters((IDictionary<string, object>) value["formParameters"])

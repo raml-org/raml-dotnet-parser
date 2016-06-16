@@ -25,7 +25,9 @@ namespace Raml.Parser.Tests
 			var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/XKCD/api.raml");
 
-			Assert.AreEqual(2, raml.Resources.Count());
+			Assert.AreEqual(2, raml.Resources.Count);
+            Assert.AreEqual(1, raml.Schemas.Count());
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(raml.Schemas.First()["comic"]));
 		}
 
 
@@ -101,6 +103,7 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/movietype.raml");
 
             Assert.AreEqual(1, raml.Types.Count);
+            Assert.IsNotNull(raml.Types["Movie"].Example);
             Assert.AreEqual(1, raml.Resources.Count());
         }
 
