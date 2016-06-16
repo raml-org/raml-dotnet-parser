@@ -19,6 +19,7 @@
   "ts-structure-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git",
+    "gitBranch" : false,
     "installTypings" : true
   },
   "yaml-ast-parser" : {

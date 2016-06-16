@@ -4,6 +4,7 @@ LRU Cache for node.js/browser.
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
+[![Downloads][downloads-image]][downloads-url]
 
 使用链表实现的 LRU 缓存。`get`、`set` 和 `update` 方法会更新 LRU 优先级。
 
@@ -131,3 +132,6 @@ cache.info()
 
 [travis-url]: https://travis-ci.org/zensh/lrucache
 [travis-image]: http://img.shields.io/travis/zensh/lrucache.svg
+
+[downloads-url]: https://npmjs.org/package/lrucache
+[downloads-image]: http://img.shields.io/npm/dm/lrucache.svg?style=flat-square
