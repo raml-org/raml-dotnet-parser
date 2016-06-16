@@ -7,7 +7,7 @@ namespace Raml.Parser.Builders
 {
     public class TypeBuilder
     {
-        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date", "file" };
+        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "datetime", "datetime-only", "date-only", "time-only", "file" };
         private static RamlTypesOrderedDictionary ramlTypes;
         private static string preffix;
         private static readonly IDictionary<string, object> defferredTypes = new Dictionary<string, object>();
