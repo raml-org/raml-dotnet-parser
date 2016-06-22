@@ -208,9 +208,14 @@ namespace Raml.Parser.Builders
                 return;
             }
 
-            if(!defferredTypes.ContainsKey(pair.Key))
+            if (!defferredTypes.ContainsKey(pair.Key))
+            {
                 defferredTypes.Add(pair.Key, pair.Value);
-
+            }
+            else if (dynamicRaml.ContainsKey("properties"))
+            {
+                ramlType.Object = GetObject(dynamicRaml);
+            }
             //throw new InvalidOperationException("Cannot parse type: " + ramlType.Type);
         }
 
@@ -242,6 +247,12 @@ namespace Raml.Parser.Builders
             obj.MinProperties = DynamicRamlParser.GetIntOrNull(dynamicRaml, "minProperties");
             obj.PatternProperties = DynamicRamlParser.GetValueOrNull(dynamicRaml, "patternProperties");
 
+            ParseProperties(dynamicRaml, obj);
+            return obj;
+        }
+
+        private static void ParseProperties(IDictionary<string, object> dynamicRaml, ObjectType obj)
+        {
             var properties = new Dictionary<string, RamlType>();
             if (dynamicRaml.ContainsKey("properties"))
             {
@@ -252,7 +263,6 @@ namespace Raml.Parser.Builders
             }
 
             obj.Properties = properties;
-            return obj;
         }
 
         private static Property GetScalar(KeyValuePair<string, object> pair, bool required)

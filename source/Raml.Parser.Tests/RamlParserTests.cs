@@ -299,7 +299,19 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("datetime", model.Types["user"].Object.Properties.First(p => p.Key == "lastaccess").Value.Scalar.Type);
             Assert.AreEqual("time-only", model.Types["sample"].Object.Properties.First(p => p.Key == "prop1").Value.Scalar.Type);
             Assert.AreEqual("datetime-only", model.Types["sample"].Object.Properties.First(p => p.Key == "prop2").Value.Scalar.Type);
-
         }
+
+        [Test]
+        public async Task ShouldParseSalesOrders()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/salesOrders.raml");
+            Assert.IsNotNull(model);
+            Assert.AreEqual(8, model.Types.Count);
+            Assert.IsNotNull(model.Types["salesOrderCollectionResponse"].Object);
+            Assert.AreEqual(1, model.Types["salesOrderCollectionResponse"].Object.Properties.Count);
+        }
+
+
     }
 }
