@@ -12,6 +12,15 @@ namespace Raml.Parser
     {
         public async Task<RamlDocument> LoadAsync(string filePath)
         {
+            var rawresult = await GetDynamicStructure(filePath);
+
+            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
+
+            return ramlDocument;
+        }
+
+        public static async Task<object> GetDynamicStructure(string filePath)
+        {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("filePath");
 
@@ -55,10 +64,7 @@ namespace Raml.Parser
             var error = rawresult as string;
             if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
                 throw new FormatException(error);
-
-            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult);
-
-            return ramlDocument;
+            return rawresult;
         }
 
         public async Task<RamlDocument> LoadAsync(string filePath, string[] extensionPaths)
@@ -132,7 +138,7 @@ namespace Raml.Parser
             if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
                 throw new FormatException(error);
 
-            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult);
+            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
 
             return ramlDocument;
         }

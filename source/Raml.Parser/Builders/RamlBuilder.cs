@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Raml.Parser.Expressions;
 
@@ -9,7 +10,7 @@ namespace Raml.Parser.Builders
 	public class RamlBuilder
 	{
         
-		public RamlDocument Build(IDictionary<string, object> dynamicRaml)
+		public RamlDocument Build(IDictionary<string, object> dynamicRaml, string path)
 		{
             
 			var doc = new RamlDocument(dynamicRaml);
@@ -17,17 +18,22 @@ namespace Raml.Parser.Builders
 
 		    if (dynamicRaml.ContainsKey("uses"))
 		    {
-		        var uses = dynamicRaml["uses"] as IDictionary<string, object>;
+		        var uses = dynamicRaml["uses"] as object[];
 		        if (uses != null)
 		        {
 		            foreach (var library in uses)
 		            {
-		                var lib = library.Value as IDictionary<string, object>;
-                        TypeBuilder.AddTypes(doc.Types, lib, library.Key);
+		                var lib = library as IDictionary<string, object>;
+		                if (lib != null)
+		                {
+		                    var filePath = Path.Combine(Path.GetDirectoryName(path), (string)lib["value"]);
+                            var preffix = (string)lib["key"];
+		                    var dynamic = RamlParser.GetDynamicStructure(filePath).ConfigureAwait(false).GetAwaiter().GetResult();
+		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
+		                }
 		            }
 		        }
 		    }
-
 
 			doc.BaseUri = dynamicRaml.ContainsKey("baseUri") ? (string) dynamicRaml["baseUri"] : string.Empty;
             doc.Title = dynamicRaml.ContainsKey("title") ? (string)dynamicRaml["title"] : string.Empty;

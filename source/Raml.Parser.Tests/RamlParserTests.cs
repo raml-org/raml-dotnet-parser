@@ -306,8 +306,7 @@ namespace Raml.Parser.Tests
         {
             var parser = new RamlParser();
             var model = await parser.LoadAsync("Specifications/salesOrders.raml");
-            Assert.IsNotNull(model);
-            Assert.AreEqual(8, model.Types.Count);
+            Assert.AreEqual(18, model.Types.Count);
             Assert.IsNotNull(model.Types["salesOrderCollectionResponse"].Object);
             Assert.AreEqual(1, model.Types["salesOrderCollectionResponse"].Object.Properties.Count);
         }
