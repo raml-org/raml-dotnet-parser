@@ -311,6 +311,13 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, model.Types["salesOrderCollectionResponse"].Object.Properties.Count);
         }
 
+        [Test]
+        public async Task ShouldParseMultipleLibraries()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/uses-case.raml");
+            Assert.AreEqual(14, model.Types.Count);
+        }
 
     }
 }
