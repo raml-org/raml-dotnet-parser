@@ -25,7 +25,9 @@ namespace Raml.Parser.Tests
 			var parser = new RamlParser();
             var raml = await parser.LoadAsync("Specifications/XKCD/api.raml");
 
-			Assert.AreEqual(2, raml.Resources.Count());
+			Assert.AreEqual(2, raml.Resources.Count);
+            Assert.AreEqual(1, raml.Schemas.Count());
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(raml.Schemas.First()["comic"]));
 		}
 
 
@@ -101,6 +103,7 @@ namespace Raml.Parser.Tests
             var raml = await parser.LoadAsync("Specifications/movietype.raml");
 
             Assert.AreEqual(1, raml.Types.Count);
+            Assert.IsNotNull(raml.Types["Movie"].Example);
             Assert.AreEqual(1, raml.Resources.Count());
         }
 
@@ -276,5 +279,45 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(model);
             Assert.AreEqual(2, model.Types.Count);
         }
+
+        [Test]
+        public async Task ShouldParseDateTypes()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/dates.raml");
+            Assert.AreEqual(3, model.Types.Count);
+            Assert.AreEqual(3, model.Types["person"].Object.Properties.Count);
+            Assert.AreEqual(2, model.Types["user"].Object.Properties.Count);
+            Assert.AreEqual(2, model.Types["sample"].Object.Properties.Count);
+
+            Assert.IsNotNull(model.Types["person"].Object.Properties.First(p => p.Key == "born").Value.Scalar);
+            Assert.IsNotNull(model.Types["user"].Object.Properties.First(p => p.Key == "lastaccess").Value.Scalar);
+            Assert.IsNotNull(model.Types["sample"].Object.Properties.First(p => p.Key == "prop1").Value.Scalar);
+            Assert.IsNotNull(model.Types["sample"].Object.Properties.First(p => p.Key == "prop2").Value.Scalar);
+
+            Assert.AreEqual("date-only", model.Types["person"].Object.Properties.First(p => p.Key == "born").Value.Scalar.Type);
+            Assert.AreEqual("datetime", model.Types["user"].Object.Properties.First(p => p.Key == "lastaccess").Value.Scalar.Type);
+            Assert.AreEqual("time-only", model.Types["sample"].Object.Properties.First(p => p.Key == "prop1").Value.Scalar.Type);
+            Assert.AreEqual("datetime-only", model.Types["sample"].Object.Properties.First(p => p.Key == "prop2").Value.Scalar.Type);
+        }
+
+        [Test]
+        public async Task ShouldParseSalesOrders()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/salesOrders.raml");
+            Assert.AreEqual(18, model.Types.Count);
+            Assert.IsNotNull(model.Types["salesOrderCollectionResponse"].Object);
+            Assert.AreEqual(1, model.Types["salesOrderCollectionResponse"].Object.Properties.Count);
+        }
+
+        [Test]
+        public async Task ShouldParseMultipleLibraries()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/uses-case.raml");
+            Assert.AreEqual(14, model.Types.Count);
+        }
+
     }
 }

@@ -7,7 +7,7 @@ namespace Raml.Parser.Builders
 {
     public class TypeBuilder
     {
-        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "date", "file" };
+        private static readonly string[] PrimitiveTypes = { "string", "number", "integer", "boolean", "datetime", "datetime-only", "date-only", "time-only", "file" };
         private static RamlTypesOrderedDictionary ramlTypes;
         private static string preffix;
         private static readonly IDictionary<string, object> defferredTypes = new Dictionary<string, object>();
@@ -106,13 +106,14 @@ namespace Raml.Parser.Builders
             if (dynamicRaml == null)
                 throw new InvalidOperationException("Cannot parse type: " + type.Key);
 
+            var value = (IDictionary<string, object>)type.Value;
             ramlType = new RamlType
             {
                 Name = type.Key,
-                Type = GetType((IDictionary<string, object>)type.Value),
-                Example = DynamicRamlParser.GetStringOrNull((IDictionary<string, object>)type.Value, "example"),
-                Facets = DynamicRamlParser.GetDictionaryOrNull<object>((IDictionary<string, object>) type.Value, "facets"),
-                OtherProperties = GetOtherProperties((IDictionary<string, object>) type.Value)
+                Type = GetType(value),
+                Example = DynamicRamlParser.GetExample(value),
+                Facets = DynamicRamlParser.GetDictionaryOrNull<object>(value, "facets"),
+                OtherProperties = GetOtherProperties(value)
             };
 
             SetPropertiesByType(type, ramlType);
@@ -207,9 +208,14 @@ namespace Raml.Parser.Builders
                 return;
             }
 
-            if(!defferredTypes.ContainsKey(pair.Key))
+            if (!defferredTypes.ContainsKey(pair.Key))
+            {
                 defferredTypes.Add(pair.Key, pair.Value);
-
+            }
+            else if (dynamicRaml.ContainsKey("properties"))
+            {
+                ramlType.Object = GetObject(dynamicRaml);
+            }
             //throw new InvalidOperationException("Cannot parse type: " + ramlType.Type);
         }
 
@@ -241,6 +247,12 @@ namespace Raml.Parser.Builders
             obj.MinProperties = DynamicRamlParser.GetIntOrNull(dynamicRaml, "minProperties");
             obj.PatternProperties = DynamicRamlParser.GetValueOrNull(dynamicRaml, "patternProperties");
 
+            ParseProperties(dynamicRaml, obj);
+            return obj;
+        }
+
+        private static void ParseProperties(IDictionary<string, object> dynamicRaml, ObjectType obj)
+        {
             var properties = new Dictionary<string, RamlType>();
             if (dynamicRaml.ContainsKey("properties"))
             {
@@ -251,7 +263,6 @@ namespace Raml.Parser.Builders
             }
 
             obj.Properties = properties;
-            return obj;
         }
 
         private static Property GetScalar(KeyValuePair<string, object> pair, bool required)

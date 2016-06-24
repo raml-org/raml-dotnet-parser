@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -9,7 +11,7 @@ namespace Raml.Parser.Builders
 	public class RamlBuilder
 	{
         
-		public RamlDocument Build(IDictionary<string, object> dynamicRaml)
+		public async Task<RamlDocument> Build(IDictionary<string, object> dynamicRaml, string path = null)
 		{
             
 			var doc = new RamlDocument(dynamicRaml);
@@ -17,17 +19,27 @@ namespace Raml.Parser.Builders
 
 		    if (dynamicRaml.ContainsKey("uses"))
 		    {
-		        var uses = dynamicRaml["uses"] as IDictionary<string, object>;
+		        var uses = dynamicRaml["uses"] as object[];
 		        if (uses != null)
 		        {
 		            foreach (var library in uses)
 		            {
-		                var lib = library.Value as IDictionary<string, object>;
-                        TypeBuilder.AddTypes(doc.Types, lib, library.Key);
+		                var lib = library as IDictionary<string, object>;
+		                if (lib != null)
+		                {
+		                    string filePath;
+		                    if(path != null)
+		                        filePath = Path.Combine(Path.GetDirectoryName(path), (string)lib["value"]);
+                            else
+                                filePath = (string)lib["value"];
+
+                            var preffix = (string)lib["key"];
+		                    var dynamic = await RamlParser.GetDynamicStructure(filePath);
+		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
+		                }
 		            }
 		        }
 		    }
-
 
 			doc.BaseUri = dynamicRaml.ContainsKey("baseUri") ? (string) dynamicRaml["baseUri"] : string.Empty;
             doc.Title = dynamicRaml.ContainsKey("title") ? (string)dynamicRaml["title"] : string.Empty;
@@ -73,12 +85,29 @@ namespace Raml.Parser.Builders
 			return dynamicRaml.ContainsKey("schemas")
 					? ((object[])dynamicRaml["schemas"])
 						.Cast<IDictionary<string, object>>()
-						.Select(o => o.ToDictionary(kv => kv.Key, kv => (string)kv.Value))
+						.Select(o => o.ToDictionary(kv => kv.Key, kv => ParseSchema(kv.Value)))
 						.ToArray()
 					: new Dictionary<string, string>[0];
 		}
 
-		private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType)
+	    private string ParseSchema(object val)
+	    {
+	        var asString = val as string;
+	        if (asString != null)
+	            return asString;
+
+	        var value = val as IDictionary<string, object>;
+	        if (!value.ContainsKey("type"))
+	            return null;
+
+	        var arr = value["type"] as object[]; // This is nonsense, why is the schema returned in an object array under the type key ??
+	        if (arr != null)
+	            return arr[0].ToString();
+
+	        return null;
+	    }
+
+	    private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType)
 		{
 			if (!dynamicRaml.ContainsKey("securitySchemes"))
 				return new List<IDictionary<string, SecurityScheme>>();

@@ -245,6 +245,9 @@
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\exampleGenTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\examplesApiTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\extensionsApiTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -302,13 +305,28 @@
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\parserTestsExpanded.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\parserTestsRC2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\runtimeExampleTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\schema-model-tests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\generateTCKMocha.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\tckLauncher.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\tckUtil.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\TCK.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\TCK2.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\test-additional\model-tests.js">
@@ -354,6 +372,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\typeSystemTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFSTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFS\vfs.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFS\vfsDecl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\tools\dependencyManager.js">
@@ -473,10 +500,10 @@
     <Content Include="node_modules\raml-1-0-parser\dist\util\ramlToJsonFile.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\util\schemaGenerator.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\util\schemaAsync.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\util\schemaUtil.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\util\schemaGenerator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\util\TCKDumper.js">
@@ -671,22 +698,13 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\aws4\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\aws4\lru.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\aws4\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\aws4\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\balanced-match\.npmignore">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\balanced-match\LICENSE.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\balanced-match\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\balanced-match\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\base64url\index.js">
@@ -812,15 +830,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\boom\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\brace-expansion\.npmignore">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\brace-expansion\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\brace-expansion\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\bl\node_modules\isarray\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -861,6 +870,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\bl\node_modules\readable-stream\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\buffer-shims\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\call-me-maybe\index.js">
@@ -921,18 +933,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\commander\Readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\.travis.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\README.markdown">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\concat-stream\LICENSE">
@@ -1031,6 +1031,51 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\dashdash\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\date-and-time.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\date-and-time.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\ar.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\bn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\de.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\es.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\fr.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\hi.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\it.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\ja.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\ko.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\pt.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\ru.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\zh-cn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\locale\zh-tw.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\debug\browser.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1062,6 +1107,42 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\index.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\duplex.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\lib\_stream_duplex.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\lib\_stream_passthrough.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\lib\_stream_readable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\lib\_stream_transform.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\lib\_stream_writable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\passthrough.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\readable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\transform.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\writable.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\test.js">
@@ -1253,15 +1334,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\getpass\node_modules\assert-plus\assert.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\glob\common.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\glob\glob.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\glob\sync.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\got\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1286,6 +1358,15 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\har-validator\bin\har-validator">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="node_modules\raml-1-0-parser\node_modules\buffer-shims\license.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\buffer-shims\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="node_modules\raml-1-0-parser\node_modules\buffer-shims\readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\call-me-maybe\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1375,6 +1456,15 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\constant-case\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\date-and-time\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\debug\.jshintrc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1417,6 +1507,41 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\duplexify\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\.npmignore">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\.travis.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\component.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\Makefile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\package.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\isarray\README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\.npmignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\.travis.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\doc\stream.md" />
+    <None Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\doc\wg-meetings\2015-01-30.md" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\duplexify\node_modules\readable-stream\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\duplexify\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1475,15 +1600,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\getpass\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\glob\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\glob\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\glob\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\got\node_modules\object-assign\license">
@@ -1663,12 +1779,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\infinity-agent\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\inflight\inflight.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\inflight\test.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\inherits\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1718,18 +1828,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\infinity-agent\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\inflight\.eslintrc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\inflight\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\inflight\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\inflight\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\invariant\CHANGELOG.md">
@@ -2240,12 +2338,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\json-schema-ref-parser\CHANGELOG.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\json-schema-ref-parser\dist\ref-parser.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\json-schema-ref-parser\dist\ref-parser.min.js.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\json-schema-ref-parser\LICENSE">
@@ -2950,7 +3042,13 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\find.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findFrom.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findIndex.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findIndexFrom.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findKey.js">
@@ -2959,7 +3057,13 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findLast.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findLastFrom.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findLastIndex.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findLastIndexFrom.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\findLastKey.js">
@@ -3061,7 +3165,13 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\includes.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\includesFrom.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\indexOf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\indexOfFrom.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\init.js">
@@ -3242,6 +3352,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\lastIndexOf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\lastIndexOfFrom.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\lowerCase.js">
@@ -3581,6 +3694,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\string.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\stubArray.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\stubFalse.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\stubObject.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\stubString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\stubTrue.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\subtract.js">
@@ -4333,6 +4461,21 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\string.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\stubArray.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\stubFalse.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\stubObject.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\stubString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\stubTrue.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\subtract.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4645,10 +4788,10 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFilter.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFind.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFindIndex.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFindIndex.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFindKey.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseFlatten.js">
@@ -4709,6 +4852,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsMatch.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsNative.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIteratee.js">
@@ -4915,6 +5061,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_copySymbols.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_coreJsData.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_countHolders.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4943,6 +5092,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCurryWrapper.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createFind.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createFlow.js">
@@ -5047,6 +5199,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getTag.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getValue.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getView.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5108,6 +5263,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isLaziable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isMaskable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isMasked.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isPrototype.js">
@@ -5302,6 +5463,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\loophole\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\loose-envify\cli.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\loose-envify\custom.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5396,15 +5560,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\mime-types\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\minimatch\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\minimatch\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\minimatch\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\minimist\.travis.yml">
@@ -5683,15 +5838,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\path-case\path-case.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\path-is-absolute\license">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\path-is-absolute\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\path-is-absolute\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\number-is-nan\license">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -5714,12 +5860,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\once\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ono\dist\ono.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ono\dist\ono.min.js.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ono\LICENSE">
@@ -5800,10 +5940,51 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\process-nextick-args\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\.eslintrc.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\karma.conf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\promise.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\promise.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\test\adapter.js" />
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\test\promise.js" />
     <Content Include="node_modules\raml-1-0-parser\node_modules\promise\.jshintrc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\promise\.npmignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\build.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\core.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\done.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\es6-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\finally.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\node-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\rejection-tracking.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\domains\synchronous.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\promise\lib\finally.js">
@@ -5827,6 +6008,54 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\promise\Readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\core.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\done.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\es6-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\finally.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\node-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\rejection-tracking.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\setimmediate\synchronous.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\core.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\done.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\es6-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\finally.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\node-extensions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\rejection-tracking.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise\src\synchronous.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\qs\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5837,6 +6066,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\qs\CONTRIBUTING.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\qs\dist\qs.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\qs\LICENSE">
@@ -5962,6 +6194,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\lib\validator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\object-assign\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\pluralize\pluralize.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6034,6 +6269,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\test\specs\validator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\datetime.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\exampleBuilder.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6073,6 +6311,12 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typeExpressions.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typeExpressionUtil.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typesystem-interfaces.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typesystem.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6080,6 +6324,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\xmlio.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\xmlUtil.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\actualParse.js">
@@ -6130,6 +6377,27 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\readable-stream\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\.editorconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\.npmignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\.travis.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\promise-polyfill\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\q\CHANGES.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6148,31 +6416,10 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\.travis.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\annotationHandlers.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\builder.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\definitionSystem.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\enumGen.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\index.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\RAML08.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\RAML10.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\tsStruct2Def.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\dist\universe.js.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-definition-system\package.json">
@@ -6220,6 +6467,15 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-parser\legal\apache_license.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\object-assign\license">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\object-assign\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\object-assign\readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-parser\node_modules\pluralize\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6361,87 +6617,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\.travis.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\exampleBuilder.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\facetRegistry.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\index.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\jsonSchemaWriter.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\metainfo.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\nominal-interfaces.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\nominal-types.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\nominals.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\parse.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\restrictions.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\schemaUtil.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typeExpressionParser.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typeExpressions.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\typesystem.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\utils.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\xmlio.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\actualParse.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\builtInsTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\contentprovider.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\exampleBuilderTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\instanceValidationPathTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\jsonSchemaTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\jsonTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\regressionTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\schemaUtilTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\toNominalTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\tests\typeValidationTests.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\node_modules\lrucache\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6511,12 +6686,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\request\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\rimraf\bin.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\rimraf\rimraf.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\sax\lib\sax.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6542,15 +6711,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\repeating\readme.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\rimraf\LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\rimraf\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\rimraf\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\sax\LICENSE">
@@ -6646,18 +6806,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\bower.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\dist\angular-sprintf.min.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\dist\angular-sprintf.min.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\dist\sprintf.min.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\dist\sprintf.min.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\sprintf-js\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6676,6 +6824,9 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\sshpk\man\man1\sshpk-verify.1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\node_modules\assert-plus\assert.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6736,12 +6887,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\.travis.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\dist\request.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\dist\request.min.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\then-request\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6752,6 +6897,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\timed-out\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\node_modules\assert-plus\AUTHORS">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\node_modules\assert-plus\CHANGES.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\node_modules\assert-plus\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\sshpk\node_modules\assert-plus\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\statuses\codes.json">
@@ -6904,15 +7061,6 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\.travis.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\dist\TSDeclModel.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\dist\tsutil.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\dist\underscore.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-model\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6929,18 +7077,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\.travis.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\fsUtils.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\helperMethodExtractor.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\tsASTMatchers.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\tsStructureParser.js.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\package.json">
@@ -7330,9 +7466,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\validator\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\validator\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\verror\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -7352,9 +7485,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\verror\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\wrappy\test\basic.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\wrappy\wrappy.js">
@@ -7627,6 +7757,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-hack2\xmllint.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\xtend\.jshintrc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -7741,9 +7874,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\z-schema\bin\z-schema">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\z-schema\dist\ZSchema-browser-min.js.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\z-schema\LICENSE">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -7780,6 +7910,9 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\xmlbuilder\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-hack2\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\yaml-ast-parser\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -7863,9 +7996,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\aws4\aws4.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\balanced-match\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\bl\bl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -7879,12 +8009,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\boom\test\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\brace-expansion\example.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\brace-expansion\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\camelcase\index.js">
@@ -7903,15 +8027,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\commander\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\example\map.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\concat-map\test\map.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\concat-stream\index.js">
@@ -8349,9 +8464,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\mime-types\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\minimatch\minimatch.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\minimist\example\parse.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -8401,9 +8513,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\oauth-sign\index.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\path-is-absolute\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\pinkie-promise\index.js">

@@ -69,7 +69,6 @@ namespace Raml.Parser.Tests
             var raml = await Parse("specifications/customscalar.raml");
 
             Assert.AreEqual(2, raml.Types.Count);
-            Assert.AreEqual("format", raml.Types["mydate"].Facets.First().Key);
         }
 
         private static async Task<RamlDocument> Parse(string filePath)

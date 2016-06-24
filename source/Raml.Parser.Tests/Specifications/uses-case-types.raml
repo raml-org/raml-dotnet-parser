@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+types:
+    url:
+        type: string
+        pattern: |
+            (https?):\/\/((?:[a-z0-9.-]|%[0-9A-F]{2}){3,})(?::(\d+))?((?:\/(?:[a-z0-9-._~!$&'()*+,;=:@]|%[0-9A-F]{2})*)*)
+    link:
+        type: object
+        properties:
+            href:
+                type: url
+            title?:
+                type: string
