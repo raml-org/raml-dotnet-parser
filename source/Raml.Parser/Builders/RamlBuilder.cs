@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -10,7 +11,7 @@ namespace Raml.Parser.Builders
 	public class RamlBuilder
 	{
         
-		public RamlDocument Build(IDictionary<string, object> dynamicRaml, string path)
+		public async Task<RamlDocument> Build(IDictionary<string, object> dynamicRaml, string path)
 		{
             
 			var doc = new RamlDocument(dynamicRaml);
@@ -28,7 +29,7 @@ namespace Raml.Parser.Builders
 		                {
 		                    var filePath = Path.Combine(Path.GetDirectoryName(path), (string)lib["value"]);
                             var preffix = (string)lib["key"];
-		                    var dynamic = RamlParser.GetDynamicStructure(filePath).ConfigureAwait(false).GetAwaiter().GetResult();
+		                    var dynamic = await RamlParser.GetDynamicStructure(filePath);
 		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
 		                }
 		            }

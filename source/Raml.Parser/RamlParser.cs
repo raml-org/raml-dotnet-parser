@@ -14,7 +14,7 @@ namespace Raml.Parser
         {
             var rawresult = await GetDynamicStructure(filePath);
 
-            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
+            var ramlDocument = await new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
 
             return ramlDocument;
         }
@@ -138,7 +138,7 @@ namespace Raml.Parser
             if (!string.IsNullOrWhiteSpace(error) && error.ToLowerInvariant().Contains("error"))
                 throw new FormatException(error);
 
-            var ramlDocument = new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
+            var ramlDocument = await new RamlBuilder().Build((IDictionary<string, object>)rawresult, filePath);
 
             return ramlDocument;
         }
