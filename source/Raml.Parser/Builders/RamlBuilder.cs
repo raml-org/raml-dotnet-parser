@@ -11,7 +11,7 @@ namespace Raml.Parser.Builders
 	public class RamlBuilder
 	{
         
-		public async Task<RamlDocument> Build(IDictionary<string, object> dynamicRaml, string path)
+		public async Task<RamlDocument> Build(IDictionary<string, object> dynamicRaml, string path = null)
 		{
             
 			var doc = new RamlDocument(dynamicRaml);
@@ -27,7 +27,12 @@ namespace Raml.Parser.Builders
 		                var lib = library as IDictionary<string, object>;
 		                if (lib != null)
 		                {
-		                    var filePath = Path.Combine(Path.GetDirectoryName(path), (string)lib["value"]);
+		                    string filePath;
+		                    if(path != null)
+		                        filePath = Path.Combine(Path.GetDirectoryName(path), (string)lib["value"]);
+                            else
+                                filePath = (string)lib["value"];
+
                             var preffix = (string)lib["key"];
 		                    var dynamic = await RamlParser.GetDynamicStructure(filePath);
 		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
