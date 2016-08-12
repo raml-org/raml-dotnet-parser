@@ -60,6 +60,7 @@
     <Compile Include="Builders\BasicInfoBuilder.cs" />
     <Compile Include="Builders\DocumentationItemBuilder.cs" />
     <Compile Include="Builders\DynamicRamlParser.cs" />
+    <Compile Include="Builders\ErrorsBuilder.cs" />
     <Compile Include="Builders\MethodBuilder.cs" />
     <Compile Include="Builders\ParameterBuilder.cs" />
     <Compile Include="Builders\PropertyBuilder.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Builders\SecuritySettingsBuilder.cs" />
     <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
+    <Compile Include="Expressions\Error.cs" />
     <Compile Include="Expressions\AnnotationType.cs" />
     <Compile Include="Expressions\ArrayType.cs" />
     <Compile Include="Expressions\ExternalType.cs" />
