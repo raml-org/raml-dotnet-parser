@@ -53,11 +53,9 @@ types:
 /persons:
   get:
     responses:
-      200:
-        body:
-          schema: ArrayOfPerson
+      body:
+        schema: ArrayOfPerson
   post:
     description: adds a movie to the catalogue
     body:
-      application/json:
-        schema: ArrayOfInt
+      schema: ArrayOfInt
