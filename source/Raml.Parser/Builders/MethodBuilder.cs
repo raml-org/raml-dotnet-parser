@@ -48,8 +48,24 @@ namespace Raml.Parser.Builders
 			
 			var objectsAsArray = dynamicRaml["is"] as object[];
 
-			if (objectsAsArray != null) 
-				return objectsAsArray.Cast<string>();
+		    if (objectsAsArray != null)
+		    {
+                var ret = new List<string>();
+		        foreach (var obj in objectsAsArray)
+		        {
+		            var isDic = obj as IDictionary<string, object>;
+		            if (isDic != null)
+		            {
+		                ret.Add(isDic.Keys.First());
+                        continue;
+		            }
+
+		            var @is = obj as string;
+                    if(@is != null)
+                        ret.Add(@is);
+		        }
+		        return ret;
+		    }
 
 			var objectAsString = dynamicRaml["is"] as string;
 			return new[] {objectAsString};

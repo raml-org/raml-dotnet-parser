@@ -183,3 +183,4 @@ UpgradeLog*.htm
 FakesAssemblies/
 /Raml.Parser/test.js
 /source/Raml.Parser.Express/Raml.Parser.Express/*.dat
+.vs
