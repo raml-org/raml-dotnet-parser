@@ -319,5 +319,14 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(14, model.Types.Count);
         }
 
+        [Test]
+        public async Task ShouldParseRaml200Tutoriasl()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/raml08/raml-tutorial-200/jukebox-api.raml");
+            Assert.IsTrue(model.Resources.SelectMany(r => r.Methods).All(m => m.Is.Count() == 3));
+            Assert.IsTrue(model.Resources.SelectMany(r => r.Methods).SelectMany(m => m.Is).All(i => i == "searchable" || i == "orderable" || i == "pageable"));
+        }
+
     }
 }

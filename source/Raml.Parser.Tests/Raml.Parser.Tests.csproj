@@ -155,6 +155,52 @@
     <None Include="Specifications\raml08\movies.schema">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-api.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-album-new.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-album-retrieve.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-album-songs.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-album.schema">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-albums.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-artist-albums.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-artist-new.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-artist-retrieve.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-artist.schema">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-artists.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-song-new.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-song-retrieve.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-song.schema">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\jukebox-include-songs.sample">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Specifications\raml08\raml-tutorial-200\README.md" />
     <None Include="Specifications\raml08\relative-include.raml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -215,6 +261,11 @@
       <Project>{5c0d823d-7deb-406a-be6f-1d58bc583046}</Project>
       <Name>Raml.Parser</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Specifications\raml08\raml-tutorial-200\heybulldog.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
