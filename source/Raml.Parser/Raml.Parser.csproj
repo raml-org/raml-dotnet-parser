@@ -71,6 +71,7 @@
     <Compile Include="Builders\SecuritySchemeBuilder.cs" />
     <Compile Include="Builders\SecuritySchemeDescriptorBuilder.cs" />
     <Compile Include="Builders\SecuritySettingsBuilder.cs" />
+    <Compile Include="Builders\IsExtractor.cs" />
     <Compile Include="Builders\TypeBuilder.cs" />
     <Compile Include="Builders\TypeExtractor.cs" />
     <Compile Include="Expressions\Error.cs" />

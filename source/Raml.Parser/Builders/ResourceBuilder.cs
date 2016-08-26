@@ -26,6 +26,7 @@ namespace Raml.Parser.Builders
             resource.Methods = GetMethods(dynamicRaml, traits, defaultMediaType);
 
             resource.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+            resource.Is = IsExtractor.Get(dynamicRaml);
 
 	        return resource;
 		}

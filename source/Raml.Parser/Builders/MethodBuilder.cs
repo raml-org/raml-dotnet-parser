@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -33,42 +32,12 @@ namespace Raml.Parser.Builders
 			method.BaseUriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "baseUriParameters");
 			method.SecuredBy = GetSecuredBy(dynamicRaml);
 			method.Protocols = ProtocolsBuilder.Get(dynamicRaml);
-			method.Is = GetIs(dynamicRaml);
+			method.Is = IsExtractor.Get(dynamicRaml);
 			method.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
 
             method.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 
 			return method;
-		}
-
-		private static IEnumerable<string> GetIs(IDictionary<string, object> dynamicRaml)
-		{
-			if (!dynamicRaml.ContainsKey("is"))
-				return null;
-			
-			var objectsAsArray = dynamicRaml["is"] as object[];
-
-		    if (objectsAsArray != null)
-		    {
-                var ret = new List<string>();
-		        foreach (var obj in objectsAsArray)
-		        {
-		            var isDic = obj as IDictionary<string, object>;
-		            if (isDic != null)
-		            {
-		                ret.Add(isDic.Keys.First());
-                        continue;
-		            }
-
-		            var @is = obj as string;
-                    if(@is != null)
-                        ret.Add(@is);
-		        }
-		        return ret;
-		    }
-
-			var objectAsString = dynamicRaml["is"] as string;
-			return new[] {objectAsString};
 		}
 
 		public IEnumerable<string> GetSecuredBy(IDictionary<string, object> dynamicRaml)
@@ -90,6 +59,5 @@ namespace Raml.Parser.Builders
 
 			return securedBy;
 		}
-
 	}
 }

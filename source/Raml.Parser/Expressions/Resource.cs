@@ -31,6 +31,8 @@ namespace Raml.Parser.Expressions
 		public ICollection<Resource> Resources { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
 
+        public IEnumerable<string> Is { get; set; }
+
 		#region equality operators
 		protected bool Equals(Resource other)
 		{
