@@ -113,12 +113,27 @@ namespace Raml.Parser.Builders
                 Type = GetType(value),
                 Example = DynamicRamlParser.GetExample(value),
                 Facets = DynamicRamlParser.GetDictionaryOrNull<object>(value, "facets"),
-                OtherProperties = GetOtherProperties(value)
+                OtherProperties = GetOtherProperties(value),
+                Required = GetRequired(value, required)
             };
 
             SetPropertiesByType(type, ramlType);
 
             return ramlType;
+        }
+
+        private static bool GetRequired(IDictionary<string, object> value, bool required)
+        {
+            if (value.ContainsKey("required"))
+            {
+                bool result;
+                var isRequired = value["required"] as bool?;
+                if(isRequired != null)
+                    return isRequired.Value;
+
+                return required;
+            }
+            return required;
         }
 
         private static string GetType(IDictionary<string, object> typeValue)

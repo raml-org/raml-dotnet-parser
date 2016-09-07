@@ -43,6 +43,17 @@ namespace Raml.Parser.Tests
         }
 
         [Test]
+        public async Task ShouldParseAsRequiredByDefault()
+        {
+            var raml = await Parse("specifications/movietype.raml");
+            Assert.AreEqual(false, raml.Types["Movie"].Object.Properties.First(p => p.Key == "storyline").Value.Required);
+            Assert.AreEqual(false, raml.Types["Movie"].Object.Properties.First(p => p.Key == "rented").Value.Required);
+            Assert.AreEqual(true, raml.Types["Movie"].Object.Properties.First(p => p.Key == "genre").Value.Required);
+            Assert.AreEqual(true, raml.Types["Movie"].Object.Properties.First(p => p.Key == "cast").Value.Required);
+            Assert.AreEqual(true, raml.Types["Movie"].Object.Properties.First(p => p.Key == "name").Value.Required);
+        }
+
+        [Test]
         public async Task ShouldHandleTypeProperties_Movies1()
         {
             var raml = await Parse("specifications/movietype.raml");
