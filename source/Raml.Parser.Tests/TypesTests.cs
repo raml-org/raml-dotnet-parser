@@ -82,6 +82,20 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, raml.Types.Count);
         }
 
+        [Test]
+        public async Task ShouldParseNumberFormats()
+        {
+            var raml = await Parse("specifications/numbers.raml");
+            Assert.AreEqual(NumberFormat.Long, raml.Types["sample"].Object.Properties.First(p => p.Key == "longprop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Int64, raml.Types["sample"].Object.Properties.First(p => p.Key == "int64prop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Int32, raml.Types["sample"].Object.Properties.First(p => p.Key == "int32prop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Int16, raml.Types["sample"].Object.Properties.First(p => p.Key == "int16prop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Int8, raml.Types["sample"].Object.Properties.First(p => p.Key == "int8prop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Int, raml.Types["sample"].Object.Properties.First(p => p.Key == "intprop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Float, raml.Types["sample"].Object.Properties.First(p => p.Key == "floatprop").Value.Scalar.Format);
+            Assert.AreEqual(NumberFormat.Double, raml.Types["sample"].Object.Properties.First(p => p.Key == "doubleprop").Value.Scalar.Format);
+        }
+
         private static async Task<RamlDocument> Parse(string filePath)
         {
             parser = new RamlParser();

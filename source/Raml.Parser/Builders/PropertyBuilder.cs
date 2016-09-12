@@ -24,7 +24,8 @@ namespace Raml.Parser.Builders
                 return null;
 
             NumberFormat numberFormat;
-            if(Enum.TryParse((string) dynamicRaml["format"], out numberFormat))
+            var value = (string) dynamicRaml["format"];
+            if(Enum.TryParse(value, true, out numberFormat))
                 return numberFormat;
 
             return null;
