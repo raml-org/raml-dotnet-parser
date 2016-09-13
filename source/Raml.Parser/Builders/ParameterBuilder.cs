@@ -22,10 +22,8 @@ namespace Raml.Parser.Builders
 	        parameter.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
 	        parameter.Enum = GetEnum(dynamicRaml);
 	        parameter.Repeat = dynamicRaml.ContainsKey("repeat") && Convert.ToBoolean(dynamicRaml["repeat"]);
-	        parameter.Example = dynamicRaml.ContainsKey("example") ? dynamicRaml["example"].ToString() : null;
-	        parameter.Default = dynamicRaml.ContainsKey("default")
-	            ? (dynamicRaml["default"] != null ? dynamicRaml["default"].ToString() : null)
-	            : null;
+	        parameter.Example = dynamicRaml.ContainsKey("example") ? dynamicRaml["example"]?.ToString() : null;
+	        parameter.Default = dynamicRaml.ContainsKey("default") ? dynamicRaml["default"]?.ToString() : null;
 	        parameter.Pattern = dynamicRaml.ContainsKey("pattern") ? (string) dynamicRaml["pattern"] : null;
 	        parameter.MinLength = dynamicRaml.ContainsKey("minLength") ? Convert.ToInt32(dynamicRaml["minLength"]) : (int?) null;
 	        parameter.MaxLength = dynamicRaml.ContainsKey("maxLength") ? Convert.ToInt32(dynamicRaml["maxLength"]) : (int?) null;
