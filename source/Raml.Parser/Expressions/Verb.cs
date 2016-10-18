@@ -17,53 +17,73 @@ namespace Raml.Parser.Expressions
 			this.type = type;
 		    this.defaultMediaType = defaultMediaType;
 		    this.isOptional = isOptional;
+
+            if (dynamicRaml == null)
+			    return;
+            
+            Headers = GetHeaders();
+            Responses = GetResponses();
+            Body = GetBody();
+            Description = GetDescription();
+            QueryParameters = GetQueryParameters();
+            UriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "uriParameters");
 		}
 
-		public VerbType Type { get { return type; } }
+	    public VerbType Type { get { return type; } }
 
 		public bool IsOptional { get { return isOptional; } }
 
-		public string Description { get { return dynamicRaml.ContainsKey("description") ? (string)dynamicRaml["description"]: null; } }
+		public string Description { get; set; }
 
-		public IDictionary<string,Parameter> Headers
-		{
-			get
-			{
-				return dynamicRaml.ContainsKey("headers")
-					? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).GetAsDictionary()
-					: new Dictionary<string, Parameter>();
-			}
-		}
+	    public IDictionary<string,Parameter> Headers { get; set; }
 
-		public IEnumerable<Response> Responses
-		{
-			get
-			{
-				return dynamicRaml != null && dynamicRaml.ContainsKey("responses")
-                    ? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get(defaultMediaType)
-					: new List<Response>();
-			}
-		}
+	    public IEnumerable<Response> Responses { get; set; }
 
-		public MimeType Body
-		{
-			get
-			{
-				if (dynamicRaml == null)
-					return null;
+	    public MimeType Body { get; set; }
 
-			    if (!dynamicRaml.ContainsKey("body"))
-			        return null;
+        public IDictionary<string, Parameter> UriParameters { get; set; }
 
-                var mimeType = dynamicRaml["body"] as object[];
-			    if (mimeType != null && mimeType.Any())
-			    {
-                    return new BodyBuilder((IDictionary<string, object>) mimeType.First()).GetMimeType(mimeType);
-			    }
-			    var body = dynamicRaml["body"] as IDictionary<string, object>;
+        public IDictionary<string, Parameter> QueryParameters { get; set; }
 
-                return new BodyBuilder(body).GetMimeType(body);
-			}
-		}
+        private string GetDescription()
+        {
+            return dynamicRaml.ContainsKey("description") ? (string)dynamicRaml["description"] : null;
+        }
+
+        private IDictionary<string, Parameter> GetHeaders()
+        {
+            return dynamicRaml.ContainsKey("headers")
+                ? new ParametersBuilder(dynamicRaml["headers"] as IDictionary<string, object>).GetAsDictionary()
+                : new Dictionary<string, Parameter>();
+        }
+
+        private IEnumerable<Response> GetResponses()
+        {
+            return dynamicRaml != null && dynamicRaml.ContainsKey("responses")
+                ? new ResponsesBuilder(dynamicRaml["responses"] as IDictionary<string, object>).Get(defaultMediaType)
+                : new List<Response>();
+        }
+
+	    private MimeType GetBody()
+	    {
+	        if (!dynamicRaml.ContainsKey("body"))
+	            return null;
+
+	        var mimeType = dynamicRaml["body"] as object[];
+	        if (mimeType != null && mimeType.Any())
+	        {
+	            return new BodyBuilder((IDictionary<string, object>) mimeType.First()).GetMimeType(mimeType);
+	        }
+	        var body = dynamicRaml["body"] as IDictionary<string, object>;
+
+	        return new BodyBuilder(body).GetMimeType(body);
+	    }
+
+        private IDictionary<string, Parameter> GetQueryParameters()
+        {
+            return dynamicRaml.ContainsKey("queryParameters")
+                ? new ParametersBuilder((IDictionary<string, object>)dynamicRaml["queryParameters"]).GetAsDictionary()
+                : null;
+        }
 	}
 }
