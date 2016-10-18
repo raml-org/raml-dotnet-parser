@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -24,7 +23,6 @@ namespace Raml.Parser.Builders
 
 		    return resourceType;
 		}
-
 
         private Verb GetVerb(IDictionary<string, object> dynamicRaml, string key, VerbType typeOfVerb, string defaultMediaType)
 	    {
