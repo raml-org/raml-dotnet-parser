@@ -96,6 +96,7 @@
     <Compile Include="Expressions\RamlDocument.cs" />
     <Compile Include="Builders\BodyBuilder.cs" />
     <Compile Include="Expressions\Resource.cs" />
+    <Compile Include="Builders\VerbBuilder.cs" />
     <Compile Include="Expressions\VerbType.cs" />
     <Compile Include="RamlParser.cs" />
     <Compile Include="Expressions\Response.cs" />

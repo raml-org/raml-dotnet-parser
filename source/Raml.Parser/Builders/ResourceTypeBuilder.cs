@@ -6,6 +6,8 @@ namespace Raml.Parser.Builders
 {
 	public class ResourceTypeBuilder
 	{
+        private readonly VerbBuilder builder = new VerbBuilder();
+
         public ResourceType Build(IDictionary<string, object> dynamicRaml, string defaultMediaType)
 		{
 			var resourceType = new ResourceType
@@ -18,7 +20,8 @@ namespace Raml.Parser.Builders
                 Delete = GetVerb(dynamicRaml, "delete", VerbType.DELETE, defaultMediaType),
                 Patch = GetVerb(dynamicRaml, "patch", VerbType.PATCH, defaultMediaType),
                 Options = GetVerb(dynamicRaml, "options", VerbType.OPTIONS, defaultMediaType),
-                Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml)
+                Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml),
+                UriParameters = ParametersBuilder.GetUriParameters(dynamicRaml, "uriParameters")
 			};
 
 		    return resourceType;
@@ -29,11 +32,10 @@ namespace Raml.Parser.Builders
 	        var secondKey = String.Format("{0}?",key);
 
             return dynamicRaml.ContainsKey(key)
-                ? new Verb((IDictionary<string, object>)dynamicRaml[key], typeOfVerb, defaultMediaType)
+                ? builder.Build((IDictionary<string, object>)dynamicRaml[key], typeOfVerb, defaultMediaType)
                 : (dynamicRaml.ContainsKey(secondKey)
-                    ? new Verb((IDictionary<string, object>)dynamicRaml[secondKey], typeOfVerb, defaultMediaType, true)
+                    ? builder.Build((IDictionary<string, object>)dynamicRaml[secondKey], typeOfVerb, defaultMediaType, true)
                     : null);
-
 	    }
 	}
 }
