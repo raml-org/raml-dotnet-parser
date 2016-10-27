@@ -79,7 +79,6 @@
     <Compile Include="Expressions\ArrayType.cs" />
     <Compile Include="Expressions\ExternalType.cs" />
     <Compile Include="Expressions\Method.cs" />
-    <Compile Include="Expressions\NumberFormat.cs" />
     <Compile Include="Expressions\ObjectType.cs" />
     <Compile Include="Expressions\Property.cs" />
     <Compile Include="Expressions\Protocol.cs" />

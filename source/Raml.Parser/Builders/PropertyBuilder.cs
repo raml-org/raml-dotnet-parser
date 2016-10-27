@@ -18,17 +18,12 @@ namespace Raml.Parser.Builders
             return prop;
         }
 
-        private static NumberFormat? GetFormat(IDictionary<string, object> dynamicRaml)
+        private static string GetFormat(IDictionary<string, object> dynamicRaml)
         {
             if (!dynamicRaml.ContainsKey("format"))
                 return null;
 
-            NumberFormat numberFormat;
-            var value = (string) dynamicRaml["format"];
-            if(Enum.TryParse(value, true, out numberFormat))
-                return numberFormat;
-
-            return null;
+            return (string) dynamicRaml["format"];
         }
 
         private static IEnumerable<string> GetFileTypes(IDictionary<string, object> dynamicRaml)

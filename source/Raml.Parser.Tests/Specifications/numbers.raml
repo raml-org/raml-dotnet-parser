@@ -36,6 +36,10 @@ types:
                 type: number
 /persons:
   get:
+    queryParameters:
+        id:
+            type: number
+            format: long
     responses:
       200:
         body:
