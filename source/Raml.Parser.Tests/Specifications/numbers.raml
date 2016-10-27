@@ -34,6 +34,9 @@ types:
                 type: integer
             numberprop:
                 type: number
+    myLong:
+        type: number
+        format: long
 /persons:
   get:
     queryParameters:
@@ -44,3 +47,13 @@ types:
       200:
         body:
           schema: sample
+/other:
+    post:
+        body:
+            type: number
+            format: long
+        responses:
+            200:
+                body:
+                    type: number
+                    format: long

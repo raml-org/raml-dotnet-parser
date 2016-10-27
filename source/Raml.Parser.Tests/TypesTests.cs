@@ -95,7 +95,10 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("float", raml.Types["sample"].Object.Properties.First(p => p.Key == "floatprop").Value.Scalar.Format);
             Assert.AreEqual("double", raml.Types["sample"].Object.Properties.First(p => p.Key == "doubleprop").Value.Scalar.Format);
 
-            Assert.AreEqual("long", raml.Resources.First().Methods.First().QueryParameters.First().Value.Format);
+            Assert.AreEqual("long", raml.Types["myLong"].Scalar.Format);
+
+            Assert.AreEqual("long", raml.Resources.First(r => r.RelativeUri == "/persons").Methods.First().QueryParameters.First().Value.Format);
+            //Assert.AreEqual("long", raml.Resources.First(r => r.RelativeUri == "/other").Methods.First().Body.First().Value.InlineType.Scalar.Format);
         }
 
         private static async Task<RamlDocument> Parse(string filePath)
