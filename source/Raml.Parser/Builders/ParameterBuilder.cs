@@ -34,6 +34,7 @@ namespace Raml.Parser.Builders
 	        parameter.Minimum = dynamicRaml.ContainsKey("minimum") ? Convert.ToDecimal(dynamicRaml["minimum"]) : (decimal?) null;
 	        parameter.Maximum = dynamicRaml.ContainsKey("maximum") ? Convert.ToDecimal(dynamicRaml["maximum"]) : (decimal?) null;
 	        parameter.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+            parameter.Format = dynamicRaml.ContainsKey("format") ? (string)dynamicRaml["format"] : null;
 	    }
 
         private static IEnumerable<string> GetEnum(IDictionary<string, object> dynamicRaml)
