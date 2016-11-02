@@ -23,5 +23,6 @@ namespace Raml.Parser.Expressions
 		public decimal? Minimum { get; set; }
 		public decimal? Maximum { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
+	    public string Format { get; set; }
 	}
 }

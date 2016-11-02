@@ -328,5 +328,13 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(model.Resources.SelectMany(r => r.Methods).SelectMany(m => m.Is).All(i => i == "searchable" || i == "orderable" || i == "pageable"));
         }
 
+        [Test]
+        public async Task ShouldParseResourceTypes()
+        {
+            var parser = new RamlParser();
+            var model = await parser.LoadAsync("Specifications/resource-types.raml");
+            Assert.AreEqual(3, model.ResourceTypes.First().Values.First().Get.QueryParameters.Values.Count);
+            Assert.AreEqual(1, model.ResourceTypes.First().Values.First().UriParameters.Count);
+        }
     }
 }

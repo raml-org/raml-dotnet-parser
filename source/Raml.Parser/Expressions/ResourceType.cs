@@ -18,5 +18,8 @@ namespace Raml.Parser.Expressions
 
 		public Verb Options { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
+
+        public IDictionary<string, Parameter> UriParameters { get; set; }
+
 	}
 }

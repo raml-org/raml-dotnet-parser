@@ -22,7 +22,9 @@ namespace Raml.Parser.Builders
 	        parameter.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
 	        parameter.Enum = GetEnum(dynamicRaml);
 	        parameter.Repeat = dynamicRaml.ContainsKey("repeat") && Convert.ToBoolean(dynamicRaml["repeat"]);
-	        parameter.Example = dynamicRaml.ContainsKey("example") ? dynamicRaml["example"].ToString() : null;
+	        parameter.Example = dynamicRaml.ContainsKey("example")
+	            ? (dynamicRaml["example"] != null ? dynamicRaml["example"].ToString() : null)
+	            : null;
 	        parameter.Default = dynamicRaml.ContainsKey("default")
 	            ? (dynamicRaml["default"] != null ? dynamicRaml["default"].ToString() : null)
 	            : null;
@@ -32,6 +34,7 @@ namespace Raml.Parser.Builders
 	        parameter.Minimum = dynamicRaml.ContainsKey("minimum") ? Convert.ToDecimal(dynamicRaml["minimum"]) : (decimal?) null;
 	        parameter.Maximum = dynamicRaml.ContainsKey("maximum") ? Convert.ToDecimal(dynamicRaml["maximum"]) : (decimal?) null;
 	        parameter.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
+            parameter.Format = dynamicRaml.ContainsKey("format") ? (string)dynamicRaml["format"] : null;
 	    }
 
         private static IEnumerable<string> GetEnum(IDictionary<string, object> dynamicRaml)
