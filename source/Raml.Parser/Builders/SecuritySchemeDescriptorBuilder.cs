@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Builders
@@ -15,8 +17,11 @@ namespace Raml.Parser.Builders
 			if (dynamicRaml.ContainsKey("queryParameters"))
 				descriptor.QueryParameters = new ParametersBuilder((IDictionary<string, object>)dynamicRaml["queryParameters"]).GetAsDictionary();
 
-			if (dynamicRaml.ContainsKey("responses"))
-                descriptor.Responses = new ResponsesBuilder((IDictionary<string, object>)dynamicRaml["responses"]).GetAsDictionary(defaultMediaType);
+            var responsesNest = ((object[])dynamicRaml["responses"]).ToList().Cast<ExpandoObject>() ;
+            var responses = responsesNest.ToDictionary(k => ((IDictionary<string, object>)k)["code"].ToString(), v => (object)v);
+
+            if (dynamicRaml.ContainsKey("responses"))
+                descriptor.Responses = new ResponsesBuilder(responses).GetAsDictionary(defaultMediaType);
 
 			return descriptor;
 		}
