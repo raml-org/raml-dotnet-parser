@@ -14,18 +14,18 @@ namespace Raml.Parser.Expressions
         // file
         public ICollection<string> FileTypes { get; set; }
 
-        private string _namespace;
-        public new string Namespace
+        private string _libraryName;
+        public new string LibraryName
         {
             get
             {
-                if (_namespace == null && !string.IsNullOrEmpty(Type) && Type.Contains("."))
-                    _namespace = Type.Remove(Type.LastIndexOf(".", StringComparison.Ordinal));
-                return _namespace;
+                if (_libraryName == null && !string.IsNullOrEmpty(Type) && Type.Contains("."))
+                    _libraryName = Type.Remove(Type.LastIndexOf(".", StringComparison.Ordinal));
+                return _libraryName;
             }
             set
             {
-                _namespace = value;
+                _libraryName = value;
             }
         }
     }

@@ -33,7 +33,7 @@ namespace Raml.Parser.Builders
                         
                         if (preffix != null)
                         {
-                            type.Namespace = preffix;
+                            type.LibraryName = preffix;
                             key = preffix + "." + key;
                         }
                         
@@ -51,11 +51,11 @@ namespace Raml.Parser.Builders
             foreach (var type in types)
             {
                 var ramlType = GetRamlType(type);
-                ramlType.Namespace = preffix;
+                ramlType.LibraryName = preffix;
 
                 var key = type.Key;
-                if (ramlType.Namespace != null)
-                    key = ramlType.Namespace + "." + key;
+                if (ramlType.LibraryName != null)
+                    key = ramlType.LibraryName + "." + key;
                 ramlTypes.Add(key, ramlType);
 
             }
