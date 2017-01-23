@@ -17,12 +17,13 @@ namespace Raml.Parser.Builders
 			if (dynamicRaml.ContainsKey("queryParameters"))
 				descriptor.QueryParameters = new ParametersBuilder((IDictionary<string, object>)dynamicRaml["queryParameters"]).GetAsDictionary();
 
-            var responsesNest = ((object[])dynamicRaml["responses"]).ToList().Cast<ExpandoObject>() ;
-            var responses = responsesNest.ToDictionary(k => ((IDictionary<string, object>)k)["code"].ToString(), v => (object)v);
 
             if (dynamicRaml.ContainsKey("responses"))
+            {
+                var responsesNest = ((object[])dynamicRaml["responses"]).ToList().Cast<ExpandoObject>();
+                var responses = responsesNest.ToDictionary(k => ((IDictionary<string, object>)k)["code"].ToString(), v => (object)v);
                 descriptor.Responses = new ResponsesBuilder(responses).GetAsDictionary(defaultMediaType);
-
+            }
 			return descriptor;
 		}
 	}
