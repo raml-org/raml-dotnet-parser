@@ -39,6 +39,20 @@ namespace Raml.Parser.Tests
             await parser.LoadAsync("Specifications/raml08/invalid.raml");
 		}
 
+        [Test]
+        public async Task ShouldThrowErrorLineInfo_WhenInvalidRAML()
+        {
+            try
+            {
+                var parser = new RamlParser();
+                await parser.LoadAsync("Specifications/errors/api.raml");
+            }
+            catch (FormatException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("line "));
+            }
+        }
+
 		[Test, Ignore]
 		public async Task ShouldLoad_WhenAnnotationsTargets()
 		{

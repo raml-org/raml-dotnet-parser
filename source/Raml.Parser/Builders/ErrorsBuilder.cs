@@ -44,7 +44,17 @@ namespace Raml.Parser.Builders
 
         private static string GetErrorMessage(Error error)
         {
-            return (error.IsWarning ? "Warning: " : "Error: " )+ error.Message + Environment.NewLine;
+            var message = error.IsWarning ? "Warning: " : "Error: ";
+            message += error.Message;
+            
+            if (!error.Message.Contains("line") && error.Line.HasValue)
+                message += " - at line " + error.Line;
+
+            if (!string.IsNullOrWhiteSpace(error.Path))
+                message += " - " + error.Path;
+
+            message += Environment.NewLine;
+            return message;
         }
     }
 }

@@ -1,0 +1,99 @@
+#%RAML 1.0 Library
+uses:
+  errorTypes: ../types/errorTypes.raml
+resourceTypes:
+  collection:
+       usage: Apply this resourceType to a collection resource and redefine the methods which you wish to inherit.
+       description: |
+         This resourceType defines the GET, POST, DELETE methods and their responses for a collection resource.
+       get:
+         description: Retrieves a list of all <<resourcePathName>> in the collection.
+         responses:
+            200:
+             description: Resource successfully retrieved.
+             body:
+               application/json:
+                 schema: <<resourcePathName>>
+            500:
+             description: |
+               Some server side error occurred.
+             body:
+                application/json:
+                  type: errorTypes.ErrorType
+                  example: |
+                    {
+                      "status": 500,
+                      "message": "Something went wrong while processing the request. Please contact the administrator.",
+                      "moreInfo": "https://api.yaas.io/patterns/errortypes.html",
+                      "type": "internal_service_error"
+                    }
+       post?:
+         description: Creates a new <<resourcePathName | !singularize>>.
+         body:
+           application/json:
+             schema: <<resourcePathName | !singularize>>
+         responses :
+            201 :
+              description : |
+                The collection resource has been successfully created.
+              headers:
+                Location:
+                  description : |
+                    The Location of the new resource which was created by the request.
+                    The value consists of a single absolute URI.
+                  example: http://www.something.com/items/myItem
+                  required : true
+            400:
+              description: Request syntactically incorrect. Any details will be provided within the response payload.
+              body:
+                application/json:
+                  type: errorTypes.ErrorType
+                  example: |
+                    {
+                      "status": 400,
+                      "message": "The request payload has incorrect syntax.",
+                      "type": "bad_payload_syntax"
+                    }
+            409:
+              description: |
+                Creation failed because there was a conflict with another resource. Any details will be provided within the response payload.
+              body:
+                application/json:
+                  type: errorTypes.ErrorType
+                  example: |
+                    {
+                      "status": 409,
+                      "message": "The requested resource could not be created due to server-side validation.",
+                      "type": "conflict_resource"
+                    }
+            500:
+              description: |
+                Some server side error occurred.
+              body:
+                application/json:
+                  type: errorTypes.ErrorType
+                  example: |
+                    {
+                      "status": 500,
+                      "message": "Something went wrong while processing the request. Please contact the administrator.",
+                      "type": "internal_service_error"
+                    }
+       delete?:
+         description: Deletes all <<resourcePathName>>.
+         responses :
+            204:
+              description : |
+                The collection resource has been successfully deleted.
+            500:
+              description: |
+                Some server side error occurred.
+              body:
+                application/json:
+                  type: errorTypes.ErrorType
+                  example: |
+                    {
+                      "status": 500,
+                      "message": "Something went wrong while processing the request. Please contact the administrator.",
+                      "moreInfo": "https://api.yaas.io/patterns/errortypes.html",
+                      "type": "internal_service_error"
+                    }

@@ -1,0 +1,176 @@
+#%RAML 1.0 Library
+uses:
+  errorTypes: ../types/errorTypes.raml
+resourceTypes:
+ mutable_resource:
+     usage: Apply this resource type to a element resource (manages single entities) and redefine the methods you wish to inherit.
+     description: |
+       This resource type defines the GET, PUT, DELETE methods and their responses for a single element resource.
+     get:
+       description: Retrieves a <<elementName>> entity.
+       responses:
+          200:
+            description: <<elementName>> successfully retrieved.
+            body:
+              application/json:
+                type: <<elementName>>
+          404:
+            description: |
+              The requested resource does not exist.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 404,
+                    "message": "The requested URI does not map to a single element resource.",
+                    "type": "element_resource_non_existing"
+                  }
+          500:
+            description: |
+              Some server side error occurred.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 500,
+                    "message": "Something went wrong while processing the request. Please contact the administrator.",
+                    "type": "internal_service_error"
+                  }
+     put?:
+       description: Replaces a single <<elementName>> entity.
+       body:
+          application/json:
+            type: <<elementName>>
+       responses:
+          400:
+            description: Request syntactically incorrect. Any details will be provided within the response payload.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 400,
+                    "message": "The request payload has incorrect syntax.",
+                    "type": "bad_payload_syntax"
+                  }
+          404:
+            description: |
+              The requested resource does not exist.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 404,
+                    "message": "The requested URI does not map to a single element resource.",
+                    "type": "element_resource_non_existing"
+                  }
+          409:
+            description: |
+              Creation failed because there was a conflict with another resource. Any details will be provided within the response payload.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 409,
+                    "message": "The requested resource could not be updated due to server-side validation.",
+                    "type": "conflict_resource"
+                  }
+          500:
+            description: |
+              Some server side error occurred.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 500,
+                    "message": "Something went wrong while processing the request. Please contact the administrator.",
+                    "type": "internal_service_error"
+                  }
+     patch?:
+       description: Updates a single <<elementName | !singularize>> entity.
+       body:
+          application/merge-patch+json:
+            type: <<elementName>>
+       responses:
+          400:
+            description: Request syntactically incorrect. Any details will be provided within the response payload.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 400,
+                    "message": "The request payload has incorrect syntax.",
+                    "type": "bad_payload_syntax"
+                  }
+          404:
+            description: |
+              The requested resource does not exist.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 404,
+                    "message": "The requested URI does not map to a single element resource.",
+                    "type": "element_resource_non_existing"
+                  }
+          409:
+            description: |
+              Creation failed because there was a conflict with another resource. Any details will be provided within the response payload.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 409,
+                    "message": "The requested resource could not be updated due to server-side validation.",
+                    "type": "conflict_resource"
+                  }
+          500:
+            description: |
+              Some server side error occurred.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 500,
+                    "message": "Something went wrong while processing the request. Please contact the administrator.",
+                    "type": "internal_service_error"
+                  }
+     delete?:
+       description: Deletes a single <<elementName>> entity.
+       responses:
+          204:
+            description : |
+              The resource has been successfully deleted.
+          404:
+            description: |
+             The requested resource does not exist.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 404,
+                    "message": "The requested URI does not map to a single element resource.",
+                    "type": "element_resource_non_existing"
+                  }
+          500:
+            description: |
+              Some server side error occurred.
+            body:
+              application/json:
+                type: errorTypes.ErrorType
+                example: |
+                  {
+                    "status": 500,
+                    "message": "Something went wrong while processing the request. Please contact the administrator.",
+                    "type": "internal_service_error"
+                  }
