@@ -17,7 +17,10 @@ namespace Raml.Parser.Builders
 			var doc = new RamlDocument(dynamicRaml);
             doc.Types = new RamlTypesOrderedDictionary();
 
-		    if (dynamicRaml.ContainsKey("uses"))
+            var securitySchemes = Enumerable.Empty<IDictionary<string, SecurityScheme>>();
+            var traits = Enumerable.Empty<IDictionary<string, Method>>();
+
+            if (dynamicRaml.ContainsKey("uses"))
 		    {
 		        var uses = dynamicRaml["uses"] as object[];
 		        if (uses != null)
@@ -35,8 +38,12 @@ namespace Raml.Parser.Builders
 
                             var preffix = (string)lib["key"];
 		                    var dynamic = await RamlParser.GetDynamicStructure(filePath);
+                            
 		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
-		                }
+                            var mediaType = ((IDictionary<string, object>)dynamic).ContainsKey("mediaType") ? (string)dynamicRaml["mediaType"] : null;
+                            securitySchemes = GetSecuritySchemes((IDictionary<string, object>)dynamic, mediaType).Union(securitySchemes);
+                            traits = GetTraits((IDictionary<string, object>)dynamic, mediaType).Union(traits);
+                        }
 		            }
 		        }
 		    }
@@ -50,9 +57,9 @@ namespace Raml.Parser.Builders
 			doc.SecuredBy = GetSecuredBy(dynamicRaml);
 			doc.Method = dynamicRaml.ContainsKey("method") ? (string)dynamicRaml["method"] : null;
 			doc.Protocols = ProtocolsBuilder.Get(dynamicRaml);
-			doc.SecuritySchemes = GetSecuritySchemes(dynamicRaml, doc.MediaType);
+			doc.SecuritySchemes = GetSecuritySchemes(dynamicRaml, doc.MediaType).Union(securitySchemes);
 			doc.ResourceTypes = GetResourceTypes(dynamicRaml, doc.MediaType);
-			doc.Traits = GetTraits(dynamicRaml, doc.MediaType);
+			doc.Traits = GetTraits(dynamicRaml, doc.MediaType).Union(traits);
 			doc.Schemas = GetSchemas(dynamicRaml);
 			doc.Resources = GetResources(dynamicRaml, doc.ResourceTypes, doc.Traits, doc.MediaType);
 		    
