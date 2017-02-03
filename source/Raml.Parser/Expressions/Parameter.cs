@@ -12,6 +12,7 @@ namespace Raml.Parser.Expressions
 		public string Type { get; set; }
 		public bool Required { get; set; }
 		public string DisplayName { get; set; }
+        public string LibraryName { get; set; }
 		public string Description { get; set; }
 		public IEnumerable<string> Enum { get; set; }
 		public bool Repeat { get; set; }
