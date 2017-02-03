@@ -20,9 +20,18 @@ namespace Raml.Parser.Builders
 
             if (dynamicRaml.ContainsKey("responses"))
             {
-                var responsesNest = ((object[])dynamicRaml["responses"]).ToList().Cast<ExpandoObject>();
-                var responses = responsesNest.ToDictionary(k => ((IDictionary<string, object>)k)["code"].ToString(), v => (object)v);
-                descriptor.Responses = new ResponsesBuilder(responses).GetAsDictionary(defaultMediaType);
+                var objects = dynamicRaml["responses"] as object[];
+                if (objects != null)
+                {
+                    var responsesNest = objects.ToList().Cast<ExpandoObject>();
+                    var responses = responsesNest.ToDictionary(
+                        k => ((IDictionary<string, object>) k)["code"].ToString(), v => (object) v);
+                    descriptor.Responses = new ResponsesBuilder(responses).GetAsDictionary(defaultMediaType);
+                }
+                else
+                {
+                    descriptor.Responses = new ResponsesBuilder((IDictionary<string, object>)dynamicRaml["responses"]).GetAsDictionary(defaultMediaType);                    
+                }
             }
 			return descriptor;
 		}

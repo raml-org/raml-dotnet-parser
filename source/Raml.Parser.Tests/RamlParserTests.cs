@@ -350,5 +350,13 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(3, model.ResourceTypes.First().Values.First().Get.QueryParameters.Values.Count);
             Assert.AreEqual(1, model.ResourceTypes.First().Values.First().UriParameters.Count);
         }
+
+        [Test]
+        public async Task ShouldParseSecuritySchemas()
+        {
+            var parser = new RamlParser();
+            var result = await parser.LoadAsync("Specifications/epi.raml");
+            Assert.AreEqual(1, result.SecuritySchemes.Count());
+        }
     }
 }
