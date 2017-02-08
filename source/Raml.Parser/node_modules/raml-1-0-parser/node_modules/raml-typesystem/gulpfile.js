@@ -2,11 +2,8 @@ var gulp = require('gulp');
 var typedoc = require("gulp-typedoc");
 
 var childProcess = require('child_process');
-var connect = require('gulp-connect');
-var compass = require('gulp-compass');
 var mocha = require('gulp-mocha');
 var join = require('path').join;
-var webpack = require('webpack');
 var ts = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename')
@@ -51,6 +48,20 @@ gulp.task('typescript:compile', function () {
     return tsResult.js
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('.'));
+});
+
+var testFiles = [
+    'dist/tests/*.js'
+];
+
+gulp.task('test', [], function () {
+    global.isExpanded = null;
+
+    return gulp.src(testFiles, { read: false })
+        .pipe(mocha({
+            bail: false,
+            reporter: 'spec'
+        }));
 });
 
 gulp.task('build',['typescript:compile']);

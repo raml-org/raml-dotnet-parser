@@ -134,6 +134,9 @@
     <Content Include="node_modules\raml-1-0-parser\dist\devUtil\linkedModuleDetector.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\devUtil\mainDTSLinkRemover.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\expanderStub.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -194,13 +197,16 @@
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\mutators.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\namespaceResolver.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\overloadingValidator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\overloadingValidator08.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\search.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\referencePatcher.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\ast.core\typeBuilder.js">
@@ -254,16 +260,19 @@
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\extensionsApiTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\findUsagesTests.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\funcTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\gotoDeclarationTests.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\funcUtils.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\helpersTest.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\helpersTesting.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\libraryExpansion.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\model-editing-tests-add.js">
@@ -318,6 +327,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\generateTCKMocha.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\launchTCKRepo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\messageMappings.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\schema\schemaTCKValidator.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\scripts\tckLauncher.js">
@@ -378,6 +396,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFSTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFS\http2fs.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\raml1\test\virtualFS\vfs.js">
@@ -443,7 +464,19 @@
     <Content Include="node_modules\raml-1-0-parser\dist\schema.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\dist\searchProxy.js">
+    <Content Include="node_modules\raml-1-0-parser\dist\search\search-implementation.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\search\search-interface.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\search\sourceFinder.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\search\test\findUsagesTests.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\dist\search\test\gotoDeclarationTests.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\dist\stubProxy.js">
@@ -2622,6 +2655,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\conforms.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\conformsTo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\constant.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2656,6 +2692,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\defaultsDeep.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\defaultTo.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\defer.js">
@@ -2832,7 +2871,19 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assign.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignAllWith.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignIn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignInAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignInAllWith.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\assignInWith.js">
@@ -2922,6 +2973,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\conforms.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\conformsTo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\constant.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2961,7 +3015,16 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defaults.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defaultsAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defaultsDeep.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defaultsDeepAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defaultTo.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\defer.js">
@@ -2989,6 +3052,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\drop.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\dropLast.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\dropLastWhile.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\dropRight.js">
@@ -3033,7 +3102,16 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\extend.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\extendAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\extendAllWith.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\extendWith.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\F.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\fill.js">
@@ -3169,6 +3247,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\includesFrom.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\indexBy.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\indexOf.js">
@@ -3408,6 +3489,12 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\merge.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\mergeAll.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\mergeAllWith.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\mergeWith.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3588,6 +3675,12 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\rangeRight.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\rangeStep.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\rangeStepRight.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\rearg.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3723,10 +3816,28 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\sumBy.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\symmetricDifference.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\symmetricDifferenceBy.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\symmetricDifferenceWith.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\T.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\tail.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\take.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\takeLast.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\takeLastWhile.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\takeRight.js">
@@ -3897,6 +4008,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\valuesIn.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\where.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\whereEq.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3934,6 +4048,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\zip.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\zipAll.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\fp\zipObj.js">
@@ -4719,6 +4836,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arrayIncludesWith.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arrayLikeKeys.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arrayMap.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4731,10 +4851,25 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arrayReduceRight.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arraySample.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arraySampleSize.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arrayShuffle.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_arraySome.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_assignInDefaults.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_asciiSize.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_asciiToArray.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_asciiWords.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_assignMergeValue.js">
@@ -4752,6 +4887,12 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseAssign.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseAssignIn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseAssignValue.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseAt.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4762,6 +4903,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseConforms.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseConformsTo.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseCreate.js">
@@ -4821,6 +4965,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseGetAllKeys.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseGetTag.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseGt.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4848,16 +4995,40 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseInvoke.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsArguments.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsArrayBuffer.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsDate.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsEqual.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsEqualDeep.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsMap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsMatch.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsNaN.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsNative.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsRegExp.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsSet.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIsTypedArray.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseIteratee.js">
@@ -4911,6 +5082,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_basePropertyDeep.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_basePropertyOf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_basePullAll.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4929,10 +5103,25 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseRepeat.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseRest.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSample.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSampleSize.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSet.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSetData.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSetToString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseShuffle.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_baseSlice.js">
@@ -5007,6 +5196,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_castPath.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_castRest.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_castSlice.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5014,9 +5206,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_charsStartIndex.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_checkGlobal.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_cloneArrayBuffer.js">
@@ -5064,6 +5253,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_copySymbols.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_copySymbolsIn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_coreJsData.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5082,7 +5274,7 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createBaseFor.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createBaseWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createBind.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCaseFirst.js">
@@ -5091,10 +5283,10 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCompounder.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCtorWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCtor.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCurryWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createCurry.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createFind.js">
@@ -5103,7 +5295,7 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createFlow.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createHybridWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createHybrid.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createInverter.js">
@@ -5118,13 +5310,13 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createPadding.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createPartialWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createPartial.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createRange.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createRecurryWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createRecurry.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createRelationalOperation.js">
@@ -5139,13 +5331,25 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createToPairs.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createWrapper.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_createWrap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_customDefaultsAssignIn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_customDefaultsMerge.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_customOmitClone.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_DataView.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_deburrLetter.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_defineProperty.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_equalArrays.js">
@@ -5163,6 +5367,12 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_escapeStringChar.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_flatRest.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_freeGlobal.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getAllKeys.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5178,9 +5388,6 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getHolder.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getLength.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getMapData.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5191,6 +5398,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getPrototype.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getRawTag.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getSymbols.js">
@@ -5206,6 +5416,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getView.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_getWrapDetails.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_Hash.js">
@@ -5229,10 +5442,10 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_hasPath.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_indexKeys.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_hasUnicode.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_indexOfNaN.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_hasUnicodeWord.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_initCloneArray.js">
@@ -5244,13 +5457,10 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_initCloneObject.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_insertWrapDetails.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isFlattenable.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isFlattenableIteratee.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isHostObject.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_isIndex.js">
@@ -5343,16 +5553,34 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_matchesStrictComparable.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_mergeData.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_memoizeCapped.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_mergeDefaults.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_mergeData.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_metaMap.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_nativeCreate.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_nativeKeys.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_nativeKeysIn.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_nodeUtil.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_objectToString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_overArg.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_overRest.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_parent.js">
@@ -5368,12 +5596,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_reEvaluate.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_Reflect.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_reHasComplexSymbol.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_reInterpolate.js">
@@ -5409,6 +5631,18 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_setToPairs.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_setToString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_setWrapToString.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_shortOut.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_shuffleSelf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_Stack.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -5425,6 +5659,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_stackSet.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_strictIndexOf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_strictLastIndexOf.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_stringSize.js">
@@ -5449,6 +5689,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_unescapeHtmlChar.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_unicodeSize.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_unicodeToArray.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_unicodeWords.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_updateWrapDetails.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\lodash\_WeakMap.js">
@@ -6287,6 +6539,9 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\jsonSchemaWriter.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\jsonUtil.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\dist\src\metainfo.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -6372,6 +6627,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\node_modules\lrucache\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\browser_version\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\dist\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\generateBrowserVersion.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\read-all-stream\index.js">
@@ -6635,6 +6899,9 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\readme.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\resources\errorMessages.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\tests\content\jsonschemetest\test1\scheme.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6644,6 +6911,24 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\raml-typesystem\workspace.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\.npmignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\browser_version\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\raml-xml-validation\typings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\read-all-stream\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -6969,6 +7254,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\helperMethodExtractor.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\helpers.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\index.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\ts-structure-parser\dist\tsASTMatchers.js">
@@ -7760,7 +8051,7 @@
     <Content Include="node_modules\raml-1-0-parser\node_modules\xmlhttprequest\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-hack2\xmllint.js">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-jsparser\xmllint.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\raml-1-0-parser\node_modules\xtend\.jshintrc">
@@ -7913,7 +8204,7 @@
     <None Include="node_modules\raml-1-0-parser\node_modules\xmlbuilder\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-hack2\package.json">
+    <Content Include="node_modules\raml-1-0-parser\node_modules\xmllint-jsparser\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="node_modules\raml-1-0-parser\node_modules\yaml-ast-parser\.npmignore">
@@ -7937,6 +8228,9 @@
     <None Include="node_modules\raml-1-0-parser\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="node_modules\raml-1-0-parser\resources\errorMessages.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
