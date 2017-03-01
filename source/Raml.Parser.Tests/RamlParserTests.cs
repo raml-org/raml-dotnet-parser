@@ -90,7 +90,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, raml.Types.Count);
         }
 
-        [Test]
+        [Test, Ignore("Maps seems to be no longer part of the spec...")]
         public async Task ShouldLoad_WhenMaps()
         {
             var parser = new RamlParser();
