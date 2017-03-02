@@ -19,18 +19,19 @@ namespace Raml.Parser.Builders
             if (!dynamicTypes.Any())
                 return defaultType;
 
-            if (dynamicTypes.Count() == 1 && (string) dynamicTypes.First() == "array" &&
+            if (dynamicTypes.Length == 1 && (string) dynamicTypes.First() == "array" &&
                 dynamicRaml.ContainsKey("items"))
             {
                 var asString = dynamicRaml["items"] as string;
                 if(asString != null)
                     return asString + "[]";
 
-                if (dynamicRaml["items"] is Dictionary<string, object>)
-                    return GetType((IDictionary<string, object>)dynamicRaml["items"], defaultType) + "[]";
+                var asDictionary = dynamicRaml["items"] as Dictionary<string, object>;
+                if (asDictionary != null)
+                    return GetType(asDictionary, defaultType) + "[]";
             }
 
-            if (dynamicTypes.Count() == 1)
+            if (dynamicTypes.Length == 1)
                 return (string)dynamicTypes.First();
 
             return "[" + string.Join(",", dynamicTypes.Cast<string>()) + "]";
