@@ -69,9 +69,9 @@ namespace Raml.Parser.Tests
         {
             var raml = await Parse("specifications/typeexpressions.raml");
 
-            Assert.AreEqual("Movie", raml.Resources.First().Methods.First(m => m.Verb == "put").Body.First().Value.Type);
-            Assert.AreEqual("string | Movie", raml.Resources.First().Methods.First(m => m.Verb == "post").Body.First().Value.Schema);
-            Assert.AreEqual("(string | Movie)[]", raml.Resources.First().Methods.First(m => m.Verb == "get").Responses.First().Body.First().Value.Type);
+            Assert.AreEqual("Movie[]", raml.Resources.First().Methods.First(m => m.Verb == "get").Responses.First().Body.First().Value.Type);
+            Assert.AreEqual("string | Movie", raml.Resources.First().Methods.First(m => m.Verb == "put").Body.First().Value.Type);
+            Assert.AreEqual("(string | Movie)[]", raml.Resources.First().Methods.First(m => m.Verb == "post").Body.First().Value.Schema);
         }
 
         [Test]

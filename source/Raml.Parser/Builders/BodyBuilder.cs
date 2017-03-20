@@ -77,8 +77,24 @@ namespace Raml.Parser.Builders
 	            return null;
 
 	        var schema = value["schema"] as object[];
+
 	        if (schema != null && schema.Any())
-	            return (string)schema[0];
+	        {
+                if (schema.Length == 1 && (string)schema.First() == "array" &&
+	                value.ContainsKey("items"))
+	            {
+	                var itemsString = value["items"] as string;
+                    if (itemsString != null)
+                        return itemsString + "[]";
+
+	                var asDictionary = value["items"] as Dictionary<string, object>;
+	                if (asDictionary != null)
+	                    return asDictionary.First() + "[]";
+	            }
+                
+	            return (string) schema[0];
+	        }
+
 
 	        var asString = value["schema"] as string;
 	        return asString;
