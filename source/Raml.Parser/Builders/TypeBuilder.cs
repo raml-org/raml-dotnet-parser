@@ -28,10 +28,16 @@ namespace Raml.Parser.Builders
                     var dic = dynamicType as IDictionary<string, object>;
                     foreach (var kv in dic)
                     {
+                        var type = GetRamlType(kv);
                         var key = kv.Key;
+                        
                         if (preffix != null)
+                        {
+                            type.LibraryName = preffix;
                             key = preffix + "." + key;
-                        ramlTypes.Add(key, GetRamlType(kv));
+                        }
+                        
+                        ramlTypes.Add(key, type);
                     }
                 }
                 ParseDefferredTypes();
@@ -44,10 +50,13 @@ namespace Raml.Parser.Builders
 
             foreach (var type in types)
             {
+                var ramlType = GetRamlType(type);
+                ramlType.LibraryName = preffix;
+
                 var key = type.Key;
-                if (preffix != null)
-                    key = preffix + "." + key;
-                ramlTypes.Add(key, GetRamlType(type));
+                if (ramlType.LibraryName != null)
+                    key = ramlType.LibraryName + "." + key;
+                ramlTypes.Add(key, ramlType);
 
             }
 
@@ -150,6 +159,8 @@ namespace Raml.Parser.Builders
             return preffix + "." + extractedType;
         }
 
+
+
         private static IDictionary<string, object> GetOtherProperties(IDictionary<string, object> value)
         {
             // TODO
@@ -244,7 +255,16 @@ namespace Raml.Parser.Builders
             RamlType items = null;
             if (dynamicRaml.ContainsKey("items"))
             {
-                items = GetRamlType(new KeyValuePair<string, object>("", (IDictionary<string, object>)dynamicRaml["items"]));
+                var asDictionary = dynamicRaml["items"] as IDictionary<string, object>;
+                if (asDictionary != null)
+                {
+                    items = GetRamlType(new KeyValuePair<string, object>("", asDictionary));
+                }
+                else
+                {
+                    var asString = dynamicRaml["items"] as string;
+                    items = new RamlType {Type = asString};
+                }
             }
             array.Items = items;
 

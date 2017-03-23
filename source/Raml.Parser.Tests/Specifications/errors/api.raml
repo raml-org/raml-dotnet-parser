@@ -1,0 +1,38 @@
+#%RAML 1.0
+title: Chat
+annotationTypes:
+  construction: string
+version: v1
+mediaType: application/json
+uses:
+  mc: resourceTypes/mutable_collection.raml
+  me: resourceTypes/mutable_resource.raml
+types:
+  Message:
+    type: object
+    properties:
+      body:
+        type: string
+        description: The message content or "body"
+      creator?:
+        type: string
+        description: The originator of the message
+      creationTime?:
+        type: datetime
+        description: The time the message was created
+  Messages:
+    description: A list of messages
+    type: object
+    properties:
+        messages:
+          type: Message[]
+
+/Messages:
+    (construction): Being Born
+    description: A collection of messages
+    type: { mc.collection: { } }
+
+/Messages/{id}:
+    (construction): Being Born
+    description: Represents a single message
+    type: { me.mutable_resource: {elementName: Message}}

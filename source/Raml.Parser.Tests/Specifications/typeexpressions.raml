@@ -37,12 +37,12 @@ types:
     responses:
       200:
           body:
-            type: (string | Movie)[]
+            type: Movie[]
   post:
     description: adds a movie to the catalogue
     body:
-      schema: string | Movie
+      schema: (string | Movie)[]
   put:
     description: adds a movie to the catalogue
     body:
-      type: Movie
+      type: string | Movie

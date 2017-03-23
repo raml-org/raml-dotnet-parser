@@ -19,6 +19,8 @@ namespace Raml.Parser.Expressions
 
         public string DisplayName { get; set; }
 
+        public string LibraryName { get; set; }
+
         public string Description { get; set; }
 
         public bool Required { get; set; }
@@ -31,5 +33,6 @@ namespace Raml.Parser.Expressions
 
         public IDictionary<string, object> Facets { get; set; }
         public IDictionary<string, object> OtherProperties { get; set; }
+
     }
 }

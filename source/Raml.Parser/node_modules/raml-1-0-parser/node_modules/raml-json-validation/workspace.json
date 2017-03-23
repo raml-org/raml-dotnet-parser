@@ -1,0 +1,7 @@
+{
+  "raml-json-validation" : {
+    "build" : "npm run build",
+    "gitUrl" : "https://github.com/dreamflyer/raml-json-validation.git",
+    "installTypings" : true
+  }
+}
