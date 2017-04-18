@@ -358,5 +358,15 @@ namespace Raml.Parser.Tests
             var result = await parser.LoadAsync("Specifications/epi.raml");
             Assert.AreEqual(1, result.SecuritySchemes.Count());
         }
+
+        [Test]
+        public async Task ShouldParseTypeWhenArrayWithScalarItem()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/array-scalar-item.raml");
+
+            Assert.AreEqual(1, raml.Types.Count);
+            Assert.AreEqual("string", raml.Types["foo"].Object.Properties["bar"].Array.Items.Type);
+        }
     }
 }
