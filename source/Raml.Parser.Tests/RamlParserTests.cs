@@ -368,5 +368,16 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, raml.Types.Count);
             Assert.AreEqual("string", raml.Types["foo"].Object.Properties["bar"].Array.Items.Type);
         }
+
+        [Test]
+        public async Task ShouldParseTypeWhenArrayWithTypeItem()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/array-in-trait.raml");
+
+            Assert.AreEqual(6, raml.Types.Count);
+            Assert.AreEqual(14, raml.Traits.Count());
+            Assert.AreEqual("error[]", raml.Traits.First()["Error400"].Responses.First().Body["application/json"].Type);
+        }
     }
 }

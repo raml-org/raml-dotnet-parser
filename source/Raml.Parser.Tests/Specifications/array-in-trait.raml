@@ -1,0 +1,606 @@
+#%RAML 1.0
+title: Pricing - Current Price Service (non-modular)
+version: 1.0.0
+
+baseUri: 'http://somewhere.com/commerce/currentprice/v1'
+
+mediaType: application/json
+protocols: 
+    - HTTP
+    - HTTPS
+      
+description: 'Service used to query for current prices'
+
+types:
+  error:
+    properties:
+      errorCode:
+        type: string
+        required: true
+      parameterName:
+        type: string
+        required: true
+      level:
+        type: string
+        required: true
+      errorMessage:
+        type: integer
+        required: true
+      userMessage:
+        type: integer
+        required: true
+      messageContext:
+        type: string[]
+        required: false
+  amount:
+    properties:
+      amount:
+        type: number
+        minimum: 0
+        format: float
+        required: true
+      formattedAmount:
+        type: string
+        required: true
+      currency:
+        type: string
+        required: true
+      conversionId:
+        type: integer
+        required: false
+  productPrice:
+    properties:
+       productId:
+        type: integer
+        required: true
+       store:
+        type: string
+        required: true
+       currentProductPrice:
+        type: amount
+        required: true
+       wasProductPrice:
+        type: amount
+        required: false
+  variantPrice:
+    properties:
+      variantId:
+        type: integer
+        required: true
+      productId:
+        type: integer
+        required: true
+      store:
+        type: string
+        required: true
+      currentPrice:
+        type: amount
+        required: true
+      wasPrice:
+        type: amount
+        required: false
+      recommendedRetailPrice:
+        type: amount
+        required: false
+      isOutlet:
+        type: boolean
+        required: true
+      priceType:
+        enum: [ regular, promotion, high ]
+        required: true
+      priceId:
+        type: string
+        required: true
+  productPriceResponse:
+    properties:
+      productId:
+        type: integer
+        required: true
+      priceavailable:
+        type: boolean
+        required: true
+      productprice:
+        type: productPrice
+        required: false
+  productPriceWithVariantsResponse:
+    type: productPriceResponse
+    properties:
+      variantprices:
+        type: array
+        items: variantPrice
+        required: false
+
+traits:
+  Error400:
+      responses: 
+        400:
+          description: Bad Request
+          headers:
+            somewhere-ttpm:
+              type: integer
+              description: Time in milliseconds in between receiving the request and sending the response
+              required: false
+            somewhere-cid:
+              type: string
+              description: Id (GUID) used to correlate calls across APIs
+              required: false
+            somewhere-sid:
+              type: string
+              description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+              required: false
+            somewhere-c-ver:
+              type: string
+              description: To identify the specific build of the client app
+              required: false
+          body: 
+            application/json:
+              type: array
+              items:
+                type: error
+  Error401:
+    responses: 
+      401:
+        description: Unathorized
+        headers:
+          somewhere-ttpm:
+            type: integer
+            description: Time in milliseconds in between receiving the request and sending the response
+            required: false
+          somewhere-cid:
+            type: string
+            description: Id (GUID) used to correlate calls across APIs
+            required: false
+          somewhere-sid:
+            type: string
+            description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+            required: false
+          somewhere-c-ver:
+            type: string
+            description: To identify the specific build of the client app
+            required: false
+  Error419:
+      responses: 
+        419:
+          description: Authentication Timeout. A previously valid JWT token has now expired and can no longer be used for API access
+          headers:
+            somewhere-ttpm:
+              type: integer
+              description: Time in milliseconds in between receiving the request and sending the response
+              required: false
+            somewhere-cid:
+              type: string
+              description: Id (GUID) used to correlate calls across APIs
+              required: false
+            somewhere-sid:
+              type: string
+              description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+              required: false
+            somewhere-c-ver:
+              type: string
+              description: To identify the specific build of the client app
+              required: false
+  Error500:
+      responses: 
+        500:
+          description: Internal Server Error
+          headers:
+            somewhere-ttpm:
+              type: integer
+              description: Time in milliseconds in between receiving the request and sending the response
+              required: false
+            somewhere-cid:
+              type: string
+              description: Id (GUID) used to correlate calls across APIs
+              required: false
+            somewhere-sid:
+              type: string
+              description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+              required: false
+            somewhere-c-ver:
+              type: string
+              description: To identify the specific build of the client app
+              required: false
+  Error503:
+    responses: 
+      503:
+        description: Service Unavailable
+        headers:
+          somewhere-ttpm:
+            type: integer
+            description: Time in milliseconds in between receiving the request and sending the response
+            required: false
+          somewhere-cid:
+            type: string
+            description: Id (GUID) used to correlate calls across APIs
+            required: false
+          somewhere-sid:
+            type: string
+            description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+            required: false
+          somewhere-c-ver:
+            type: string
+            description: To identify the specific build of the client app
+            required: false
+  SomewhereRequestHeaders:
+    usage: Describes the common Somewhere request headers
+    headers:
+      somewhere-at:
+        type: string
+        description: Key validation for guest requests (anti-tamper)
+        required: false
+      somewhere-cid:
+        type: string
+        description: Id (GUID) used to correlate calls across APIs
+        required: false
+      somewhere-sid:
+        type: string
+        description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+        required: false
+      somewhere-c-plat:
+        type: string
+        description: 'The client platform; Web, IosApplication, AndroidApplication'
+        required: false
+      somewhere-c-name:
+        type: string
+        description: The name of the client app
+        required: false
+      somewhere-c-ver:
+        type: string
+        description: To identify the specific build of the client app
+        required: false
+      somewhere-c-istablet:
+        type: boolean
+        description: Used to specify if the client is a tablet
+        required: false
+      somewhere-c-ismobile:
+        type: boolean
+        description: Used to specify if the client is a mobile device
+        required: false
+  SomewhereResponseHeaders:
+    usage: Describes the common Somewhere response headers
+    headers:
+      somewhere-ttpm:
+        type: integer
+        description: Time in milliseconds in between receiving the request and sending the response
+        required: false
+      somewhere-cid:
+        type: string
+        description: Id (GUID) used to correlate calls across APIs
+        required: false
+      somewhere-sid:
+        type: string
+        description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+        required: false
+      somewhere-c-ver:
+        type: string
+        description: To identify the specific build of the client app
+        required: false
+  IsCacheableNoExpiry:
+    responses: 
+      200:
+        description: All responses can be cached but there is no safe cache expiry
+        headers:
+          Cache-Control:
+            description: |
+              The Cache-Control general-header field is used to specify directives for caching mechanisms in both, requests and responses. 
+              Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
+            type: string
+            default: private, must-revalidate
+            example: |
+              Cache-Control: private, must-revalidate
+            required: true
+          Expires:
+            description: |
+              Contains the date/time after which the response is considered stale. Invalid dates, like the value 0, represent a date in the past 
+              and mean that the resource is already expired.
+            type: string
+            default: "-1"
+            example: |
+              Expires: -1
+            required: true
+          ETag:
+            description: |
+              The ETag HTTP response header is an identifier for a specific version of a resource. It allows caches to be more efficient, and saves bandwidth, 
+              as a web server does not need to send a full response if the content has not changed.
+            type: string
+            example: |
+              ETag: 28474afbb12
+            required: true
+          Last-Modified:
+            description: |
+              The Last-Modified response HTTP header contains the date and time at which the origin server believes the resource was last modified. 
+              It is used as a validator to determine if a resource received or stored is the same.
+            type: datetime
+            format: rfc2616
+            example: |
+              Last-Modified: Mon, 03 Aug 2015 17:45:57 GMT
+            required: true
+          Vary:
+            description: |
+              The Vary HTTP response header determines how to match future request headers to decide whether a cached response can be 
+              used rather than requesting a fresh one from the origin server.
+            type: string
+            example: |
+              Vary: Accept-Encoding
+            required: false
+  IsCacheableWithUserData:
+    responses: 
+      200:
+        description: All responses can be cached for a defined safe period and it contains user specific data
+        headers:
+          Cache-Control:
+            description: |
+              The Cache-Control general-header field is used to specify directives for caching mechanisms in both, requests and responses. 
+              Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
+              max-age=<seconds>
+              Specifies the maximum amount of time a resource will be considered fresh. Contrary to Expires, this directive is relative to the time of the request.
+            type: string
+            default: private, max-age=<numseconds>, must-revalidate
+            example: |
+              Cache-Control: private, max-age=180, must-revalidate
+            required: true
+          Expires:
+            description: |
+              Contains the date/time after which the response is considered stale. Invalid dates, like the value 0, represent a date in the past 
+              and mean that the resource is already expired.
+            type: datetime
+            format: rfc2616
+            example: |
+              Expires: Mon, 03 Aug 2015 17:48:57 GMT
+            required: true
+          ETag:
+            description: |
+              The ETag HTTP response header is an identifier for a specific version of a resource. It allows caches to be more efficient, and saves bandwidth, 
+              as a web server does not need to send a full response if the content has not changed.
+            type: string
+            example: |
+              ETag: 28474afbb12
+            required: true
+          Last-Modified:
+            description: |
+              The Last-Modified response HTTP header contains the date and time at which the origin server believes the resource was last modified. 
+              It is used as a validator to determine if a resource received or stored is the same.
+            type: datetime
+            format: rfc2616
+            example: |
+              Last-Modified: Mon, 03 Aug 2015 17:45:57 GMT
+            required: true
+          Vary:
+            description: |
+              The Vary HTTP response header determines how to match future request headers to decide whether a cached response can be 
+              used rather than requesting a fresh one from the origin server.
+            type: string
+            example: |
+              Vary: Accept-Encoding
+            required: false
+  IsCacheableNoUserData:
+    responses: 
+      200:
+        description: All responses can be cached for a defined safe period and it contains NO user specific data
+        headers:
+          Cache-Control:
+            description: |
+              The Cache-Control general-header field is used to specify directives for caching mechanisms in both, requests and responses. 
+              Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
+              s-maxage=<seconds>
+              Overrides max-age or the Expires header, but it only applies to shared caches (e.g., proxies) and is ignored by a private cache
+            type: string
+            default: public, s-maxage=<numseconds>, must-revalidate
+            example: |
+              Cache-Control: public, s-maxage=180, must-revalidate
+            required: true
+          Expires:
+            description: |
+              Contains the date/time after which the response is considered stale. Invalid dates, like the value 0, represent a date in the past 
+              and mean that the resource is already expired.
+            type: datetime
+            format: rfc2616
+            #example: |
+            #  Expires: Mon, 03 Aug 2015 17:48:57 GMT
+            required: true
+          ETag:
+            description: |
+              The ETag HTTP response header is an identifier for a specific version of a resource. It allows caches to be more efficient, and saves bandwidth, 
+              as a web server does not need to send a full response if the content has not changed.
+            type: string
+            example: |
+              ETag: 28474afbb12
+            required: true
+          Last-Modified:
+            description: |
+              The Last-Modified response HTTP header contains the date and time at which the origin server believes the resource was last modified. 
+              It is used as a validator to determine if a resource received or stored is the same.
+            type: datetime
+            format: rfc2616
+            #example: |
+            #  Last-Modified: Mon, 03 Aug 2015 17:45:57 GMT
+            required: true
+          Vary:
+            description: |
+              The Vary HTTP response header determines how to match future request headers to decide whether a cached response can be 
+              used rather than requesting a fresh one from the origin server.
+            type: string
+            example: |
+              Vary: Accept-Encoding
+            required: false
+  NotCacheable:
+    responses: 
+      200:
+        description: All responses should not be cached
+        headers:
+          Cache-Control:
+            description: |
+              The Cache-Control general-header field is used to specify directives for caching mechanisms in both, requests and responses. 
+              Caching directives are unidirectional, meaning that a given directive in a request is not implying that the same directive is to be given in the response.
+            type: string
+            default: no-cache, no-store
+            example: |
+              Cache-Control: no-cache, no-store
+            required: true
+          Pragma: 
+            description: |
+              The Pragma HTTP/1.0 general header is an implementation-specific header that may have various effects along the request-response chain. 
+              It is used for backwards compatibility with HTTP/1.0 caches where the Cache-Control HTTP/1.1 header is not yet present
+            type: string
+            default: no-cache
+            example: |
+              Pragma: no-cache
+            required: true
+          Expires:
+            description: |
+              Contains the date/time after which the response is considered stale. Invalid dates, like the value 0, represent a date in the past 
+              and mean that the resource is already expired.
+            type: string
+            default: "-1"
+            example: |
+              Expires: -1
+            required: true
+  PricingHeaders:
+    usage: Describes the store/country headers. 
+    headers:
+      somewhere-pricing-store:
+        description: The store associated with the country, as specified by the Somewhere store service
+        type: string
+        required: true
+      somewhere-pricing-country:
+        description: The country code
+        type: string
+        required: false
+      somewhere-pricing-targetcurrency:
+        description: The target ISO currency code 
+        type: string
+        required: false
+  HasResponseCollection:
+    responses:
+      200:
+        description: The operation completed successfully
+        body:
+          application/json:
+            type: <<typeName>>[]
+        headers:
+          somewhere-ttpm:
+            type: integer
+            description: Time in milliseconds in between receiving the request and sending the response
+            required: false
+          somewhere-cid:
+            type: string
+            description: Id (GUID) used to correlate calls across APIs
+            required: false
+          somewhere-sid:
+            type: string
+            description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+            required: false
+          somewhere-c-ver:
+            type: string
+            description: To identify the specific build of the client app
+            required: false
+  HasResponseItem:
+    responses:
+      200:
+        description: The operation completed successfully
+        body:
+          application/json:
+            type: <<typeName>>
+        headers:
+          somewhere-ttpm:
+            type: integer
+            description: Time in milliseconds in between receiving the request and sending the response
+            required: false
+          somewhere-cid:
+            type: string
+            description: Id (GUID) used to correlate calls across APIs
+            required: false
+          somewhere-sid:
+            type: string
+            description: Id (GUID) provided by Somewhere identity platform to correlate calls across a customer session
+            required: false
+          somewhere-c-ver:
+            type: string
+            description: To identify the specific build of the client app
+            required: false
+
+#securitySchemes: 
+#  oauth_2_0:
+#    description: |
+#        Somewhere supports JWT Bearer tokens for authenticating all API requests to the Price History API
+#    type: OAuth 2.0
+#    describedBy:
+#      headers:
+#        Authorization:
+#          description: |
+#            Used to send a valid Bearer access token. 
+#            type: string
+#      responses:
+#        401:
+#          description: |
+#            Bad token. This can happen if the token does not have the required
+#            permissions to the resource, or if it does not pass JWT token 
+#            validation
+#        419:
+#          description: |
+#            Expired token. A previously valid token has now expired, acquire a
+#            new token to gain access to the resource. 
+        
+/getproductpricewithvariants:
+    get:
+        displayName: getproductpricewithvariants
+        description: This operation is used to query for the current price for a product including the variant prices
+        #securedBy: oauth_2_0
+        is:
+            - SomewhereRequestHeaders
+            - PricingHeaders
+            - Error400
+            - Error401
+            - Error419
+            - Error500
+            - Error503
+            - IsCacheableNoUserData
+            - HasResponseItem: {typeName: productPriceWithVariantsResponse }
+        queryParameters:
+            productId:
+                type: string
+                required: true
+
+/getproductprices:
+    get:
+        displayName: getproductprices
+        description: This operation is used to get a number of product prices with one request
+        #securedBy: oauth_2_0
+        is:
+            - SomewhereRequestHeaders
+            - PricingHeaders
+            - Error400
+            - Error401
+            - Error419
+            - Error500
+            - Error503
+            - IsCacheableNoUserData
+            - HasResponseCollection : {typeName:  productPriceResponse }
+        queryParameters:
+            productIds:
+                type: string[]
+                required: true
+
+/healthcheck:
+    get:
+        displayName: healthcheck
+        description: Performs a healthcheck against the service
+        is:
+            - SomewhereRequestHeaders
+            - Error400
+            - Error500
+            - Error503
+            - NotCacheable
+            - HasResponseItem: {typeName:  file }
+
+/version:
+    get:
+        displayName: version
+        description: Performs a healthcheck against the service
+        is:
+            - SomewhereRequestHeaders
+            - Error400
+            - Error500
+            - Error503
+            - NotCacheable
+            - HasResponseItem: {typeName:  file }
