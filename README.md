@@ -6,20 +6,6 @@ The preferred way of consuming the RAML parser in your .NET application is to in
 
 PM> Install-Package raml-dotnet-parser
 
-## Versioning
-
-The RAML parser follows the versioning convention of the RAML JS Parser, being the following:
-
-```
-x.y.z
-```
-
-in which *x.y* denotes the version of the [RAML specification](http://raml.org/spec.html)
-and *z* is the version of the parser.
-
-So *0.1.2* is the 2nd revision of the parser for the *0.1* version
-of the [RAML specification](http://raml.org/spec.html).
-
 ## Usage (C#)
 
 Import the Raml.Parser namespace, and then use the RamlParser object to build an in-memory model of a RAML definition:
