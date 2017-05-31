@@ -26,7 +26,7 @@ namespace Raml.Parser.Builders
                 if(asString != null)
                     return asString + "[]";
 
-                var asDictionary = dynamicRaml["items"] as Dictionary<string, object>;
+                var asDictionary = dynamicRaml["items"] as IDictionary<string, object>;
                 if (asDictionary != null)
                     return GetType(asDictionary, defaultType) + "[]";
             }

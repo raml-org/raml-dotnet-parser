@@ -87,7 +87,7 @@ namespace Raml.Parser.Builders
                     if (itemsString != null)
                         return itemsString + "[]";
 
-	                var asDictionary = value["items"] as Dictionary<string, object>;
+	                var asDictionary = value["items"] as IDictionary<string, object>;
 	                if (asDictionary != null)
 	                    return asDictionary.First() + "[]";
 	            }

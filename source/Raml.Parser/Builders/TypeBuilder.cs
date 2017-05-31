@@ -263,7 +263,16 @@ namespace Raml.Parser.Builders
                 else
                 {
                     var asString = dynamicRaml["items"] as string;
-                    items = new RamlType {Type = asString};
+                    if (asString != null)
+                    {
+                        items = new RamlType {Type = asString};
+                    }
+                    else
+                    {
+                        var asObjectArray = dynamicRaml["items"] as object[];
+                        if(asObjectArray != null)
+                            items = new RamlType { Type = (string)asObjectArray[0] };
+                    }
                 }
             }
             array.Items = items;
