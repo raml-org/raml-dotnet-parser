@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Query String test
+types:
+  address: string
+  coordinates:
+    properties:
+      lat: number
+      long: number
+  country_code: string
+  city_name: string
+
+/foo:
+    get:
+      queryString:
+        type: [country_code, city_name]

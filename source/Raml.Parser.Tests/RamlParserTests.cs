@@ -379,5 +379,27 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(14, raml.Traits.Count());
             Assert.AreEqual("error[]", raml.Traits.First()["Error400"].Responses.First().Body["application/json"].Type);
         }
+
+        [Test]
+        public async Task ShouldParseLibraryTraitsWithPrefix()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/libs.raml");
+
+            Assert.IsTrue(raml.Traits.Any(t => t.ContainsKey("Lib.filtered_by_month")));
+            Assert.AreEqual(2, raml.Traits.First(t => t.Keys.Any(k => k == "Lib.filtered_by_month"))["Lib.filtered_by_month"].QueryParameters.Count);
+            Assert.AreEqual("Lib.filtered_by_month", raml.Resources.First().Methods.First().Is.First());
+        }
+
+        [Test]
+        public async Task ShouldParseLibrarySecuritySchemasWithPrefix()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/libs.raml");
+
+            Assert.IsTrue(raml.SecuritySchemes.Any(s => s.ContainsKey("Lib.oauth_2_0")));
+            Assert.AreEqual("OAuth 2.0", raml.SecuritySchemes.First(t => t.Keys.Any(k => k == "Lib.oauth_2_0"))["Lib.oauth_2_0"].Type.First().Key);
+            Assert.AreEqual("Lib.oauth_2_0", raml.Resources.First().Methods.First().SecuredBy.First());
+        }
     }
 }
