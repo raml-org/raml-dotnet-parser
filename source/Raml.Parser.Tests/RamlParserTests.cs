@@ -401,5 +401,14 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("OAuth 2.0", raml.SecuritySchemes.First(t => t.Keys.Any(k => k == "Lib.oauth_2_0"))["Lib.oauth_2_0"].Type.First().Key);
             Assert.AreEqual("Lib.oauth_2_0", raml.Resources.First().Methods.First().SecuredBy.First());
         }
+
+        [Test]
+        public async Task ShouldHandleNullDescription()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/raml08/null-description.raml");
+
+            Assert.IsNull(raml.Resources.First().Methods.First().Description);
+        }
     }
 }
