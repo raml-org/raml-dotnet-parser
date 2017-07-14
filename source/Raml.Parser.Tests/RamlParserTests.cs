@@ -410,5 +410,17 @@ namespace Raml.Parser.Tests
 
             Assert.IsNull(raml.Resources.First().Methods.First().Description);
         }
+
+        [Test]
+        public async Task ShouldHandleAnyType()
+        {
+            var parser = new RamlParser();
+            var raml = await parser.LoadAsync("Specifications/anytype.raml");
+
+            Assert.AreEqual("any", raml.Types["foo"].Object.Properties["anobj"].Type);
+            Assert.AreEqual("foo", raml.Resources.First(r => r.RelativeUri == "/root").Methods.First().Responses.First().Body["application/json"].Type);
+            Assert.AreEqual("object", raml.Resources.First(r => r.RelativeUri == "/bar").Methods.First().Body["application/json"].Type);
+            Assert.IsNotNull(raml.Resources.First(r => r.RelativeUri == "/bar").Methods.First().Body["application/json"].InlineType);
+        }
     }
 }

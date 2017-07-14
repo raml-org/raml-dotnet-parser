@@ -14,7 +14,18 @@ namespace Raml.Parser.Builders
             var dynamicTypes = dynamicRaml["type"] as object[];
 
             if (dynamicTypes == null)
-                return dynamicRaml.ContainsKey("type") ? (string)dynamicRaml["type"] : "string";
+            {
+                var asString = dynamicRaml["type"] as string;
+                if (asString == null)
+                {
+                    var asDic = dynamicRaml["type"] as IDictionary<string, object>;
+                    if (asDic == null)
+                        return "string";
+
+                    return GetType(asDic);
+                }
+                return string.IsNullOrWhiteSpace(asString) ? "string" : asString;
+            }
 
             if (!dynamicTypes.Any())
                 return defaultType;
