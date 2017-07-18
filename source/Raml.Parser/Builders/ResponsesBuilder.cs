@@ -33,14 +33,41 @@ namespace Raml.Parser.Builders
 					         Code = pair.Key,
 					         Description = value.ContainsKey("description") ? value["description"] as string : null,
 					         Body = GetBody(defaultMediaType, value),
-							 Headers = value.ContainsKey("headers")
-										? new ParametersBuilder(value["headers"] as IDictionary<string, object>).GetAsDictionary()
-										: new Dictionary<string, Parameter>(),
+							 Headers = GetHeaders(value),
                             Annotations = AnnotationsBuilder.GetAnnotations(value)
 				         });
 			}
 			return list;
 		}
+
+	    private static IDictionary<string, Parameter> GetHeaders(IDictionary<string, object> value)
+	    {
+	        if (!value.ContainsKey("headers"))
+	            return new Dictionary<string, Parameter>();
+
+	        var asDictionary = value["headers"] as IDictionary<string, object>;
+            if(asDictionary != null)
+	            return new ParametersBuilder(asDictionary).GetAsDictionary();
+
+	        var asObjArray = value["headers"] as object[];
+	        if (asObjArray != null)
+                return GetObjectArrayHeaders(asObjArray);
+
+	        throw new InvalidOperationException("Unable to parse headers");
+	    }
+
+	    private static IDictionary<string, Parameter> GetObjectArrayHeaders(IEnumerable<object> asObjArray)
+	    {
+	        var headers = new Dictionary<string, Parameter>();
+            foreach (IDictionary<string, object> header in asObjArray)
+	        {
+	            var param = new ParameterBuilder().Build(header);
+	            var key = header["name"] as string;
+	            if (key != null)
+	                headers.Add(key, param);
+	        }
+	        return headers;
+	    }
 
 	    private static IDictionary<string, MimeType> GetBody(string defaultMediaType, IDictionary<string, object> value)
 	    {

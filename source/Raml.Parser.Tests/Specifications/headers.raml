@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: ZEncoder API
+version: v2
+baseUri: https://app.zencoder.com/api/{version}
+/jobs:
+  post:
+    description: Create a job
+    headers:
+      Zencoder-Api-Key:
+        description: The API key needed to create a new job

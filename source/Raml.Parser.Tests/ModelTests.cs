@@ -79,5 +79,33 @@ namespace Raml.Parser.Tests
 			
 			Assert.AreEqual(1, result.SecuritySchemes.Count());
 		}
-	}
+
+	    [Test]
+	    public async Task ShouldParseHeaders()
+	    {
+	        var parser = new RamlParser();
+	        var result = await parser.LoadAsync("Specifications/headers.raml");
+            Assert.AreEqual("Zencoder-Api-Key", result.Resources.First().Methods.First().Headers.Keys.First());
+	    }
+
+        [Test]
+        public async Task ShouldParseHeadersWhenInTraits()
+        {
+            var parser = new RamlParser();
+            var result = await parser.LoadAsync("Specifications/headers-traits.raml");
+            Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/users").Methods.First().Headers.ContainsKey("X-Tracker"));
+            Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/users").Methods.First().Headers.ContainsKey("X-Dept"));
+            Assert.IsTrue(result.Traits.First(t => t.ContainsKey("traceable"))["traceable"].Headers.ContainsKey("X-Tracker"));
+            Assert.IsTrue(result.Traits.First(t => t.ContainsKey("chargeable"))["chargeable"].Headers.ContainsKey("X-Dept"));
+        }
+
+        [Test]
+        public async Task ShouldParseHeadersWhenInResponses()
+        {
+            var parser = new RamlParser();
+            var result = await parser.LoadAsync("Specifications/headers-responses.raml");
+            Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/jobs").Methods.First().Responses.First().Headers.ContainsKey("Location"));
+            Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/jobs").Methods.First().Responses.First().Headers.ContainsKey("Other"));
+        }
+    }
 }
