@@ -1,15 +1,29 @@
 #%RAML 1.0
-title: Query String test
+title: Illustrate query parameter variations
 types:
-  address: string
-  coordinates:
+  lat-long: # lat & long required; mutually exclusive with location
     properties:
       lat: number
       long: number
-  country_code: string
-  city_name: string
-
-/foo:
-    get:
-      queryString:
-        type: [country_code, city_name]
+  loc: # location required; mutually exclusive with lat & long
+    properties:
+      location:
+  paging: # each is optional, not exclusive with anything
+    properties:
+      start?: number
+      page-size?: number
+/locations:
+  get:
+    queryString:
+      type: [paging,  lat-long | loc ]
+      examples:
+        first:
+          value:
+            start: 2
+            lat: 12
+            long: 13
+        second:
+          value:
+            start: 2
+            page-size: 20
+            location: 1,2

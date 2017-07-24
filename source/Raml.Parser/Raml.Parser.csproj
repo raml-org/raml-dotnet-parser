@@ -65,6 +65,7 @@
     <Compile Include="Builders\ParameterBuilder.cs" />
     <Compile Include="Builders\PropertyBuilder.cs" />
     <Compile Include="Builders\ProtocolsBuilder.cs" />
+    <Compile Include="Builders\QueryStringBuilder.cs" />
     <Compile Include="Builders\RamlBuilder.cs" />
     <Compile Include="Builders\ResourceBuilder.cs" />
     <Compile Include="Builders\ResourceTypeBuilder.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Expressions\ObjectType.cs" />
     <Compile Include="Expressions\Property.cs" />
     <Compile Include="Expressions\Protocol.cs" />
+    <Compile Include="Expressions\QueryString.cs" />
     <Compile Include="Expressions\RamlType.cs" />
     <Compile Include="Expressions\RamlTypesOrderedDictionary.cs" />
     <Compile Include="Expressions\RamlVersion.cs" />

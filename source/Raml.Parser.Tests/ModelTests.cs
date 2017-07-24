@@ -107,5 +107,15 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/jobs").Methods.First().Responses.First().Headers.ContainsKey("Location"));
             Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/jobs").Methods.First().Responses.First().Headers.ContainsKey("Other"));
         }
+
+        [Test]
+        public async Task ShouldParseQueryString()
+        {
+            var parser = new RamlParser();
+            var result = await parser.LoadAsync("Specifications/querystring.raml");
+            Assert.AreEqual(2, result.Resources.First(r => r.RelativeUri == "/locations").Methods.First().QueryString.Type.Count());
+            Assert.AreEqual("paging",result.Resources.First(r => r.RelativeUri == "/locations").Methods.First().QueryString.Type.First());
+            Assert.AreEqual("lat-long | loc", result.Resources.First(r => r.RelativeUri == "/locations").Methods.First().QueryString.Type.Last());
+        }
     }
 }

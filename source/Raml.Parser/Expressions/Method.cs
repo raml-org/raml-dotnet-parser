@@ -14,6 +14,7 @@ namespace Raml.Parser.Expressions
 			SecuredBy = new List<string>();
 			Protocols = new List<Protocol>();
 			Is = new List<string>();
+		    QueryString = new QueryString();
 		}
 
 		public string Verb { get; set; }
@@ -34,5 +35,7 @@ namespace Raml.Parser.Expressions
 
 		public IEnumerable<string> Is { get; set; }
 	    public IDictionary<string, object> Annotations { get; set; }
+        public QueryString QueryString { get; set; }
 	}
+
 }
