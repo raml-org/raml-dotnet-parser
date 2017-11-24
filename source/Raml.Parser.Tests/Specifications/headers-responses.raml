@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: headers in responses test
+version: v2
+/jobs:
+  post:
+    responses:
+      201:
+        headers:
+          Location:
+            example: /invoices/45612
+          Other:
+            example: sdasdsadsadsad

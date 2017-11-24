@@ -25,7 +25,9 @@ namespace Raml.Parser.Builders
 				? new ParametersBuilder((IDictionary<string, object>) dynamicRaml["queryParameters"]).GetAsDictionary()
 				: null;
 
-			method.Body = dynamicRaml.ContainsKey("body")
+            method.QueryString = GetQueryString(dynamicRaml);
+
+            method.Body = dynamicRaml.ContainsKey("body")
                 ? new BodyBuilder((IDictionary<string, object>)dynamicRaml["body"]).GetAsDictionary(defaultMediaType)
 				: new Dictionary<string, MimeType>();
 
@@ -33,14 +35,22 @@ namespace Raml.Parser.Builders
 			method.SecuredBy = GetSecuredBy(dynamicRaml);
 			method.Protocols = ProtocolsBuilder.Get(dynamicRaml);
 			method.Is = IsExtractor.Get(dynamicRaml);
-			method.Description = dynamicRaml.ContainsKey("description") ? (string) dynamicRaml["description"] : null;
-
+			method.Description = BasicInfoBuilder.GetDescription(dynamicRaml);
             method.Annotations = AnnotationsBuilder.GetAnnotations(dynamicRaml);
 
 			return method;
 		}
 
-		public IEnumerable<string> GetSecuredBy(IDictionary<string, object> dynamicRaml)
+	    private static QueryString GetQueryString(IDictionary<string, object> dynamicRaml)
+	    {
+	        if (!dynamicRaml.ContainsKey("queryString"))
+                return new QueryString();
+
+	        var asDic = dynamicRaml["queryString"] as IDictionary<string, object>;
+	        return new QueryStringBuilder().Build(asDic);
+	    }
+
+	    public IEnumerable<string> GetSecuredBy(IDictionary<string, object> dynamicRaml)
 		{
 			var securedBy = new List<string>();
 

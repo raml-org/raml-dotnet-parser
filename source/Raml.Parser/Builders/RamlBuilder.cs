@@ -41,8 +41,8 @@ namespace Raml.Parser.Builders
                             
 		                    TypeBuilder.AddTypes(doc.Types, (IDictionary<string, object>) dynamic, preffix);
                             var mediaType = ((IDictionary<string, object>)dynamic).ContainsKey("mediaType") ? (string)dynamicRaml["mediaType"] : null;
-                            securitySchemes = GetSecuritySchemes((IDictionary<string, object>)dynamic, mediaType).Union(securitySchemes);
-                            traits = GetTraits((IDictionary<string, object>)dynamic, mediaType).Union(traits);
+                            securitySchemes = GetSecuritySchemes((IDictionary<string, object>)dynamic, mediaType, preffix).Union(securitySchemes);
+                            traits = GetTraits((IDictionary<string, object>)dynamic, mediaType, preffix).Union(traits);
                         }
 		            }
 		        }
@@ -114,7 +114,7 @@ namespace Raml.Parser.Builders
 	        return null;
 	    }
 
-	    private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType)
+	    private IEnumerable<IDictionary<string, SecurityScheme>> GetSecuritySchemes(IDictionary<string, object> dynamicRaml,string defaultMediaType, string preffix = null)
 		{
 			if (!dynamicRaml.ContainsKey("securitySchemes"))
 				return new List<IDictionary<string, SecurityScheme>>();
@@ -123,12 +123,17 @@ namespace Raml.Parser.Builders
 
 			return (from IDictionary<string, object> scheme in schemes
 					select scheme
-                    .ToDictionary(kv => kv.Key, kv => new SecuritySchemeBuilder().Build((IDictionary<string, object>)kv.Value, defaultMediaType)))
+                    .ToDictionary(kv => GetKey(preffix, kv) , kv => new SecuritySchemeBuilder().Build((IDictionary<string, object>)kv.Value, defaultMediaType)))
 				.Cast<IDictionary<string, SecurityScheme>>()
 				.ToList();
 		}
 
-		private static IEnumerable<DocumentationItem> GetDocumentation(IDictionary<string, object> dynamicRaml)
+	    private static string GetKey(string preffix, KeyValuePair<string, object> kv)
+	    {
+	        return preffix == null ? kv.Key : preffix + "." + kv.Key;
+	    }
+
+	    private static IEnumerable<DocumentationItem> GetDocumentation(IDictionary<string, object> dynamicRaml)
 		{
 			return dynamicRaml.ContainsKey("documentation")
 				? ((object[]) dynamicRaml["documentation"]).Select(i => new DocumentationItemBuilder().Build((IDictionary<string, object>) i))
@@ -173,7 +178,7 @@ namespace Raml.Parser.Builders
             return new List<IDictionary<string, ResourceType>> { dic };
 		}
 
-        private IEnumerable<IDictionary<string, Method>> GetTraits(IDictionary<string, object> dynamicRaml, string defaultMediaType)
+        private IEnumerable<IDictionary<string, Method>> GetTraits(IDictionary<string, object> dynamicRaml, string defaultMediaType, string preffix = null)
 		{
 			if (!dynamicRaml.ContainsKey("traits"))
 				return new List<IDictionary<string, Method>>();
@@ -181,7 +186,7 @@ namespace Raml.Parser.Builders
 			var dynamicTraits = ((object[])dynamicRaml["traits"]).Cast<IDictionary<string, object>>();
 			return dynamicTraits
 				.Select(dyn => dyn
-                    .ToDictionary(kv => kv.Key, kv => new MethodBuilder().Build((IDictionary<string, object>)kv.Value, defaultMediaType)))
+                    .ToDictionary(kv => GetKey(preffix, kv), kv => new MethodBuilder().Build((IDictionary<string, object>)kv.Value, defaultMediaType)))
 				.ToArray();
 		}
 
