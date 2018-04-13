@@ -51,8 +51,7 @@ namespace AMF.Parser
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("filePath");
 
-            if (!filePath.StartsWith("file://"))
-                filePath = "file://" + filePath;
+            filePath = FixPath(filePath);
 
             if (!File.Exists(filePath.Substring(7)))
                 throw new InvalidOperationException("File not found " + filePath);
@@ -66,6 +65,29 @@ namespace AMF.Parser
             var webApi = WebApiMapper.Map(model);
             var shapes = ShapeMapper.Map(ret["shapes"] as object[]);
             return new AmfModel(webApi, shapes);
+        }
+
+        private static string FixPath(string filePath)
+        {
+            if (filePath.StartsWith("http:") || filePath.StartsWith("https:"))
+                return filePath;
+
+            if (!filePath.StartsWith("file://"))
+            {
+                if (filePath[1] == ':') // remove drive letter
+                    filePath = filePath.Substring(2);
+
+                filePath = "file://" + filePath;
+            }
+            else
+            {
+                if (filePath[8] == ':') // remove drive letter
+                    filePath = filePath.Substring(0,7) + filePath.Substring(9);
+            }
+
+            filePath = filePath.Replace("\\", "/");
+
+            return filePath;
         }
 
         public static async Task<object> GetDynamicStructureAsync(SpecificationType specType, string filePath)
