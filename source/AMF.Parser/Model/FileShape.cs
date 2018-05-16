@@ -7,8 +7,8 @@ namespace AMF.Parser.Model
         /// <summary>
         /// File
         /// </summary>
-        public FileShape(string pattern, int minLength, int maxLength, string minimum, string maximum, string exclusiveMinimum, string exclusiveMaximum,
-            string format, int multipleOf, IEnumerable<string> fileTypes, Documentation documentation, XmlSerializer xmlSerialization,
+        public FileShape(string pattern, int? minLength, int? maxLength, string minimum, string maximum, string exclusiveMinimum, string exclusiveMaximum,
+            string format, int? multipleOf, IEnumerable<string> fileTypes, Documentation documentation, XmlSerializer xmlSerialization,
             IEnumerable<Example> examples, 
             string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits
             , string linkTargetName)
@@ -29,13 +29,13 @@ namespace AMF.Parser.Model
         // file
         public IEnumerable<string> FileTypes { get; }
         public string Pattern { get; }
-        public int MinLength { get; }
-        public int MaxLength { get; }
+        public int? MinLength { get; }
+        public int? MaxLength { get; }
         public string Minimum { get; }
         public string Maximum { get; }
         public string ExclusiveMinimum { get; }
         public string ExclusiveMaximum { get; }
         public string Format { get; }
-        public int MultipleOf { get; }
+        public int? MultipleOf { get; }
     }
 }

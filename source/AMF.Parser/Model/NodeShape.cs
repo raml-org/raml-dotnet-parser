@@ -7,7 +7,7 @@ namespace AMF.Parser.Model
         /// <summary>
         /// Node
         /// </summary>
-        public NodeShape(int minProperties, int maxProperties, bool closed, string discriminator, string discriminatorValue, bool readOnly,
+        public NodeShape(int? minProperties, int? maxProperties, bool? closed, string discriminator, string discriminatorValue, bool? readOnly,
             IEnumerable<PropertyShape> properties, IEnumerable<PropertyDependency> dependencies, Documentation documentation,
             XmlSerializer xmlSerialization, IEnumerable<Example> examples,
             string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
@@ -25,12 +25,12 @@ namespace AMF.Parser.Model
         }
 
         // node
-        public int MinProperties { get; }
-        public int MaxProperties { get; }
-        public bool Closed { get; }
+        public int? MinProperties { get; }
+        public int? MaxProperties { get; }
+        public bool? Closed { get; }
         public string Discriminator { get; }
         public string DiscriminatorValue { get; }
-        public bool ReadOnly { get; }
+        public bool? ReadOnly { get; }
         public IEnumerable<PropertyShape> Properties { get; }
         public IEnumerable<PropertyDependency> Dependencies { get; }
     }

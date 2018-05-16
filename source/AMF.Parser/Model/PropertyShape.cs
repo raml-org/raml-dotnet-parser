@@ -2,7 +2,7 @@
 {
     public class PropertyShape
     {
-        public PropertyShape(string path, Shape range, int minCount, int maxCount)
+        public PropertyShape(string path, Shape range, int minCount, int? maxCount)
         {
             Path = path;
             Range = range;
@@ -12,8 +12,8 @@
 
         public string Path { get; }
         public Shape Range { get; }
-        public int MinCount { get; }
-        public int MaxCount { get; }
-        public bool Required { get { return MinCount > 0; } }
+        public int? MinCount { get; }
+        public int? MaxCount { get; }
+        public bool Required { get { return MinCount != null && MinCount > 0; } }
     }
 }

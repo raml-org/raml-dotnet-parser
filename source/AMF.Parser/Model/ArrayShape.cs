@@ -7,7 +7,7 @@ namespace AMF.Parser.Model
         /// <summary>
         /// ArrayShape
         /// </summary>
-        public ArrayShape(Shape items, int minItems, int maxItems, bool uniqueItems,  
+        public ArrayShape(Shape items, int? minItems, int? maxItems, bool? uniqueItems,  
             Documentation documentation, XmlSerializer xmlSerialization, IEnumerable<Example> examples,
             string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
             string linkTargetName)
@@ -20,9 +20,9 @@ namespace AMF.Parser.Model
         }
 
         // array
-        public int MinItems { get; }
-        public int MaxItems { get; }
-        public bool UniqueItems { get; }
+        public int? MinItems { get; }
+        public int? MaxItems { get; }
+        public bool? UniqueItems { get; }
         public Shape Items { get; }
     }
 }
