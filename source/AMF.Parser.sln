@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser", "AMF.Parser\AM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Parser.Tests", "AMF.Parser.Tests\AMF.Parser.Tests.csproj", "{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMF.Tools", "AMF.Tools\AMF.Tools.csproj", "{C122C92A-7216-4A49-9F67-E07401ED353B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01DE928D-FE41-4826-90CB-CA6FC5A5BF4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C122C92A-7216-4A49-9F67-E07401ED353B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C122C92A-7216-4A49-9F67-E07401ED353B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C122C92A-7216-4A49-9F67-E07401ED353B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C122C92A-7216-4A49-9F67-E07401ED353B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
