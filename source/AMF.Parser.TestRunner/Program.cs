@@ -8,14 +8,14 @@ namespace ConsoleApp2
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             //var a = Test().Result;
             //Console.WriteLine(a);
-            RunTests();
+            return RunTests();
         }
 
-        private static void RunTests()
+        private static int RunTests()
         {
             try
             {
@@ -27,10 +27,12 @@ namespace ConsoleApp2
                 RunArrayTypesTests();
                 RunTypeExpressionsTests();
                 Console.WriteLine("Succeeded");
+                return 0;
             }
             catch (Exception ex)
             {
                 InformException(ex);
+                return 1;
             }
         }
 
