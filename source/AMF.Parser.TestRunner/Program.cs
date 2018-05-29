@@ -34,6 +34,7 @@ namespace ConsoleApp2
             catch (Exception ex)
             {
                 InformException(ex);
+                Console.ReadKey();
                 return 1;
             }
         }
