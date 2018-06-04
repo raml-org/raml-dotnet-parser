@@ -60,7 +60,11 @@ namespace AMF.Parser
             var ret = rawresult as IDictionary<string, object>;
             var error = ret["error"];
             if (error != null)
-                throw new FormatException(error as string);
+            {
+                var errObj = error as IDictionary<string, object>;
+                var msg = errObj["message"] + Environment.NewLine + errObj["stack"];
+                throw new FormatException(msg);
+            }
             var model = ret["model"] as IDictionary<string, object>;
             var webApi = WebApiMapper.Map(model);
             var shapes = ShapeMapper.Map(ret["shapes"] as object[]);

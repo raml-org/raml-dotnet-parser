@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpecWithErrorsTest.cs" />
     <Compile Include="TypeExpressionsTests.cs" />
     <Compile Include="ArrayTypesTests.cs" />
     <Compile Include="PetStoreJsonTests.cs" />

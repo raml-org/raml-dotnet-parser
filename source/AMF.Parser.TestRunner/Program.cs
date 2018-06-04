@@ -20,6 +20,7 @@ namespace ConsoleApp2
             try
             {
                 RunGeneralTests().Wait();
+                RunSpecWithErrorsTests();
                 RunChinookTests();
                 RunMoviesTests();
                 RunApiWithExamplesTests();
@@ -34,6 +35,12 @@ namespace ConsoleApp2
                 InformException(ex);
                 return 1;
             }
+        }
+
+        private static void RunSpecWithErrorsTests()
+        {
+            var test = new SpecWithErrorsTest();
+            test.error_spec_check();
         }
 
         private static void RunTypeExpressionsTests()
