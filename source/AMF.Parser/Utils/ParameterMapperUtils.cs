@@ -6,7 +6,7 @@ namespace AMF.Parser.Utils
     {
         internal static T Map<T>(IDictionary<string, object> dictionary, string key)
         {
-            if (!dictionary.ContainsKey(key))
+            if (dictionary == null || !dictionary.ContainsKey(key))
                 return default(T);
 
             return (T)dictionary[key];

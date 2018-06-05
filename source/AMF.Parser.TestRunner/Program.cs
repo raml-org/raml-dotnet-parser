@@ -29,6 +29,7 @@ namespace ConsoleApp2
                 RunArrayTypesTests();
                 RunTypeExpressionsTests();
                 Console.WriteLine("Succeeded");
+                Console.ReadKey();
                 return 0;
             }
             catch (Exception ex)

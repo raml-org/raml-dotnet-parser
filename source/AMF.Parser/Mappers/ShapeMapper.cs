@@ -95,7 +95,10 @@ namespace AMF.Parser.Mappers
 
         private static string GetLinkTargetName(IDictionary<string, object> shape)
         {
-            var linkTarget = shape.ContainsKey("linkTarget") ? shape["linkTarget"] : null;
+            if (!shape.ContainsKey("linkTarget"))
+                return null;
+
+            var linkTarget = shape["linkTarget"];
             var linkTargetName = ParameterMapperUtils.Map<string>((IDictionary<string, object>)linkTarget, "name");
             return linkTargetName;
         }
