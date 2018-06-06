@@ -16,7 +16,7 @@ namespace UnitTestProject1
             var parser = new AmfParser();
             Assert.ThrowsException<AggregateException>(() =>
             {
-                var model = parser.Load("./specs/oas/yaml/petstore-with-external-docs.yaml").Result;
+                var model = parser.Load("./specs/oas/yaml/petstore-with-external-docs.yaml").GetAwaiter().GetResult();
             });
         }
     }
