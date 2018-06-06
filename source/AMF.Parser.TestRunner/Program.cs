@@ -20,6 +20,7 @@ namespace ConsoleApp2
             try
             {
                 RunGeneralTests().Wait();
+                RunIncludeTests();
                 RunSpecWithErrorsTests();
                 RunChinookTests();
                 RunMoviesTests();
@@ -35,6 +36,13 @@ namespace ConsoleApp2
                 InformException(ex);
                 return 1;
             }
+        }
+
+        private static void RunIncludeTests()
+        {
+            var tests = new IncludeTests();
+            tests.Should_work_with_relative_includes().Wait();
+ 
         }
 
         private static void RunSpecWithErrorsTests()

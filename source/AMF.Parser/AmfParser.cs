@@ -53,9 +53,6 @@ namespace AMF.Parser
 
             filePath = FixPath(filePath);
 
-            if (!File.Exists(filePath.Substring(7)))
-                throw new InvalidOperationException("File not found " + filePath);
-
             var rawresult = await GetDynamicStructureAsync(type, filePath).ConfigureAwait(false);
             var ret = rawresult as IDictionary<string, object>;
             var error = ret["error"];
@@ -78,20 +75,35 @@ namespace AMF.Parser
 
             if (!filePath.StartsWith("file://"))
             {
-                if (filePath[1] == ':') // remove drive letter
-                    filePath = filePath.Substring(2);
+                if (!File.Exists(filePath))
+                    throw new InvalidOperationException("File not found " + filePath);
 
-                filePath = "file://" + filePath;
+                var fullPath = Path.GetFullPath(filePath);
+                fullPath = RemoveDriveLetter(fullPath);
+
+                filePath = "file://" + fullPath;
             }
             else
             {
-                if (filePath[8] == ':') // remove drive letter
-                    filePath = filePath.Substring(0,7) + filePath.Substring(9);
+                if (!File.Exists(filePath.Substring(7)))
+                    throw new InvalidOperationException("File not found " + filePath);
+
+                var fullPath = Path.GetFullPath(filePath.Substring(7));
+                fullPath = RemoveDriveLetter(fullPath);
+
+                filePath = "file://" + fullPath;
             }
 
             filePath = filePath.Replace("\\", "/");
 
             return filePath;
+        }
+
+        private static string RemoveDriveLetter(string fullPath)
+        {
+            if (fullPath[1] == ':') // remove drive letter
+                fullPath = fullPath.Substring(2);
+            return fullPath;
         }
 
         public static async Task<object> GetDynamicStructureAsync(SpecificationType specType, string filePath)
