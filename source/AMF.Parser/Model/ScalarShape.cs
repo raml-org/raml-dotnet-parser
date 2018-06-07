@@ -9,10 +9,10 @@ namespace AMF.Parser.Model
         /// </summary>
         public ScalarShape(string dataType, string pattern, int? minLength, int? maxLength, string minimum, string maximum, string exclusiveMinimum,
             string exclusiveMaximum, string format, int? multipleOf, Documentation documentation, XmlSerializer xmlSerialization,
-            IEnumerable<Example> examples,
+            IEnumerable<Example> examples, string id,
             string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
             string linkTargetName)
-            : base(documentation, xmlSerialization, examples, name, displayName, description, @default, values, inherits, linkTargetName)
+            : base(documentation, xmlSerialization, examples, id, name, displayName, description, @default, values, inherits, linkTargetName)
         {
             DataType = dataType;
             Pattern = pattern;

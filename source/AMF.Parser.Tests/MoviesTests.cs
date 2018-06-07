@@ -39,7 +39,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void Basepath_should_be_api()
         {
-            Assert.AreEqual("/api", model.WebApi.BasePath);
+            Assert.AreEqual("http://movies.com/api", model.WebApi.Servers.First());
         }
 
         [TestMethod]
@@ -82,6 +82,9 @@ namespace UnitTestProject1
             Assert.AreEqual(9, node.Properties.Count());
 
             PropertiesAsserts(node);
+
+            Assert.AreEqual(1, node.Examples.Count());
+            Assert.IsTrue(node.Examples.First().Value.Length > 0);
         }
 
         [TestMethod]
@@ -117,16 +120,13 @@ namespace UnitTestProject1
             var durationProp = node.Properties.First(p => p.Path.EndsWith("#duration"));
             Assert.IsFalse(durationProp.Required);
             var duration = (ScalarShape)durationProp.Range;
-            Assert.IsTrue(duration.DataType.EndsWith("#float"));
+            Assert.IsTrue(duration.DataType.EndsWith("#number"));
             Assert.AreEqual("1", duration.Minimum);
             Assert.AreEqual("duration", duration.Name);
 
-            var storylineProp = node.Properties.First(p => p.Path.EndsWith("#storyline?"));
+            var storylineProp = node.Properties.First(p => p.Path.EndsWith("#storyline"));
             Assert.IsFalse(storylineProp.Required);
             Assert.AreEqual("storyline?", storylineProp.Range.Name);
-
-            Assert.AreEqual(1, node.Examples.Count());
-            Assert.IsTrue(node.Examples.First().Value.Length > 0);
         }
     }
 }

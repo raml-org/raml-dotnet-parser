@@ -50,7 +50,7 @@ namespace ConsoleApp2
         private static void RunSpecWithErrorsTests()
         {
             var test = new SpecWithErrorsTest();
-            test.error_spec_check();
+            test.external_docs_pet_check();
         }
 
         private static void RunTypeExpressionsTests()

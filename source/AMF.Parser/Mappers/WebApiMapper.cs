@@ -15,7 +15,7 @@ namespace AMF.Parser.Mappers
             var host = model["host"] as string;
             IEnumerable<string> schemes = StringEnumerationMapper.Map(model["schemes"] as object[]);
             IEnumerable<EndPoint> endPoints = EndPointMapper.Map(model["endpoints"] as object[]);
-            string basePath = model["basePath"] as string;
+            IEnumerable<string> servers = StringEnumerationMapper.Map(model["servers"] as object[]);
             IEnumerable<string> accepts = StringEnumerationMapper.Map(model["accepts"] as object[]);
             IEnumerable<string> contentType = StringEnumerationMapper.Map(model["contentType"] as object[]);
             string version = model["version"] as string;
@@ -25,7 +25,7 @@ namespace AMF.Parser.Mappers
             IEnumerable<Documentation> documentations = DocumentationMapper.Map(model["documentations"] as object[]);
             IEnumerable<Parameter> baseUriParameters = ParameterMapper.Map(model["baseUriParameters"] as object[]);
             IEnumerable<ParametrizedSecurityScheme> security = ParametrizedSecuritySchemeMapper.Map(model["security"] as object[]);
-            return new WebApi(name, description, host, schemes, endPoints, basePath, accepts, contentType, version, termsOfService, 
+            return new WebApi(name, description, host, schemes, endPoints, servers, accepts, contentType, version, termsOfService, 
                 provider, license, documentations, baseUriParameters, security);
         }
 

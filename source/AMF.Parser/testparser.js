@@ -15,8 +15,18 @@ console.log('Start');
 //     console.log(ex);
 // }
 
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
+
 try {
-    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
+    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/movies-v1.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -35,15 +45,15 @@ catch(ex){
 //     console.log(ex);
 // }
 
-try {
-    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/petstore-with-external-docs.yaml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/petstore-with-external-docs.yaml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/arrayTypes.raml"
 // parser.parse('raml', filepath, function (m) {

@@ -7,9 +7,10 @@ namespace AMF.Parser.Model
         /// <summary>
         /// Shape
         /// </summary>
-        public Shape(string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits, 
+        public Shape(string id, string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits, 
             string linkTargetName)
         {
+            Id = id;
             Name = name;
             DisplayName = displayName;
             Description = description;
@@ -19,7 +20,7 @@ namespace AMF.Parser.Model
             LinkTargetName = linkTargetName;
         }
 
-        // shape
+        public string Id { get; }
         public string Name { get; }
         public string DisplayName { get; }
         public string Description { get; }

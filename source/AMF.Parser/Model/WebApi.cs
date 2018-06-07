@@ -8,14 +8,14 @@ namespace AMF.Parser.Model
 {
     public class WebApi
     {
-        public WebApi(string name, string description, string host, IEnumerable<string> schemes, IEnumerable<EndPoint> endPoints, string basePath, IEnumerable<string> accepts, IEnumerable<string> contentType, string version, string termsOfService, Organization provider, License license, IEnumerable<Documentation> documentations, IEnumerable<Parameter> baseUriParameters, IEnumerable<ParametrizedSecurityScheme> security)
+        public WebApi(string name, string description, string host, IEnumerable<string> schemes, IEnumerable<EndPoint> endPoints, IEnumerable<string> servers, IEnumerable<string> accepts, IEnumerable<string> contentType, string version, string termsOfService, Organization provider, License license, IEnumerable<Documentation> documentations, IEnumerable<Parameter> baseUriParameters, IEnumerable<ParametrizedSecurityScheme> security)
         {
             Name = name;
             Description = description;
             Host = host;
             Schemes = schemes;
             EndPoints = endPoints;
-            BasePath = basePath;
+            Servers = servers;
             Accepts = accepts;
             ContentType = contentType;
             Version = version;
@@ -32,7 +32,7 @@ namespace AMF.Parser.Model
         public string Host { get; }
         public IEnumerable<string> Schemes { get; }
         public IEnumerable<EndPoint> EndPoints { get; }
-        public string BasePath { get; }
+        public IEnumerable<string> Servers { get; }
         public IEnumerable<string> Accepts { get; }
         public IEnumerable<string> ContentType { get; }
         public string Version { get; }

@@ -84,7 +84,7 @@ namespace UnitTestProject1
             var invoice = (NodeShape)model.Shapes.First(e => e.Name == "Invoice");
             var lines = invoice.Properties.First(p => p.Path.ToLowerInvariant().EndsWith("lines"));
             var array = (ArrayShape)lines.Range.Inherits.First();
-            Assert.AreEqual("InvoiceLine", array.Items.LinkTargetName);
+            Assert.AreEqual("/declarations/InvoiceLine", array.Items.LinkTargetName);
         }
     }
 }

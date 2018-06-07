@@ -10,14 +10,11 @@ namespace UnitTestProject1
     public class SpecWithErrorsTest
     {
         [TestMethod]
-        [ExpectedException(typeof(AggregateException))]
-        public void error_spec_check()
+        public void external_docs_pet_check()
         {
             var parser = new AmfParser();
-            Assert.ThrowsException<AggregateException>(() =>
-            {
-                var model = parser.Load("./specs/oas/yaml/petstore-with-external-docs.yaml").GetAwaiter().GetResult();
-            });
+            var model = parser.Load("./specs/oas/yaml/petstore-with-external-docs.yaml").GetAwaiter().GetResult();
+            Assert.IsNotNull(model);
         }
     }
 }
