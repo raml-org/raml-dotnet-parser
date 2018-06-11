@@ -28,6 +28,20 @@ namespace AMF.Parser.Mappers
 
             string linkTargetName = GetLinkTargetName(shape);
 
+            if((shape["isFile"] as bool?) == true)
+            {
+                var multipleOf = ParameterMapperUtils.MapInt(shape, "multipleOf");
+                var format = shape["format"] as string;
+                var exclusiveMaximum = shape["exclusiveMaximum"] is bool ? ParameterMapperUtils.MapBool(shape, "exclusiveMaximum").ToString() : null;
+                var exclusiveMinimum = shape["exclusiveMinimum"] is bool ? ParameterMapperUtils.MapBool(shape, "exclusiveMinimum").ToString() : null;
+                var maximum = shape["maximum"] is int ? ParameterMapperUtils.MapInt(shape, "maximum").ToString() : null;
+                var minimum = shape["minimum"] is int ? ParameterMapperUtils.MapInt(shape, "minimum").ToString() : null;
+                var maxLength = ParameterMapperUtils.MapInt(shape, "maxLength");
+                var minLength = ParameterMapperUtils.MapInt(shape, "minLength");
+                var pattern = shape["pattern"] as string;
+                return GetFileShape(shape, linkTargetName, multipleOf, format, exclusiveMaximum, exclusiveMinimum, maximum, minimum, maxLength, minLength, pattern);
+            }
+
             if (shape["items"] != null) // Array
             {
                 return new ArrayShape(Map(shape["items"] as IDictionary<string, object>), ParameterMapperUtils.MapInt(shape, "minItems"),
@@ -50,7 +64,7 @@ namespace AMF.Parser.Mappers
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
             }
 
-            if (shape["dataType"] != null || shape["fileTypes"] != null) // Scalar or File
+            if (shape["dataType"] != null || (shape["fileTypes"] != null && (shape["fileTypes"] as object[]).Count() > 0)) // Scalar or File
             {
                 var multipleOf = ParameterMapperUtils.MapInt(shape, "multipleOf");
                 var format = shape["format"] as string;
@@ -74,13 +88,7 @@ namespace AMF.Parser.Mappers
                 }
                 else // File
                 {
-                    var fileTypes = StringEnumerationMapper.Map(shape["fileTypes"] as object[]);
-
-                    return new FileShape(pattern, minLength, maxLength, minimum, maximum, exclusiveMinimum, exclusiveMaximum, format, multipleOf, fileTypes,
-                        DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
-                        XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
-                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
+                    return GetFileShape(shape, linkTargetName, multipleOf, format, exclusiveMaximum, exclusiveMinimum, maximum, minimum, maxLength, minLength, pattern);
                 }
             }
 
@@ -91,6 +99,17 @@ namespace AMF.Parser.Mappers
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
+        }
+
+        private static Shape GetFileShape(IDictionary<string, object> shape, string linkTargetName, int multipleOf, string format, string exclusiveMaximum, string exclusiveMinimum, string maximum, string minimum, int maxLength, int minLength, string pattern)
+        {
+            var fileTypes = StringEnumerationMapper.Map(shape["fileTypes"] as object[]);
+
+            return new FileShape(pattern, minLength, maxLength, minimum, maximum, exclusiveMinimum, exclusiveMaximum, format, multipleOf, fileTypes,
+                DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
+                XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
+        shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+        StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
         }
 
         private static string GetLinkTargetName(IDictionary<string, object> shape)
