@@ -19,6 +19,7 @@ namespace ConsoleApp2
         {
             try
             {
+                RunResourceTypesTests();
                 RunGeneralTests().Wait();
                 RunIncludeTests();
                 RunSpecWithErrorsTests();
@@ -36,6 +37,12 @@ namespace ConsoleApp2
                 InformException(ex);
                 return 1;
             }
+        }
+
+        private static void RunResourceTypesTests()
+        {
+            var tests = new ResourceTypeTests();
+            tests.Should_work_with_resource_types().Wait();
         }
 
         private static void RunIncludeTests()

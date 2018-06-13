@@ -10,7 +10,7 @@ namespace AMF.Parser.Model
         public FileShape(string pattern, int? minLength, int? maxLength, string minimum, string maximum, string exclusiveMinimum, string exclusiveMaximum,
             string format, int? multipleOf, IEnumerable<string> fileTypes, Documentation documentation, XmlSerializer xmlSerialization,
             IEnumerable<Example> examples, string id,
-            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits
+            string name, string displayName, string description, Shape @default, IEnumerable<string> values, IEnumerable<Shape> inherits
             , string linkTargetName)
             : base(documentation, xmlSerialization, examples, id, name, displayName, description, @default, values, inherits, linkTargetName)
         {

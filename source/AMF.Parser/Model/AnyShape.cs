@@ -8,7 +8,7 @@ namespace AMF.Parser.Model
         /// AnyShape
         /// </summary>
         public AnyShape(Documentation documentation, XmlSerializer xmlSerialization, IEnumerable<Example> examples, string id,
-            string name, string displayName, string description, string @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
+            string name, string displayName, string description, Shape @default, IEnumerable<string> values, IEnumerable<Shape> inherits,
             string linkTargetName)
             : base(id, name, displayName, description, @default, values, inherits, linkTargetName)
         {

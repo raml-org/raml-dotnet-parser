@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using AMF.Parser.Model;
 using System.Linq;
-using System;
 using AMF.Parser.Utils;
 
 namespace AMF.Parser.Mappers
@@ -13,10 +12,12 @@ namespace AMF.Parser.Mappers
             if (schema == null)
                 return null;
 
+            var @default = Map(schema["default"] as IDictionary<string, object>);
+
             return new SchemaShape(schema["mediaType"] as string, schema["raw"] as string, 
                 DocumentationMapper.Map(schema["documentation"] as IDictionary<string, object>), 
                 XmlSerializerMapper.Map(schema["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(schema["examples"] as object[]),
-                schema["id"] as string, schema["name"] as string, schema["displayName"] as string, schema["description"] as string, schema["default"] as string,
+                schema["id"] as string, schema["name"] as string, schema["displayName"] as string, schema["description"] as string, @default,
                 StringEnumerationMapper.Map(schema["values"] as object[]), Map(schema["inherits"] as object[]),
                 GetLinkTargetName(schema));
         }
@@ -42,13 +43,15 @@ namespace AMF.Parser.Mappers
                 return GetFileShape(shape, linkTargetName, multipleOf, format, exclusiveMaximum, exclusiveMinimum, maximum, minimum, maxLength, minLength, pattern);
             }
 
+            var @default = Map(shape["default"] as IDictionary<string, object>);
+
             if (shape["items"] != null) // Array
             {
                 return new ArrayShape(Map(shape["items"] as IDictionary<string, object>), ParameterMapperUtils.MapInt(shape, "minItems"),
                     ParameterMapperUtils.MapInt(shape, "maxItems"), ParameterMapperUtils.MapBool(shape, "uniqueItems"),
                     DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                     XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
             }
 
@@ -60,7 +63,7 @@ namespace AMF.Parser.Mappers
                     PropertyShapeMapper.Map(shape["properties"] as object[]), PropertyDependenciesMapper.Map(shape["dependencies"] as object[]),
                     DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                     XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
             }
 
@@ -83,7 +86,7 @@ namespace AMF.Parser.Mappers
                     return new ScalarShape(dataType, pattern, minLength, maxLength, minimum, maximum, exclusiveMinimum, exclusiveMaximum, format, multipleOf,
                         DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                         XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
                 }
                 else // File
@@ -97,18 +100,19 @@ namespace AMF.Parser.Mappers
 
             return new AnyShape(DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
                 StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
         }
 
         private static Shape GetFileShape(IDictionary<string, object> shape, string linkTargetName, int multipleOf, string format, string exclusiveMaximum, string exclusiveMinimum, string maximum, string minimum, int maxLength, int minLength, string pattern)
         {
             var fileTypes = StringEnumerationMapper.Map(shape["fileTypes"] as object[]);
+            var @default = Map(shape["default"] as IDictionary<string, object>);
 
             return new FileShape(pattern, minLength, maxLength, minimum, maximum, exclusiveMinimum, exclusiveMaximum, format, multipleOf, fileTypes,
                 DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
-        shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, shape["default"] as string,
+        shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
         StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
         }
 
