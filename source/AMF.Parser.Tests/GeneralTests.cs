@@ -12,10 +12,10 @@ namespace UnitTestProject1
         private AmfParser parser = new AmfParser();
 
         [TestMethod]
-        public async Task Should_detect_RAML_type_from_extension()
+        public async Task Should_detect_RAML_08()
         {
-            var type = await AmfParser.DetectType("specs/movies-v1.raml");
-            Assert.AreEqual(SpecificationType.RAML, type);
+            var type = await AmfParser.DetectType("specs/raml08/chinook.raml");
+            Assert.AreEqual(SpecificationType.RAML08, type);
         }
 
         [TestMethod]

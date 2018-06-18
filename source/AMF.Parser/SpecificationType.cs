@@ -3,6 +3,7 @@
     public enum SpecificationType
     {
         RAML,
+        RAML08,
         OAS
     }
 }

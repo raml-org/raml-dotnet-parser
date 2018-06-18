@@ -24,16 +24,19 @@ namespace AMF.Parser
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("filePath");
 
-            if (filePath.EndsWith(".raml"))
-                return SpecificationType.RAML;
-
             if (filePath.StartsWith("file://"))
                 filePath = filePath.Substring(7);
 
             var file = File.OpenText(filePath);
             var firstLine = await file.ReadLineAsync();
 
+            if (firstLine.Contains("#%RAML 0.8"))
+                return SpecificationType.RAML08;
+
             if (firstLine.Contains("#%RAML"))
+                return SpecificationType.RAML;
+
+            if (filePath.EndsWith(".raml"))
                 return SpecificationType.RAML;
 
             if (firstLine.Contains("swagger"))

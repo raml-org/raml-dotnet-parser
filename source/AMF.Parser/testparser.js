@@ -5,15 +5,15 @@ var parser = require('parser');
 
 console.log('Start');
 
-// try {
-//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
-//     parser.parse('raml', filepath, function (m) {
-//         console.log(m);
-//     });
-// }
-// catch(ex){
-//     console.log(ex);
-// }
+try {
+    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
+    parser.parse('raml08', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 // try {
 //     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
@@ -45,15 +45,15 @@ console.log('Start');
 //     console.log(ex);
 // }
 
-try {
-    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/petstore-with-external-docs.yaml"

@@ -89,7 +89,7 @@ namespace ConsoleApp2
             await tests.Should_detect_OAS_type_from_json_file();
             await tests.Should_detect_OAS_type_from_yaml_file();
             await tests.Should_detect_RAML_type_from_file_contents();
-            await tests.Should_detect_RAML_type_from_extension();
+            await tests.Should_detect_RAML_08();
             await tests.Should_accept_file_without_prefix();
             await tests.Should_accept_file_with_prefix();
             await tests.Should_throw_if_file_not_exists();
