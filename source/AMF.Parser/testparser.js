@@ -5,15 +5,28 @@ var parser = require('parser');
 
 console.log('Start');
 
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
+//     parser.parse('raml08', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
+
+
+
 try {
-    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
-    parser.parse('raml08', filepath, function (m) {
+    var filepath = "file:///Users/pedro/Downloads/american-flights-api-1.0.0-raml/american-flights-api.raml"
+    parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
 }
 catch(ex){
     console.log(ex);
 }
+
 
 // try {
 //     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
