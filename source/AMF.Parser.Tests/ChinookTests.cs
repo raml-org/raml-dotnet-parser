@@ -82,16 +82,16 @@ namespace UnitTestProject1
         public void Invoice_shape()
         {
             var invoice = (NodeShape)model.Shapes.First(e => e.Name == "Invoice");
-            var customer = invoice.Properties.First(p => p.Path == "http://raml.org/vocabularies/data#Customer").Range;
+            var customer = invoice.Properties.First(p => p.Path == "http://a.ml/vocabularies/data#Customer").Range;
             Assert.IsInstanceOfType(customer, typeof(AnyShape));
 
             var person = (NodeShape)model.Shapes.First(e => e.Name == "Person");
-            var picture = person.Properties.First(p => p.Path == "http://raml.org/vocabularies/data#Picture").Range;
+            var picture = person.Properties.First(p => p.Path == "http://a.ml/vocabularies/data#Picture").Range;
             Assert.IsInstanceOfType(picture, typeof(FileShape));
 
             var lines = invoice.Properties.First(p => p.Path.ToLowerInvariant().EndsWith("lines"));
             var array = (ArrayShape)lines.Range.Inherits.First();
-            Assert.AreEqual("/declarations/InvoiceLine", array.Items.LinkTargetName);
+            Assert.AreEqual("/declarations/types/InvoiceLine", array.Items.LinkTargetName);
         }
     }
 }

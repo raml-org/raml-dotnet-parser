@@ -1,7 +1,6 @@
 
 
 var parser = require('parser');
-//var util = require('util')
 
 console.log('Start');
 
@@ -17,15 +16,15 @@ console.log('Start');
 
 
 
-try {
-    var filepath = "file:///Users/pedro/Downloads/american-flights-api-1.0.0-raml/american-flights-api.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///Users/pedro/Downloads/american-flights-api-1.0.0-raml/american-flights-api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 
 // try {
@@ -77,6 +76,16 @@ catch(ex){
 // catch(ex){
 //     console.log(ex);
 // }
+
+try {
+    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/json/petstore.json"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 // var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/arrayTypes.raml"
 // parser.parse('raml', filepath, function (m) {
