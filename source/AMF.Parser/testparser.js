@@ -78,7 +78,7 @@ console.log('Start');
 // }
 
 try {
-    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/json/petstore.json"
+    var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/lib-traits.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -86,6 +86,16 @@ try {
 catch(ex){
     console.log(ex);
 }
+
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/json/petstore.json"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/arrayTypes.raml"
 // parser.parse('raml', filepath, function (m) {
