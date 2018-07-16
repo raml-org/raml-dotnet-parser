@@ -321,9 +321,6 @@
     </None>
     <None Include="install.ps1" />
     <None Include="key.pfx" />
-    <None Include="node_modules\ajv\lib\dotjs\README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="node_modules\ajv\lib\dot\allOf.jst">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -439,9 +436,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\uri-js\package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="node_modules\uri-js\tsconfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="node_modules\uri-js\yarn.lock">
