@@ -82,9 +82,9 @@ namespace AMF.Parser
                     throw new InvalidOperationException("File not found " + filePath);
 
                 var fullPath = Path.GetFullPath(filePath);
-                fullPath = RemoveDriveLetter(fullPath);
+                // fullPath = RemoveDriveLetter(fullPath);
 
-                filePath = "file://" + fullPath;
+                filePath = "file:///" + fullPath;
             }
             else
             {
@@ -92,21 +92,14 @@ namespace AMF.Parser
                     throw new InvalidOperationException("File not found " + filePath);
 
                 var fullPath = Path.GetFullPath(filePath.Substring(7));
-                fullPath = RemoveDriveLetter(fullPath);
+                // fullPath = RemoveDriveLetter(fullPath);
 
-                filePath = "file://" + fullPath;
+                filePath = "file:///" + fullPath;
             }
 
             filePath = filePath.Replace("\\", "/");
 
             return filePath;
-        }
-
-        private static string RemoveDriveLetter(string fullPath)
-        {
-            if (fullPath[1] == ':') // remove drive letter
-                fullPath = fullPath.Substring(2);
-            return fullPath;
         }
 
         public static async Task<object> GetDynamicStructureAsync(SpecificationType specType, string filePath)
