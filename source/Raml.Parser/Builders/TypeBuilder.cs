@@ -182,30 +182,30 @@ namespace Raml.Parser.Builders
             if(ramlType == null)
                 return;
 
-            if (PrimitiveTypes.Contains(ramlType.Type))
+            if (PrimitiveTypes.Contains(ramlType.Type) && ramlType.Scalar == null)
             {
                 ramlType.Scalar = GetScalar(pair, ramlType.Required);
                 return;
             }
 
-            if (ramlType.Type.StartsWith("{"))
+            if (ramlType.Type.StartsWith("{") && ramlType.External == null)
             {
                 ramlType.External = new ExternalType {Schema = ramlType.Type};
                 return;
             }
-            if (ramlType.Type.StartsWith("<"))
+            if (ramlType.Type.StartsWith("<") && ramlType.External == null)
             {
                 ramlType.External = new ExternalType { Xml = ramlType.Type };
                 return;
             }
 
-            if (ramlType.Type == "object")
+            if (ramlType.Type == "object" && ramlType.Object == null)
             {
                 ramlType.Object = GetObject(dynamicRaml);
                 return;
             }
 
-            if (ramlType.Type == "array" || ramlType.Type.EndsWith("[]"))
+            if ((ramlType.Type == "array" || ramlType.Type.EndsWith("[]")) && ramlType.Array == null)
             {
                 ramlType.Array = GetArray(dynamicRaml, pair.Key);
                 return;
@@ -216,13 +216,13 @@ namespace Raml.Parser.Builders
                 // Inheritance or Specialization
                 var parentType = ramlTypes[ramlType.Type];
 
-                if (parentType.Scalar != null)
+                if (parentType.Scalar != null && ramlType.Scalar == null)
                 {
                     ramlType.Scalar = GetScalar(new KeyValuePair<string, object>(ramlType.Name, dynamicRaml), ramlType.Required);
                     return;
                 }
 
-                if (parentType.Object != null)
+                if (parentType.Object != null && ramlType.Object == null)
                 {
                     ramlType.Object = GetObject(dynamicRaml);
                     return;
@@ -238,7 +238,7 @@ namespace Raml.Parser.Builders
             {
                 defferredTypes.Add(pair.Key, pair.Value);
             }
-            else if (dynamicRaml.ContainsKey("properties"))
+            else if (dynamicRaml.ContainsKey("properties") && ramlType.Object == null)
             {
                 ramlType.Object = GetObject(dynamicRaml);
             }

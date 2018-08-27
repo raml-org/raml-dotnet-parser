@@ -281,6 +281,8 @@ namespace Raml.Parser.Tests
             var model = await parser.LoadAsync("Specifications/typesordering.raml");
             Assert.IsNotNull(model);
             Assert.AreEqual(11, model.Types.Count);
+            Assert.AreEqual(2, model.Types["artist"].Object.Properties.Count());
+            Assert.AreEqual(3, model.Types["album"].Object.Properties.Count());
             Assert.IsNotNull(model.Types["employee"].Object);
             Assert.IsNotNull(model.Types["SupportRepresentant"].Object);
         }
