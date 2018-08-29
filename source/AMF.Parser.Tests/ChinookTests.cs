@@ -44,7 +44,7 @@ namespace UnitTestProject1
             var node = (NodeShape)array.Items;
             //TODO: check
             // Assert.AreEqual("Customer", node.LinkTargetName);
-            Assert.AreEqual(15, node.Properties.Count());
+            Assert.AreEqual(16, node.Properties.Count());
         }
 
         [TestMethod]
@@ -73,8 +73,11 @@ namespace UnitTestProject1
             var customer = (NodeShape)model.Shapes.First(e => e.Name == "Customer");
             Assert.AreEqual(1, customer.Inherits.Count());
             Assert.AreEqual("Person", customer.Inherits.First().Name);
-            Assert.AreEqual(1, customer.Properties.Count());
+            Assert.AreEqual(2, customer.Properties.Count());
             Assert.AreEqual("Company", customer.Properties.First().Range.Name);
+            Assert.AreEqual("CustomerStatus", customer.Properties.Last().Range.Name);
+            Assert.AreEqual(3, customer.Properties.Last().Range.Values.Count());
+            Assert.IsTrue(customer.Properties.Last().Range.Values.All(v => v != null));
             // Assert.AreEqual(14, ((NodeShape)customer.Inherits.First()).Properties.Count());
         }
 
