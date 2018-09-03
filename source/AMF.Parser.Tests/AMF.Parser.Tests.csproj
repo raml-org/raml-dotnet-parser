@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OasTests.cs" />
     <Compile Include="ResourceTypesTests.cs" />
     <Compile Include="IncludeTests.cs" />
     <Compile Include="SpecWithErrorsTest.cs" />
@@ -154,6 +155,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="specs\oas\yaml\petstore.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\yaml\talkvotes.oas2.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="specs\oas\yaml\uber.yaml">

@@ -29,6 +29,7 @@ namespace ConsoleApp2
                 RunPestoreJsonTests();
                 RunArrayTypesTests();
                 RunTypeExpressionsTests();
+                RunOasTests();
                 Console.WriteLine("Succeeded");
                 return 0;
             }
@@ -37,6 +38,14 @@ namespace ConsoleApp2
                 InformException(ex);
                 return 1;
             }
+        }
+
+        private static void RunOasTests()
+        {
+            var tests = new OasTests();
+            tests.Initialize();
+            tests.Endpoints_count();
+            tests.Uber_name_check();
         }
 
         private static void RunResourceTypesTests()
