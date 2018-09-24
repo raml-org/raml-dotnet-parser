@@ -306,8 +306,9 @@ namespace Raml.Parser.Builders
                 }
             }
             // Bug in js parser ??
-            if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] is IDictionary<string, object> typeProps)
+            if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] is IDictionary<string, object>)
             {
+                var typeProps = dynamicRaml["type"] as IDictionary<string, object>;
                 if (typeProps.ContainsKey("properties"))
                 {
                     foreach (var property in (IDictionary<string, object>)typeProps["properties"])
