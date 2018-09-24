@@ -199,6 +199,11 @@ namespace Raml.Parser.Builders
                 return;
             }
 
+            if (ramlType.Type.Contains("|")) // Union Type
+            {
+                return;
+            }
+
             if (ramlType.Type == "object" && ramlType.Object == null)
             {
                 ramlType.Object = GetObject(dynamicRaml);
@@ -227,11 +232,6 @@ namespace Raml.Parser.Builders
                     ramlType.Object = GetObject(dynamicRaml);
                     return;
                 }
-            }
-
-            if (ramlType.Type.Contains("|")) // Union Type
-            {
-                return;
             }
 
             if (!defferredTypes.ContainsKey(pair.Key))
@@ -305,7 +305,17 @@ namespace Raml.Parser.Builders
                     properties.Add(property.Key, GetRamlType(property));
                 }
             }
-
+            // Bug in js parser ??
+            if (dynamicRaml.ContainsKey("type") && dynamicRaml["type"] is IDictionary<string, object> typeProps)
+            {
+                if (typeProps.ContainsKey("properties"))
+                {
+                    foreach (var property in (IDictionary<string, object>)typeProps["properties"])
+                    {
+                        properties.Add(property.Key, GetRamlType(property));
+                    }
+                }
+            }
             obj.Properties = properties;
         }
 
