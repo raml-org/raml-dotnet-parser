@@ -98,6 +98,14 @@ namespace AMF.Parser.Mappers
             if (shape.ContainsKey("raw") && shape["raw"] != null)
                 MapSchema(shape);
 
+            if(shape.ContainsKey("anyOf") && shape["anyOf"] is object[] anyOf && anyOf.Length > 0) // Union
+            {
+                return new UnionShape(Map(shape["anyOf"] as object[]), DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
+                XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
+                shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,
+                StringEnumerationMapper.Map(shape["values"] as object[]), Map(shape["inherits"] as object[]), linkTargetName);
+            }
+
             return new AnyShape(DocumentationMapper.Map(shape["documentation"] as IDictionary<string, object>),
                 XmlSerializerMapper.Map(shape["xmlSerialization"] as IDictionary<string, object>), ExampleMapper.Map(shape["examples"] as object[]),
                 shape["id"] as string, shape["name"] as string, shape["displayName"] as string, shape["description"] as string, @default,

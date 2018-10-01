@@ -19,6 +19,9 @@ namespace ConsoleApp2
         {
             try
             {
+                var parser = new AmfParser();
+                var model = parser.Load("c:/Users/pedro/Downloads/Mortgage_Applications_External_API-v1.0/api.raml").Result;
+
                 RunResourceTypesTests();
                 RunGeneralTests().Wait();
                 RunIncludeTests();
