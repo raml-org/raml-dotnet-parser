@@ -27,15 +27,15 @@ console.log('Start');
 // }
 
 
-// try {
-//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
-//     parser.parse('raml', filepath, function (m) {
-//         console.log(m);
-//     });
-// }
-// catch(ex){
-//     console.log(ex);
-// }
+try {
+    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
+    parser.parse('raml08', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/movies-v1.raml"
