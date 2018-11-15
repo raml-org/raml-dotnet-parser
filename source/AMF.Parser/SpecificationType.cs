@@ -4,6 +4,7 @@
     {
         RAML,
         RAML08,
-        OAS
+        OASJSON,
+        OASYAML
     }
 }

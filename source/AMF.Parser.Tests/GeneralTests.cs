@@ -29,14 +29,14 @@ namespace UnitTestProject1
         public async Task Should_detect_OAS_type_from_yaml_file()
         {
             var type = await AmfParser.DetectType("specs/oas/yaml/api-with-examples.yaml");
-            Assert.AreEqual(SpecificationType.OAS, type);
+            Assert.AreEqual(SpecificationType.OASYAML, type);
         }
 
         [TestMethod]
         public async Task Should_detect_OAS_type_from_json_file()
         {
             var type = await AmfParser.DetectType("specs/oas/json/api-with-examples.json");
-            Assert.AreEqual(SpecificationType.OAS, type);
+            Assert.AreEqual(SpecificationType.OASJSON, type);
         }
 
         [TestMethod]

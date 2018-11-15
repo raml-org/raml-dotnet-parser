@@ -40,13 +40,24 @@ namespace AMF.Parser
                 return SpecificationType.RAML;
 
             if (firstLine.Contains("swagger"))
-                return SpecificationType.OAS;
-            
+                return DetectOasType(filePath);
+
             var secondLine = await file.ReadLineAsync();
             if (secondLine.Contains("swagger"))
-                return SpecificationType.OAS;
+                return DetectOasType(filePath);
 
             throw new FormatException("Unable to determine format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0");
+        }
+
+        private static SpecificationType DetectOasType(string filePath)
+        {
+            if (filePath.EndsWith(".json"))
+                return SpecificationType.OASJSON;
+
+            if (filePath.EndsWith(".yaml"))
+                return SpecificationType.OASYAML;
+
+            throw new FormatException("Unable to determine OAS format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0");
         }
 
         public async Task<AmfModel> Load(SpecificationType type, string filePath)

@@ -47,6 +47,19 @@ console.log('Start');
 //     console.log(ex);
 // }
 
+
+
+// try {
+//     var filepath = "file:///c:/Users/pedro/Downloads/AppianAPI/api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
+
+
 try {
     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
     parser.parse('raml', filepath, function (m) {
@@ -69,7 +82,7 @@ catch(ex){
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/petstore-with-external-docs.yaml"
-//     parser.parse('raml', filepath, function (m) {
+//     parser.parse('oasyaml', filepath, function (m) {
 //         console.log(m);
 //     });
 // }
@@ -89,7 +102,7 @@ catch(ex){
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/json/petstore.json"
-//     parser.parse('raml', filepath, function (m) {
+//     parser.parse('oasjson', filepath, function (m) {
 //         console.log(m);
 //     });
 // }
@@ -109,6 +122,6 @@ catch(ex){
 
 
 // var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/api-with-examples.yaml"
-// parser.parse('oas', filepath, function (m) {
+// parser.parse('oasyaml', filepath, function (m) {
 //     console.log(m);
 // });
