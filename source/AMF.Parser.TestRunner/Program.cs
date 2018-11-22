@@ -21,7 +21,7 @@ namespace ConsoleApp2
             {
                 RunResourceTypesTests();
                 RunGeneralTests().Wait();
-                RunIncludeTests(); // with bugs!
+                RunIncludeTests();
                 RunSpecWithErrorsTests();
                 RunChinookTests();
                 RunMoviesTests();

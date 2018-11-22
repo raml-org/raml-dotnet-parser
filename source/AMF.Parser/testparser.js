@@ -27,9 +27,10 @@ console.log('Start');
 // }
 
 
+
 try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/relative-include.raml"
-    parser.parse('raml08', filepath, function (m) {
+    var filepath = "file:///C:/Users/pedro/AppData/Local/Temp/StiboSystemsSTEPAPI636784782266823525/STEP REST API V2.raml"
+    parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
 }
@@ -60,15 +61,15 @@ catch(ex){
 // }
 
 
-try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
