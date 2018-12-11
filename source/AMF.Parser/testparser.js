@@ -28,15 +28,15 @@ console.log('Start');
 
 
 
-try {
-    var filepath = "file:///C:/Users/pedro/AppData/Local/Temp/StiboSystemsSTEPAPI636784782266823525/STEP REST API V2.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///C:/Users/pedro/AppData/Local/Temp/StiboSystemsSTEPAPI636784782266823525/STEP REST API V2.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/movies-v1.raml"
@@ -50,15 +50,15 @@ catch(ex){
 
 
 
-// try {
-//     var filepath = "file:///c:/Users/pedro/Downloads/AppianAPI/api.raml"
-//     parser.parse('raml', filepath, function (m) {
-//         console.log(m);
-//     });
-// }
-// catch(ex){
-//     console.log(ex);
-// }
+try {
+    var filepath = "file:///c:/Users/pedro/Downloads/rtbs-search-sapi-1.0.2-raml/api.raml"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 
 // try {
