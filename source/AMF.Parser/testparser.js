@@ -4,6 +4,16 @@ var parser = require('parser');
 
 console.log('Start');
 
+try {
+    var filepath = "file:///c:/users/pedro/downloads/testswagger/api.raml"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
+
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
 //     parser.parse('raml08', filepath, function (m) {
@@ -50,15 +60,15 @@ console.log('Start');
 
 
 
-try {
-    var filepath = "file:///c:/Users/pedro/Downloads/rtbs-search-sapi-1.0.2-raml/api.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///c:/Users/pedro/Downloads/rtbs-search-sapi-1.0.2-raml/api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 
 // try {
