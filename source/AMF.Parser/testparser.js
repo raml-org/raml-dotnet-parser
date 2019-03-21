@@ -5,7 +5,7 @@ var parser = require('parser');
 console.log('Start');
 
 try {
-    var filepath = "file:///c:/users/pedro/downloads/testswagger/api.raml"
+    var filepath = "file:///c:/users/pwood/downloads/testswagger/api.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -39,7 +39,7 @@ catch(ex){
 
 
 // try {
-//     var filepath = "file:///C:/Users/pedro/AppData/Local/Temp/StiboSystemsSTEPAPI636784782266823525/STEP REST API V2.raml"
+//     var filepath = "file:///c:/users/pwood/AppData/Local/Temp/StiboSystemsSTEPAPI636784782266823525/STEP REST API V2.raml"
 //     parser.parse('raml', filepath, function (m) {
 //         console.log(m);
 //     });
@@ -61,7 +61,7 @@ catch(ex){
 
 
 // try {
-//     var filepath = "file:///c:/Users/pedro/Downloads/rtbs-search-sapi-1.0.2-raml/api.raml"
+//     var filepath = "file:///c:/users/pwood/Downloads/rtbs-search-sapi-1.0.2-raml/api.raml"
 //     parser.parse('raml', filepath, function (m) {
 //         console.log(m);
 //     });
