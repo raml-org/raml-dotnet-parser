@@ -1,0 +1,42 @@
+pipeline {
+
+    agent {
+        label 'windows10'
+    }
+
+    stages {
+        stage('Pull'){
+            steps {
+                git branch: 'develop', credentialsId: 'github', url: 'https://github.com/mulesoft/amf-dotnet-parser.git'
+            }
+        }
+        stage('Build') {
+            steps {
+           		bat 'nuget restore source/AMF.Parser.sln'
+        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=0.9.4.${env.BUILD_NUMBER}"
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("source/AMF.Parser.TestRunner/bin/Release/"){
+                    bat 'ConsoleApp2.exe'
+                }
+            }
+        }
+        stage('Pack') {
+            steps {
+        		bat 'nuget pack source/AMF.Parser/AMF.Parser.csproj -Prop Configuration=Release'
+            }
+        }        
+    }
+
+    post {
+        always {
+            archiveArtifacts '*.nupkg'
+            
+        }
+        cleanup {
+            cleanWs()
+        }
+    }
+}
