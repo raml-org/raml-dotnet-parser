@@ -5,11 +5,6 @@ pipeline {
     }
 
     stages {
-        stage('Pull'){
-            steps {
-                git branch: 'develop', credentialsId: 'github', url: 'https://github.com/mulesoft/amf-dotnet-parser.git'
-            }
-        }
         stage('Build') {
             steps {
            		bat 'nuget restore source/AMF.Parser.sln'
