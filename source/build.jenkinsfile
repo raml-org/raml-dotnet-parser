@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
            		bat 'nuget restore source/AMF.Parser.sln'
-        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=0.9.4.${env.BUILD_NUMBER}"
+        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
             }
         }
         stage('Test') {
