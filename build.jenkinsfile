@@ -13,7 +13,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'nunit3-console.exe "%WORKSPACE%\\source\\RAML.Parser.Tests\\bin\\Release\\RAML.Parser.Tests.dll" --result=TestRAMLParser.xml'
+                
+                bat '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe" /resultsfile:"%WORKSPACE%\\Results.trx" /testcontainer:"%WORKSPACE%\\source\\RAML.Parser.Tests\\bin\\Release\\RAML.Parser.Tests.dll" /nologo'
+                //bat 'nunit3-console.exe "%WORKSPACE%\\source\\RAML.Parser.Tests\\bin\\Release\\RAML.Parser.Tests.dll" --result=TestRAMLParser.xml'
             }
         }
         stage('Pack') {
