@@ -1,12 +1,11 @@
 ﻿using System.Linq;
-using NUnit.Framework;
 using Raml.Parser.Expressions;
 using System.Threading.Tasks;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Raml.Parser.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class ModelTests
 	{
         private async Task<RamlDocument> GetRaml()
@@ -17,7 +16,7 @@ namespace Raml.Parser.Tests
             return raml;
         }
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseResources()
 		{
             var raml = await GetRaml();
@@ -28,7 +27,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, raml.Resources.First(r => r.RelativeUri == "/sales").Methods.First(m => m.Verb == "get").Responses.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseSchemas()
 		{
             var raml = await GetRaml();
@@ -36,7 +35,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(4, raml.Schemas.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseDocumentation()
 		{
             var raml = await GetRaml();
@@ -44,7 +43,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(1, raml.Documentation.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseResourceTypes()
 		{
             var raml = await GetRaml();
@@ -53,7 +52,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(1, raml.ResourceTypes.First()["base"].Get.Responses.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseTraits()
 		{
             var raml = await GetRaml();
@@ -63,7 +62,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(2, raml.Traits.First()["filterable"].QueryParameters.Count);
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseProtocols()
 		{
             var raml = await GetRaml();
@@ -71,7 +70,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(1, raml.Protocols.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParseSecuritySchemes()
 		{
 			var parser = new RamlParser();
@@ -80,7 +79,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(1, result.SecuritySchemes.Count());
 		}
 
-	    [Test]
+	    [TestMethod]
 	    public async Task ShouldParseHeaders()
 	    {
 	        var parser = new RamlParser();
@@ -88,7 +87,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("Zencoder-Api-Key", result.Resources.First().Methods.First().Headers.Keys.First());
 	    }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseHeadersWhenInTraits()
         {
             var parser = new RamlParser();
@@ -99,7 +98,7 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(result.Traits.First(t => t.ContainsKey("chargeable"))["chargeable"].Headers.ContainsKey("X-Dept"));
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseHeadersWhenInResponses()
         {
             var parser = new RamlParser();
@@ -108,7 +107,7 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(result.Resources.First(r => r.RelativeUri == "/jobs").Methods.First().Responses.First().Headers.ContainsKey("Other"));
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseQueryString()
         {
             var parser = new RamlParser();

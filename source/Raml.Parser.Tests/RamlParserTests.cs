@@ -2,15 +2,14 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Raml.Parser.Tests
 {
-	[TestFixture]
+	[TestClass]
 	public class RamlParserTests
 	{
-		[Test]
+		[TestMethod]
 		public async Task ShouldLoad_WhenValidRAML()
 		{
 			var parser = new RamlParser();
@@ -19,7 +18,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(2, raml.Resources.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldLoad_WhenHasIncludes()
 		{
 			var parser = new RamlParser();
@@ -31,14 +30,15 @@ namespace Raml.Parser.Tests
 		}
 
 
-        [Test]
-        public void ShouldThrowError_WhenInvalidRAML()
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public async Task ShouldThrowError_WhenInvalidRAML()
         {
             var parser = new RamlParser();
-            Assert.ThrowsAsync(typeof(FormatException), async () => await parser.LoadAsync("Specifications/raml08/invalid.raml"));
+            await parser.LoadAsync("Specifications/raml08/invalid.raml");
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldThrowErrorLineInfo_WhenInvalidRAML()
         {
             try
@@ -70,7 +70,7 @@ namespace Raml.Parser.Tests
   //          Assert.AreEqual(2, raml.Resources.Count());
   //      }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_WhenArrays()
         {
             var parser = new RamlParser();
@@ -80,7 +80,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(4, raml.Types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_WhenCustomScalar()
         {
             var parser = new RamlParser();
@@ -89,17 +89,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, raml.Types.Count);
         }
 
-        [Test, Ignore("Maps seems to be no longer part of the spec...")]
-        public async Task ShouldLoad_WhenMaps()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/maps.raml");
-
-            Assert.AreEqual(4, raml.Types.Count);
-            Assert.AreEqual(1, raml.Resources.Count());
-        }
-
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_WhenMoviesV1()
         {
             var parser = new RamlParser();
@@ -109,7 +99,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, raml.Resources.First().Methods.Count());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_WhenMovieType()
         {
             var parser = new RamlParser();
@@ -120,7 +110,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, raml.Resources.Count());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_WhenTypeExpressions()
         {
             var parser = new RamlParser();
@@ -130,7 +120,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(3, raml.Resources.First().Methods.Count());
         }
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParse_WhenHasInclude()
 		{
 			var parser = new RamlParser();
@@ -140,7 +130,7 @@ namespace Raml.Parser.Tests
 			Assert.AreEqual(2, raml.Resources.First().Methods.Count());
 		}
 
-		[Test]
+		[TestMethod]
 		public async Task ShouldParse_Congo()
 		{
 			var parser = new RamlParser();
@@ -151,7 +141,7 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(raml.ResourceTypes.First(x => x.ContainsKey("collection"))["collection"].Get);
 		}
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParse_Movies()
         {
             var parser = new RamlParser();
@@ -163,7 +153,7 @@ namespace Raml.Parser.Tests
                 .Responses.First(r => r.Code == "200").Body["application/json"].Schema);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParse_Traits()
         {
             var parser = new RamlParser();
@@ -174,7 +164,7 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(raml.Traits.First()["with2Responses"].Responses.All(r => r.Body["application/json"].Schema != null));
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoad_IncludeWithQuotes()
         {
             var parser = new RamlParser();
@@ -185,7 +175,7 @@ namespace Raml.Parser.Tests
                 .Responses.First(r => r.Code == "200").Body["application/json"].Schema);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldLoadInlinedTypes()
         {
             var parser = new RamlParser();
@@ -195,7 +185,7 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(raml.Resources.First().Methods.Last().Body.First().Value.InlineType);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseFileType()
         {
             var parser = new RamlParser();
@@ -204,7 +194,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("file", raml.Types["Person"].Object.Properties["Picture"].Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseCustomerAsObject()
         {
             var parser = new RamlParser();
@@ -226,7 +216,7 @@ namespace Raml.Parser.Tests
         //    Assert.AreEqual(1, raml.Resources.First().Methods.Count());
         //}
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleUnionTypes()
         {
             var parser = new RamlParser();
@@ -235,7 +225,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(3, raml.Types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleXmlExternal()
         {
             var parser = new RamlParser();
@@ -257,7 +247,7 @@ namespace Raml.Parser.Tests
         //    Assert.IsNotNull(raml.ResourceTypes.First(r => r.ContainsKey("collectionResource"))["collectionResource"].Post.Body.Type);
         //}
 
-        [Test]
+        [TestMethod]
         public async Task ShouldReportErrors()
         {
             var parser = new RamlParser();
@@ -273,7 +263,7 @@ namespace Raml.Parser.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseDisorderedTypes()
         {
             var parser = new RamlParser();
@@ -286,7 +276,7 @@ namespace Raml.Parser.Tests
             Assert.IsNotNull(model.Types["SupportRepresentant"].Object);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseDependentTypes()
         {
             var parser = new RamlParser();
@@ -295,7 +285,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, model.Types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseDateTypes()
         {
             var parser = new RamlParser();
@@ -316,7 +306,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("datetime-only", model.Types["sample"].Object.Properties.First(p => p.Key == "prop2").Value.Scalar.Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseSalesOrders()
         {
             var parser = new RamlParser();
@@ -326,7 +316,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, model.Types["salesOrderCollectionResponse"].Object.Properties.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseMultipleLibraries()
         {
             var parser = new RamlParser();
@@ -334,7 +324,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(14, model.Types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseRaml200Tutoriasl()
         {
             var parser = new RamlParser();
@@ -343,7 +333,7 @@ namespace Raml.Parser.Tests
             Assert.IsTrue(model.Resources.SelectMany(r => r.Methods).SelectMany(m => m.Is).All(i => i == "searchable" || i == "orderable" || i == "pageable"));
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseResourceTypes()
         {
             var parser = new RamlParser();
@@ -352,7 +342,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, model.ResourceTypes.First().Values.First().UriParameters.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseSecuritySchemas()
         {
             var parser = new RamlParser();
@@ -360,7 +350,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(1, result.SecuritySchemes.Count());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseTypeWhenArrayWithScalarItem()
         {
             var parser = new RamlParser();
@@ -370,7 +360,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("string", raml.Types["foo"].Object.Properties["bar"].Array.Items.Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseTypeWhenArrayWithTypeItem()
         {
             var parser = new RamlParser();
@@ -381,7 +371,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("error[]", raml.Traits.First()["Error400"].Responses.First().Body["application/json"].Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseLibraryTraitsWithPrefix()
         {
             var parser = new RamlParser();
@@ -392,7 +382,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("Lib.filtered_by_month", raml.Resources.First().Methods.First().Is.First());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseLibrarySecuritySchemasWithPrefix()
         {
             var parser = new RamlParser();
@@ -403,7 +393,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("Lib.oauth_2_0", raml.Resources.First().Methods.First().SecuredBy.First());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleNullDescription()
         {
             var parser = new RamlParser();
@@ -412,7 +402,7 @@ namespace Raml.Parser.Tests
             Assert.IsNull(raml.Resources.First().Methods.First().Description);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleAnyType()
         {
             var parser = new RamlParser();

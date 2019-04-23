@@ -1,25 +1,17 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Raml.Parser.Expressions;
 
 namespace Raml.Parser.Tests
 {
+    [TestClass]
     public class TypesTests
     {
         private static RamlParser parser;
 
-        [Test, Ignore("Maps seems to be no longer part of the spec...")]
-        public async Task ShouldParseMapTypes()
-        {
-            var raml = await Parse("specifications/maps.raml");
-
-            Assert.AreEqual(4, raml.Types.Count);
-            Assert.AreEqual("object", raml.Types["Person"].Type);
-        }
-
-        [Test]
+        [TestMethod]
         public async Task ShouldParseComplexTypes()
         {
             var raml = await Parse("specifications/complextypes.raml");
@@ -33,7 +25,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("integer", raml.Types["SomeArray"].Array.Items.Object.Properties["prop1"].Scalar.Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseTypes_Movies1()
         {
             var raml = await Parse("specifications/movietype.raml");
@@ -42,7 +34,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("object", raml.Types["Movie"].Type);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseAsRequiredByDefault()
         {
             var raml = await Parse("specifications/movietype.raml");
@@ -53,7 +45,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(true, raml.Types["Movie"].Object.Properties.First(p => p.Key == "name").Value.Required);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleTypeProperties_Movies1()
         {
             var raml = await Parse("specifications/movietype.raml");
@@ -64,7 +56,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(9, raml.Types["Movie"].Object.Properties.Count());
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleTypeExpressions()
         {
             var raml = await Parse("specifications/typeexpressions.raml");
@@ -74,7 +66,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("(string | Movie)[]", raml.Resources.First().Methods.First(m => m.Verb == "post").Body.First().Value.Schema);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldHandleCustomScalars()
         {
             var raml = await Parse("specifications/customscalar.raml");
@@ -82,7 +74,7 @@ namespace Raml.Parser.Tests
             Assert.AreEqual(2, raml.Types.Count);
         }
 
-        [Test]
+        [TestMethod]
         public async Task ShouldParseNumberFormats()
         {
             var raml = await Parse("specifications/numbers.raml");
