@@ -31,13 +31,12 @@ namespace Raml.Parser.Tests
 		}
 
 
-		[Test]
-		[ExpectedException(typeof(FormatException))]
-		public async Task ShouldThrowError_WhenInvalidRAML()
-		{
-			var parser = new RamlParser();
-            await parser.LoadAsync("Specifications/raml08/invalid.raml");
-		}
+        [Test]
+        public void ShouldThrowError_WhenInvalidRAML()
+        {
+            var parser = new RamlParser();
+            Assert.ThrowsAsync(typeof(FormatException), async () => await parser.LoadAsync("Specifications/raml08/invalid.raml"));
+        }
 
         [Test]
         public async Task ShouldThrowErrorLineInfo_WhenInvalidRAML()
@@ -53,23 +52,23 @@ namespace Raml.Parser.Tests
             }
         }
 
-		[Test, Ignore]
-		public async Task ShouldLoad_WhenAnnotationsTargets()
-		{
-			var parser = new RamlParser();
-			var raml = await parser.LoadAsync("Specifications/annotations-targets.raml");
+		//[Test, Ignore]
+		//public async Task ShouldLoad_WhenAnnotationsTargets()
+		//{
+		//	var parser = new RamlParser();
+		//	var raml = await parser.LoadAsync("Specifications/annotations-targets.raml");
 
-			Assert.AreEqual(2, raml.Resources.Count());
-		}
+		//	Assert.AreEqual(2, raml.Resources.Count());
+		//}
 
-        [Test, Ignore]
-        public async Task ShouldLoad_WhenAnnotations()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/annotations.raml");
+  //      [Test, Ignore]
+  //      public async Task ShouldLoad_WhenAnnotations()
+  //      {
+  //          var parser = new RamlParser();
+  //          var raml = await parser.LoadAsync("Specifications/annotations.raml");
 
-            Assert.AreEqual(2, raml.Resources.Count());
-        }
+  //          Assert.AreEqual(2, raml.Resources.Count());
+  //      }
 
         [Test]
         public async Task ShouldLoad_WhenArrays()
@@ -215,17 +214,17 @@ namespace Raml.Parser.Tests
             Assert.AreEqual("string", raml.Types["Customer"].Object.Properties["Company"].Type);
         }
 
-        [Test, Ignore]
-        public async Task ShouldHandleOverlay()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/librarybooks.raml", new[] {"Specifications/librarybooks-overlay.raml"});
+        //[Test, Ignore]
+        //public async Task ShouldHandleOverlay()
+        //{
+        //    var parser = new RamlParser();
+        //    var raml = await parser.LoadAsync("Specifications/librarybooks.raml", new[] {"Specifications/librarybooks-overlay.raml"});
 
-            Assert.AreEqual(2, raml.Documentation.Count());
-            Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First().Content);
-            Assert.AreEqual("Book Library API", raml.Title);
-            Assert.AreEqual(1, raml.Resources.First().Methods.Count());
-        }
+        //    Assert.AreEqual(2, raml.Documentation.Count());
+        //    Assert.AreEqual("El acceso automatizado a los libros", raml.Documentation.First().Content);
+        //    Assert.AreEqual("Book Library API", raml.Title);
+        //    Assert.AreEqual(1, raml.Resources.First().Methods.Count());
+        //}
 
         [Test]
         public async Task ShouldHandleUnionTypes()
@@ -247,16 +246,16 @@ namespace Raml.Parser.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(raml.Types["ItemsType"].External.Xml));
         }
 
-        [Test, Ignore]
-        public async Task ShouldBuild_SalesOrder()
-        {
-            var parser = new RamlParser();
-            var raml = await parser.LoadAsync("Specifications/salesOrders.raml");
+        //[Test, Ignore]
+        //public async Task ShouldBuild_SalesOrder()
+        //{
+        //    var parser = new RamlParser();
+        //    var raml = await parser.LoadAsync("Specifications/salesOrders.raml");
 
-            Assert.AreEqual(18, raml.Types.Count);
-            Assert.IsNotNull(raml.ResourceTypes.First(r=>  r.ContainsKey("collectionResource"))["collectionResource"].Post.Body);
-            Assert.IsNotNull(raml.ResourceTypes.First(r => r.ContainsKey("collectionResource"))["collectionResource"].Post.Body.Type);
-        }
+        //    Assert.AreEqual(18, raml.Types.Count);
+        //    Assert.IsNotNull(raml.ResourceTypes.First(r=>  r.ContainsKey("collectionResource"))["collectionResource"].Post.Body);
+        //    Assert.IsNotNull(raml.ResourceTypes.First(r => r.ContainsKey("collectionResource"))["collectionResource"].Post.Body.Type);
+        //}
 
         [Test]
         public async Task ShouldReportErrors()
