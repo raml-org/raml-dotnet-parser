@@ -1,0 +1,35 @@
+pipeline {
+
+    agent {
+        label 'windows10'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+           		bat 'nuget restore source/RAMLParser2.sln'
+        		bat "msbuild source/RAMLParser2.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'nunit3-console.exe "%WORKSPACE%\\source\\RAML.Parser.Tests\\bin\\Release\\RAML.Parser.Tests.dll" --result=TestRAMLParser.xml'
+            }
+        }
+        stage('Pack') {
+            steps {
+        		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
+            }
+        }        
+    }
+
+    post {
+        always {
+            archiveArtifacts '*.nupkg'
+            
+        }
+        cleanup {
+            cleanWs()
+        }
+    }
+}
