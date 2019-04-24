@@ -22,13 +22,13 @@ pipeline {
             steps {
         		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
             }
-        }        
+        }      
     }
 
     post {
         always {
             archiveArtifacts '*.nupkg'
-            
+            mstest testResultsFile:"**/*.trx", keepLongStdio: true
         }
         cleanup {
             cleanWs()
