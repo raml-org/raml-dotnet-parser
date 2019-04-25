@@ -11,11 +11,11 @@ pipeline {
         		bat "msbuild source/RAMLParser2.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
             }
         }
-        stage('Test') {
-            steps {
-                // bat '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe" "source\\Raml.Parser.Tests\\bin\\Release\\Raml.Parser.Tests.dll" /logger:trx;LogFileName=RamlNetParser.trx'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         bat '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe" "source\\Raml.Parser.Tests\\bin\\Release\\Raml.Parser.Tests.dll" /logger:trx;LogFileName=RamlNetParser.trx'
+        //     }
+        // }
         stage('Pack') {
             steps {
         		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
