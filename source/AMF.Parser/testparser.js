@@ -5,7 +5,7 @@ var parser = require('parser');
 console.log('Start');
 
 try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/anypoint-bank-experience-api-2.0.1-raml/banking_authorization_server.raml"
+    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/anypoint-bank-experience-api-2.0.1-raml/Banking_Portal_Experience_API.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -15,15 +15,15 @@ catch(ex){
 }
 
 
-try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 
 // try {
@@ -93,15 +93,15 @@ catch(ex){
 // }
 
 
-try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
