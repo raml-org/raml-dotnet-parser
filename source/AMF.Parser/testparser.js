@@ -5,7 +5,7 @@ var parser = require('parser');
 console.log('Start');
 
 try {
-    var filepath = "file:///c:/users/pwood/downloads/testswagger/api.raml"
+    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/anypoint-bank-experience-api-2.0.1-raml/banking_authorization_server.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -13,6 +13,28 @@ try {
 catch(ex){
     console.log(ex);
 }
+
+
+try {
+    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
+    parser.parse('raml08', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
+
+
+// try {
+//     var filepath = "file:///c:/users/pwood/downloads/testswagger/api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/included-files.raml"
