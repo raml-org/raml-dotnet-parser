@@ -17,7 +17,7 @@ catch(ex){
 
 try {
     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
-    parser.parse('raml08', filepath, function (m) {
+    parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
 }
@@ -93,15 +93,15 @@ catch(ex){
 // }
 
 
-// try {
-//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
-//     parser.parse('raml', filepath, function (m) {
-//         console.log(m);
-//     });
-// }
-// catch(ex){
-//     console.log(ex);
-// }
+try {
+    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/chinook-v1.raml"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"

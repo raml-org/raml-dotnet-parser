@@ -19,7 +19,9 @@ namespace ConsoleApp2
         {
             try
             {
+                // issue APIMF-1473
                 RunResourceTypesTests();
+
                 RunGeneralTests().Wait();
                 RunIncludeTests();
                 RunSpecWithErrorsTests();

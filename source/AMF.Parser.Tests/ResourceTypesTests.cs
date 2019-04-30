@@ -15,7 +15,7 @@ namespace UnitTestProject1
         public async Task Should_work_with_resource_types()
         {
             var model = await parser.Load("specs/resource-types.raml");
-            Assert.IsNotNull(model);
+            Assert.AreEqual(2, model.WebApi.EndPoints.Count());
         }
     }
 }
