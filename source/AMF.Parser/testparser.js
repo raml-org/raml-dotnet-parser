@@ -4,6 +4,19 @@ var parser = require('parser');
 
 console.log('Start');
 
+
+
+// try {
+//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/catalyst-healthcare-appointment-api-2.0.1-raml/healthcare_appointment_process_api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
+
+
 try {
     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/github-api-1.0.0-raml/api.raml"
     parser.parse('raml08', filepath, function (m) {
