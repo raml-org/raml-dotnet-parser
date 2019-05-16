@@ -4,6 +4,16 @@ var parser = require('parser');
 
 console.log('Start');
 
+try {
+    var filepath = "file:///C:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/account-aggregation-process-api-2.0.0-raml/banking_accounts_process_api.raml"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
+
 
 
 // try {
@@ -17,15 +27,15 @@ console.log('Start');
 // }
 
 
-try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/github-api-1.0.0-raml/api.raml"
-    parser.parse('raml08', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/github-api-1.0.0-raml/api.raml"
+//     parser.parse('raml08', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/anypoint-bank-experience-api-2.0.1-raml/Banking_Portal_Experience_API.raml"

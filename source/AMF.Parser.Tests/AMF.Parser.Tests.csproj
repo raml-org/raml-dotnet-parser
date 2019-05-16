@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankingAccountProcessTests.cs" />
     <Compile Include="OasTests.cs" />
     <Compile Include="ResourceTypesTests.cs" />
     <Compile Include="IncludeTests.cs" />
@@ -64,6 +65,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\banking_accounts_process_api.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\examples\get_accounts_aggregate_example.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\examples\get_transactions_aggregate_example.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\exchange_modules\org.mule.templates\banking-account\1.0.0\banking_account.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\exchange_modules\org.mule.templates\banking-common\1.0.1\banking_common.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\account-aggregation-process-api-2.0.0-raml\exchange_modules\org.mule.templates\banking-transaction\1.0.0\banking_transaction.raml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="specs\anytype.raml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

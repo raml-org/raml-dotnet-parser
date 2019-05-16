@@ -19,11 +19,10 @@ namespace ConsoleApp2
         {
             try
             {
-                // issue APIMF-1473
-                RunResourceTypesTests();
-
                 RunGeneralTests().Wait();
+                RunResourceTypesTests();
                 RunIncludeTests();
+                RunBankingAccountProcessTests(); // "uses"
                 RunSpecWithErrorsTests();
                 RunChinookTests();
                 RunMoviesTests();
@@ -40,6 +39,14 @@ namespace ConsoleApp2
                 InformException(ex);
                 return 1;
             }
+        }
+
+        private static void RunBankingAccountProcessTests()
+        {
+            var tests = new BankingAccountProcessTests();
+            tests.Initialize();
+            tests.Endpoints_should_be_2();
+            tests.should_include_shapes_in_uses(); // RP-583
         }
 
         private static void RunOasTests()
