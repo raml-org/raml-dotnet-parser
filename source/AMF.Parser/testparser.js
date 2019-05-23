@@ -5,7 +5,7 @@ var parser = require('parser');
 console.log('Start');
 
 try {
-    var filepath = "file:///C:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/account-aggregation-process-api-2.0.0-raml/banking_accounts_process_api.raml"
+    var filepath = "file:///c:/Users/pwood/Downloads/rtbs-pm-sapi-1.0.21-raml/api.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -13,6 +13,16 @@ try {
 catch(ex){
     console.log(ex);
 }
+
+// try {
+//     var filepath = "file:///C:/desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/account-aggregation-process-api-2.0.0-raml/banking_accounts_process_api.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 
 
@@ -78,8 +88,6 @@ catch(ex){
 // catch(ex){
 //     console.log(ex);
 // }
-
-
 
 // try {
 //     var filepath = "file:///Users/pedro/Downloads/american-flights-api-1.0.0-raml/american-flights-api.raml"
