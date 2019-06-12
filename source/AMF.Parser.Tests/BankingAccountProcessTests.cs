@@ -26,7 +26,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void should_include_shapes_in_uses()
         {
-            Assert.AreEqual(15, model.Shapes.Count());
+            Assert.AreEqual(39, model.Shapes.Count());
         }
 
     }
