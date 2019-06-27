@@ -95,7 +95,7 @@ namespace AMF.Parser
                 var fullPath = Path.GetFullPath(filePath);
                 // fullPath = RemoveDriveLetter(fullPath);
 
-                filePath = "file:///" + fullPath;
+                filePath = "file:///" + fullPath.Substring(3);
             }
             else
             {
@@ -105,7 +105,7 @@ namespace AMF.Parser
                 var fullPath = Path.GetFullPath(filePath.Substring(7));
                 // fullPath = RemoveDriveLetter(fullPath);
 
-                filePath = "file:///" + fullPath;
+                filePath = "file:///" + fullPath.Substring(3);
             }
 
             filePath = filePath.Replace("\\", "/");
