@@ -21,6 +21,9 @@ pipeline {
         stage('Pack') {
             steps {
         		bat 'nuget pack source/AMF.Parser/AMF.Parser.csproj -Prop Configuration=Release'
+                withCredentials([string(credentialsId: 'AMF-Net-NugetKey', variable: 'NugetApiKey')]) {
+                    bat "nuget push *.nupkg -source https://nexus.dev.build.msap.io/nexus/service/local/nuget/NuGet/ $NugetApiKey"
+                }
             }
         }        
     }
