@@ -5,6 +5,16 @@ var parser = require('parser');
 console.log('Start');
 
 // try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-tools/src/tools/AMF.Tools.Tests/exchange/mule-twilio-connector-3.0.0-raml/twilio-connector.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
+
+// try {
 //     var filepath = "file:///c:/Users/pwood/Downloads/rtbs-pm-sapi-1.0.21-raml/api.raml"
 //     parser.parse('raml', filepath, function (m) {
 //         console.log(m);
@@ -143,15 +153,15 @@ catch(ex){
     console.log(ex);
 }
 
-try {
-    var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/resource-types.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///c:/desarrollo/mulesoft/amf-dotnet-parser/source/AMF.Parser.Tests/specs/oas/yaml/petstore-with-external-docs.yaml"
