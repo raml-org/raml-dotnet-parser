@@ -44,7 +44,6 @@ namespace ConsoleApp2
         private static void RunBankingAccountProcessTests()
         {
             var tests = new BankingAccountProcessTests();
-            tests.twilio_test();
             tests.Initialize();
             tests.Endpoints_should_be_2();
             tests.should_include_shapes_in_uses(); // RP-583

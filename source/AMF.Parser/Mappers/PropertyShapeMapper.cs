@@ -21,7 +21,7 @@ namespace AMF.Parser.Mappers
                 return null;
 
             return new PropertyShape(prop["path"] as string, ShapeMapper.Map(prop["range"] as IDictionary<string, object>), 
-                ParameterMapperUtils.MapInt(prop, "minCount"), ParameterMapperUtils.MapInt(prop, "maxCount"));
+                prop["inheritanceProvenance"] as string, ParameterMapperUtils.MapInt(prop, "minCount"), ParameterMapperUtils.MapInt(prop, "maxCount"));
         }
     }
 }
