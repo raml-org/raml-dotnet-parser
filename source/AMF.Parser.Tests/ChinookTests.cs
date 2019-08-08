@@ -72,7 +72,7 @@ namespace UnitTestProject1
         {
             var customer = (NodeShape)model.Shapes.First(e => e.Name == "Customer");
             var person = (NodeShape)model.Shapes.First(e => e.Name == "Person");
-            Assert.AreEqual(person.Id, customer.Properties.First(p => p.Range.Name == "Email").InheritanceProvenance);
+            Assert.AreEqual(person.Id, customer.Properties.First(p => p.Range.Name == "Email?").InheritanceProvenance);
             //Assert.AreEqual(1, customer.Inherits.Count());
             //Assert.AreEqual("Person", customer.Inherits.First().Name);
             //Assert.AreEqual(2, customer.Properties.Count());
