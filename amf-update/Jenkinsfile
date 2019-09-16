@@ -1,0 +1,37 @@
+pipeline {
+
+    agent {
+        label 'windows10'
+    }
+
+    stages {
+        stage('Update AMF'){
+            bat 'automate.ps1 source/AMF.Parser/'
+        }
+        stage('Build') {
+            steps {
+           		bat 'nuget restore source/AMF.Parser.sln'
+        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("source/AMF.Parser.TestRunner/bin/Release/"){
+                    bat 'ConsoleApp2.exe'
+                }
+            }
+        }
+        stage('Pack') {
+            steps {
+                // zip files
+            }
+        }        
+    }
+
+    post {
+        // notify if failed
+        cleanup {
+            cleanWs()
+        }
+    }
+}
