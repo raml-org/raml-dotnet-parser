@@ -23,11 +23,11 @@ pipeline {
                 }
             }
         }
-        stage('Pack') {
-            steps {
-                // zip files
-            }
-        }        
+        // stage('Pack') {
+        //     steps {
+        //         // zip files
+        //     }
+        // }        
     }
 
     post {
