@@ -6,7 +6,7 @@ pipeline {
 
     stages {
         stage('Update AMF'){
-            powershell returnStatus: true, script: '.\\automate.ps1 source/AMF.Parser/'
+            bat 'automate.ps1 source/AMF.Parser/'
         }
         stage('Build') {
             steps {
