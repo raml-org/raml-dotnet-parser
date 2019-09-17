@@ -7,7 +7,8 @@ pipeline {
     stages {
         stage('Update AMF'){
             steps {
-                powershell returnStatus: true, script: 'amf-update/automate.ps1 source/AMF.Parser/'
+                // powershell returnStatus: true, script: 'amf-update/automate.ps1 source/AMF.Parser/'
+                bat "dotnet amf-update/AmfUpdate.dll source/AMF.Parser/AMF.Parser.csproj false"
             }
         }
         stage('Build') {
@@ -23,16 +24,18 @@ pipeline {
                 }
             }
         }
-        // stage('Pack') {
-        //     steps {
-        //         // zip files
-        //     }
-        // }        
+        stage('Pack') {
+            steps {
+                // zip files
+                zip dir:'source/AMF.Parser/', zipFile: 'AMF.Parser.zip'
+            }
+        }        
     }
 
     post {
         // notify if failed
         cleanup {
+            archiveArtifacts '*.zip'
             cleanWs()
         }
     }
