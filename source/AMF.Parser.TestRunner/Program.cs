@@ -19,18 +19,18 @@ namespace ConsoleApp2
         {
             try
             {
-                //RunGeneralTests().Wait();
-                //RunResourceTypesTests();
-                //RunIncludeTests();
-                //RunBankingAccountProcessTests(); // "uses"
-                //RunSpecWithErrorsTests();
+                RunGeneralTests().Wait();
+                RunResourceTypesTests();
+                RunIncludeTests();
+                RunBankingAccountProcessTests(); // "uses"
+                RunSpecWithErrorsTests();
                 RunChinookTests();
-                //RunMoviesTests();
-                //RunApiWithExamplesTests();
-                //RunPestoreJsonTests();
-                //RunArrayTypesTests();
-                //RunTypeExpressionsTests();
-                //RunOasTests();
+                RunMoviesTests();
+                RunApiWithExamplesTests();
+                RunPestoreJsonTests();
+                RunArrayTypesTests();
+                RunTypeExpressionsTests();
+                RunOasTests();
                 Console.WriteLine("Succeeded");
                 return 0;
             }
@@ -127,13 +127,13 @@ namespace ConsoleApp2
         {
             var tests = new ChinookTests();
             tests.Initialize();
-            //tests.Name_should_be_chinook_raml_1_api();
-            //tests.Endpoints_should_be_10();
-            //tests.Get_customers_response();
-            //tests.Get_albums_response();
-            //tests.Shapes_count();
+            tests.Name_should_be_chinook_raml_1_api();
+            tests.Endpoints_should_be_10();
+            tests.Get_customers_response();
+            tests.Get_albums_response();
+            tests.Shapes_count();
             tests.Customer_shape(); // inheritance
-            //tests.Invoice_shape();
+            tests.Invoice_shape();
         }
 
         private static void RunMoviesTests()
