@@ -33,9 +33,12 @@ pipeline {
     }
 
     post {
-        // notify if failed
-        cleanup {
+        always {
             archiveArtifacts '*.zip'
+            notifySlack(currentBuild.currentResult)
+        }
+        cleanup {
+            
             cleanWs()
         }
     }
