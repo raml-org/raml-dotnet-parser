@@ -35,7 +35,6 @@ pipeline {
     post {
         always {
             archiveArtifacts '*.zip'
-            notifySlack(currentBuild.currentResult)
         }
         cleanup {
             
