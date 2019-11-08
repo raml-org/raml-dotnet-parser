@@ -7,20 +7,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-           		bat 'nuget restore source/AMF.Parser.sln'
-        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+           		bat 'nuget restore source/RAML.Parser.sln'
+        		bat "msbuild source/RAML.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
             }
         }
         stage('Test') {
             steps {
-                dir("source/AMF.Parser.TestRunner/bin/Release/"){
+                dir("source/RAML.Parser.TestRunner/bin/Release/"){
                     bat 'ConsoleApp2.exe'
                 }
             }
         }
         stage('Pack') {
             steps {
-        		bat 'nuget pack source/AMF.Parser/AMF.Parser.csproj -Prop Configuration=Release'
+        		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
                 withCredentials([string(credentialsId: 'AMF-Net-NugetKey', variable: 'NugetApiKey')]) {
                     bat "nuget push *.nupkg -source https://nexus.dev.build.msap.io/nexus/service/local/nuget/NuGet/ $NugetApiKey"
                 }
