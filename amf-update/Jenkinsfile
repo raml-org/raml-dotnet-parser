@@ -8,18 +8,18 @@ pipeline {
         stage('Update AMF'){
             steps {
                 // powershell returnStatus: true, script: 'amf-update/automate.ps1 source/AMF.Parser/'
-                bat "dotnet amf-update/AmfUpdate.dll source/AMF.Parser/AMF.Parser.csproj false"
+                bat "dotnet amf-update/AmfUpdate.dll source/RAML.Parser/RAML.Parser.csproj false"
             }
         }
         stage('Build') {
             steps {
-           		bat 'nuget restore source/AMF.Parser.sln'
-        		bat "msbuild source/AMF.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+           		bat 'nuget restore source/RAML.Parser.sln'
+        		bat "msbuild source/RAML.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
             }
         }
         stage('Test') {
             steps {
-                dir("source/AMF.Parser.TestRunner/bin/Release/"){
+                dir("source/RAML.Parser.TestRunner/bin/Release/"){
                     bat 'ConsoleApp2.exe'
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Pack') {
             steps {
                 // zip files
-                zip dir:'source/AMF.Parser/', zipFile: 'AMF.Parser.zip'
+                zip dir:'source/RAML.Parser/', zipFile: 'RAML.Parser.zip'
             }
         }        
     }
