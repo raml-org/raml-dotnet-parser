@@ -8,7 +8,7 @@ The preferred way of consuming the RAML parser in your .NET application is to in
 
 
 ```ps
-    Install-Package AMF.Parser
+    Install-Package RAML.Parser
 ```
 
 ## Usage (C#)
@@ -16,7 +16,7 @@ The preferred way of consuming the RAML parser in your .NET application is to in
 Import the Raml.Parser namespace, and then use the RamlParser object to build an in-memory model of a RAML definition:
 
 ```csharp
-    using AMF.Parser;
+    using RAML.Parser;
     
     async Task ParseRamlFile()
     {
