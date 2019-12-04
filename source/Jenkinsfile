@@ -1,0 +1,40 @@
+pipeline {
+
+    agent {
+        label 'windows10'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+           		bat 'nuget restore source/RAML.Parser.sln'
+        		bat "msbuild source/RAML.Parser.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("source/RAML.Parser.TestRunner/bin/Release/"){
+                    bat 'ConsoleApp2.exe'
+                }
+            }
+        }
+        stage('Pack & Publish to Nuget') {
+            steps {
+        		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
+                withCredentials([string(credentialsId: 'dotnet-nuget-key', variable: 'NugetApiKey')]) {
+                    bat "nuget push *.nupkg $NugetApiKey"
+                }
+            }
+        }        
+    }
+
+    post {
+        always {
+            archiveArtifacts '*.nupkg'
+            
+        }
+        cleanup {
+            cleanWs()
+        }
+    }
+}
