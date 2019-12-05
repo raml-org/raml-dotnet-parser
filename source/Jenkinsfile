@@ -23,7 +23,7 @@ pipeline {
         		bat 'nuget pack source/RAML.Parser/RAML.Parser.csproj -Prop Configuration=Release'
                 withCredentials([string(credentialsId: 'dotnet-nuget-key', variable: 'NugetApiKey')]) {
                     bat "nuget setApiKey $NugetApiKey"
-                    bat "nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -n true"
+                    bat "nuget push *.nupkg -Source https://api.nuget.org/v3/index.json --no-symbols true"
                 }
             }
         }        
