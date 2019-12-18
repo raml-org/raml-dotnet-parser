@@ -24,6 +24,13 @@ namespace RAML.Parser.Tests
         }
 
         [TestMethod]
+        public void Has_validations()
+        {
+            Assert.IsTrue(model.ValidationMessages.Count() > 0);
+            Assert.IsTrue(model.Validates.HasValue && model.Validates.Value);
+        }
+
+        [TestMethod]
         public void should_include_shapes_in_uses()
         {
             Assert.AreEqual(39, model.Shapes.Count());
