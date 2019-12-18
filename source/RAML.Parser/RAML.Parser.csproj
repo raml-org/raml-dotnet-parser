@@ -50,6 +50,9 @@
     <Content Include="node_modules\.bin\amf.cmd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules\.bin\amf.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="node_modules\ajv\.tonic_example.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -78,9 +81,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\fast-json-stable-stringify\.eslintrc.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="node_modules\fast-json-stable-stringify\.npmignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\fast-json-stable-stringify\.travis.yml">
@@ -168,6 +168,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\amf-client-js\bin\amf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="node_modules\fast-json-stable-stringify\.github\FUNDING.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="node_modules\fast-json-stable-stringify\benchmark\index.js">
@@ -488,18 +491,22 @@
     <Compile Include="Mappers\DocumentationMapper.cs" />
     <Compile Include="Mappers\EndPointMapper.cs" />
     <Compile Include="Mappers\ExampleMapper.cs" />
+    <Compile Include="Mappers\FlowMapper.cs" />
     <Compile Include="Mappers\LicenseMapper.cs" />
     <Compile Include="Mappers\OperationMapper.cs" />
     <Compile Include="Mappers\OrganizationMapper.cs" />
     <Compile Include="Mappers\ParameterMapper.cs" />
     <Compile Include="Mappers\PropertyDependenciesMapper.cs" />
     <Compile Include="Mappers\PropertyShapeMapper.cs" />
+    <Compile Include="Mappers\SecurityRequirementMapper.cs" />
     <Compile Include="Model\ArrayShape.cs" />
     <Compile Include="Model\FileShape.cs" />
     <Compile Include="Model\AmfModel.cs" />
+    <Compile Include="Model\Flow.cs" />
     <Compile Include="Model\NodeShape.cs" />
     <Compile Include="Model\ScalarShape.cs" />
     <Compile Include="Model\SchemaShape.cs" />
+    <Compile Include="Model\SecurityRequirement.cs" />
     <Compile Include="Model\UnionShape.cs" />
     <Compile Include="SpecificationType.cs" />
     <Compile Include="Utils\ParameterMapperUtils.cs" />

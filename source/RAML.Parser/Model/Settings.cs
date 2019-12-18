@@ -4,7 +4,8 @@ namespace RAML.Parser.Model
 {
     public class Settings
     {
-        public Settings(string requestTokenUri, string authorizationUri, string tokenCredentialsUri, IEnumerable<string> signatures, string accessTokenUri, IEnumerable<string> authorizationGrants, string flow, IEnumerable<Scope> scopes, string name, string @in)
+        public Settings(string requestTokenUri, string authorizationUri, string tokenCredentialsUri, IEnumerable<string> signatures, string accessTokenUri,
+            IEnumerable<string> authorizationGrants, IEnumerable<Flow> flows, IEnumerable<Scope> scopes, string name, string @in)
         {
             RequestTokenUri = requestTokenUri;
             AuthorizationUri = authorizationUri;
@@ -12,7 +13,7 @@ namespace RAML.Parser.Model
             Signatures = signatures;
             AccessTokenUri = accessTokenUri;
             AuthorizationGrants = authorizationGrants;
-            Flow = flow;
+            Flows = flows;
             Scopes = scopes;
             Name = name;
             In = @in;
@@ -24,7 +25,7 @@ namespace RAML.Parser.Model
         public IEnumerable<string> Signatures { get; }
         public string AccessTokenUri { get; }
         public IEnumerable<string> AuthorizationGrants { get; }
-        public string Flow { get; }
+        public IEnumerable<Flow> Flows { get; }
         public IEnumerable<Scope> Scopes { get; }
         public string Name { get; }
         public string In { get; }

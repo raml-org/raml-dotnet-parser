@@ -4,7 +4,7 @@ namespace RAML.Parser.Model
 {
     public class EndPoint
     {
-        public EndPoint(string name, string description, string path, IEnumerable<Operation> operations, IEnumerable<Parameter> parameters, IEnumerable<ParametrizedSecurityScheme> security)
+        public EndPoint(string name, string description, string path, IEnumerable<Operation> operations, IEnumerable<Parameter> parameters, IEnumerable<SecurityRequirement> security)
         {
             Name = name;
             Description = description;
@@ -19,6 +19,6 @@ namespace RAML.Parser.Model
         public string Path { get; }
         public IEnumerable<Operation> Operations { get; }
         public IEnumerable<Parameter> Parameters { get; }
-        public IEnumerable<ParametrizedSecurityScheme> Security { get; }
+        public IEnumerable<SecurityRequirement> Security { get; }
     }
 }

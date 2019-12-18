@@ -16,7 +16,7 @@ namespace RAML.Parser.Mappers
                 StringEnumerationMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "signatures")), 
                 ParameterMapperUtils.Map<string>(settings, "accessTokenUri"), 
                 StringEnumerationMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "authorizationGrants")), 
-                ParameterMapperUtils.Map<string>(settings, "flow"), ScopeMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "scopes")), 
+                FlowMapper.Map(settings["flows"] as object[]), ScopeMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "scopes")), 
                 ParameterMapperUtils.Map<string>(settings, "name"), ParameterMapperUtils.Map<string>(settings, "in"));
         }
     }

@@ -8,7 +8,10 @@ namespace RAML.Parser.Model
 {
     public class WebApi
     {
-        public WebApi(string name, string description, string host, IEnumerable<string> schemes, IEnumerable<EndPoint> endPoints, IEnumerable<string> servers, IEnumerable<string> accepts, IEnumerable<string> contentType, string version, string termsOfService, Organization provider, License license, IEnumerable<Documentation> documentations, IEnumerable<Parameter> baseUriParameters, IEnumerable<ParametrizedSecurityScheme> security)
+        public WebApi(string name, string description, string host, IEnumerable<string> schemes, IEnumerable<EndPoint> endPoints, 
+            IEnumerable<string> servers, IEnumerable<string> accepts, IEnumerable<string> contentType, string version, string termsOfService, 
+            Organization provider, License license, IEnumerable<Documentation> documentations, IEnumerable<Parameter> baseUriParameters, 
+            IEnumerable<SecurityRequirement> security)
         {
             Name = name;
             Description = description;
@@ -41,6 +44,6 @@ namespace RAML.Parser.Model
         public License License { get; }
         public IEnumerable<Documentation> Documentations { get; }
         public IEnumerable<Parameter> BaseUriParameters { get; }
-        public IEnumerable<ParametrizedSecurityScheme> Security { get; }
+        public IEnumerable<SecurityRequirement> Security { get; }
     }
 }

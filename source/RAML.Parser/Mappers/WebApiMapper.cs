@@ -24,7 +24,7 @@ namespace RAML.Parser.Mappers
             License license = LicenseMapper.Map(model["license"] as IDictionary<string, object>);
             IEnumerable<Documentation> documentations = DocumentationMapper.Map(model["documentations"] as object[]);
             IEnumerable<Parameter> baseUriParameters = ParameterMapper.Map(model["baseUriParameters"] as object[]);
-            IEnumerable<ParametrizedSecurityScheme> security = ParametrizedSecuritySchemeMapper.Map(model["security"] as object[]);
+            IEnumerable<SecurityRequirement> security = SecurityRequirementMapper.Map(model["security"] as object[]);
             return new WebApi(name, description, host, schemes, endPoints, servers, accepts, contentType, version, termsOfService, 
                 provider, license, documentations, baseUriParameters, security);
         }

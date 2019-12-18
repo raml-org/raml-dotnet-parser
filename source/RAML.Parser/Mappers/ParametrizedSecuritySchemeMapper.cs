@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace RAML.Parser.Mappers
 {
+
     internal class ParametrizedSecuritySchemeMapper
     {
         internal static IEnumerable<ParametrizedSecurityScheme> Map(object[] securitySchemes)
@@ -13,6 +14,7 @@ namespace RAML.Parser.Mappers
 
             return securitySchemes.Select(s => Map(s as IDictionary<string, object>)).ToArray();
         }
+
 
         private static ParametrizedSecurityScheme Map(IDictionary<string, object> security)
         {

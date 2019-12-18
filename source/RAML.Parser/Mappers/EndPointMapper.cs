@@ -21,7 +21,7 @@ namespace RAML.Parser.Mappers
 
             return new EndPoint(endpoint["name"] as string, endpoint["description"] as string, endpoint["path"] as string, 
                 OperationMapper.Map(endpoint["operations"] as object[]), ParameterMapper.Map(endpoint["parameters"] as object[]), 
-                ParametrizedSecuritySchemeMapper.Map(endpoint["security"] as object[]));
+                SecurityRequirementMapper.Map(endpoint["security"] as object[]));
         }
     }
 }

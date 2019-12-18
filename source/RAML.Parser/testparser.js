@@ -4,15 +4,15 @@ var parser = require('parser');
 
 console.log('Start');
 
-try {
-    var filepath = "file:///desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/exchange/mule-twilio-connector-3.0.0-raml/twilio-connector.raml"
-    parser.parse('raml', filepath, function (m) {
-        console.log(m);
-    });
-}
-catch(ex){
-    console.log(ex);
-}
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/exchange/mule-twilio-connector-3.0.0-raml/twilio-connector.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 // try {
 //     var filepath = "file:///C:/desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/exchange/account-aggregation-process-api-2.0.0-raml/banking_accounts_process_api.raml"
@@ -90,15 +90,15 @@ catch(ex){
 // }
 
 
-// try {
-//     var filepath = "file:///c:/desarrollo/mulesoft/raml-dotnet-parser/source/RAML.Parser.Tests/specs/movies-v1.raml"
-//     parser.parse('raml', filepath, function (m) {
-//         console.log(m);
-//     });
-// }
-// catch(ex){
-//     console.log(ex);
-// }
+try {
+    var filepath = "file:///desarrollo/mulesoft/raml-dotnet-parser/source/RAML.Parser.Tests/specs/movies-v1.raml"
+    parser.parse('raml', filepath, function (m) {
+        console.log(m);
+    });
+}
+catch(ex){
+    console.log(ex);
+}
 
 
 
