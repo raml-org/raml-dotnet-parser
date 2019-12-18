@@ -79,7 +79,9 @@ namespace RAML.Parser
             var model = ret["model"] as IDictionary<string, object>;
             var webApi = WebApiMapper.Map(model);
             var shapes = ShapeMapper.Map(ret["shapes"] as object[]);
-            return new AmfModel(webApi, shapes);
+            var validates = ret["validates"] as bool?;
+            var messages = ValidationMessagesMapper.Map(ret["validationMessages"] as object[]);
+            return new AmfModel(webApi, shapes, validates, messages);
         }
 
         private static string FixPath(string filePath)
