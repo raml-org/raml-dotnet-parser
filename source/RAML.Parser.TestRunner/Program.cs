@@ -19,12 +19,12 @@ namespace ConsoleApp2
         {
             try
             {
-                RunGeneralTests().Wait();
-                RunResourceTypesTests();
-                RunIncludeTests();
-                RunBankingAccountProcessTests(); // "uses"
-                RunSpecWithErrorsTests();
-                RunChinookTests();
+                //RunGeneralTests().Wait();
+                //RunResourceTypesTests();
+                //RunIncludeTests();
+                //RunBankingAccountProcessTests(); // "uses"
+                //RunSpecWithErrorsTests();
+                //RunChinookTests();
                 RunMoviesTests();
                 RunApiWithExamplesTests();
                 RunPestoreJsonTests();
@@ -141,7 +141,7 @@ namespace ConsoleApp2
             var tests = new MoviesTests();
             tests.Initialize();
             tests.Endpoints_should_be_9();
-            tests.Post_Operation_Security();
+            //tests.Post_Operation_Security();
             tests.Schemes_should_be_http();
             tests.Basepath_should_be_api();
             tests.Version_should_be_1();

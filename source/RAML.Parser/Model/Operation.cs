@@ -6,7 +6,7 @@ namespace RAML.Parser.Model
     {
         public Operation(string method, string name, string description, bool deprecated, string summary, Documentation documentation, 
             IEnumerable<string> schemes, IEnumerable<string> accepts, IEnumerable<string> contentType, Request request, IEnumerable<Response> responses, 
-            IEnumerable<SecurityScheme> security)
+            IEnumerable<SecurityRequirement> security)
         {
             Method = method;
             Name = name;
@@ -33,6 +33,6 @@ namespace RAML.Parser.Model
         public IEnumerable<string> ContentType { get; }
         public Request Request { get; }
         public IEnumerable<Response> Responses { get; }
-        public IEnumerable<SecurityScheme> Security { get; }
+        public IEnumerable<SecurityRequirement> Security { get; }
     }
 }

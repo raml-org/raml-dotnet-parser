@@ -22,8 +22,7 @@ namespace RAML.Parser.Mappers
                 return null;
 
             return new ParametrizedSecurityScheme(security["name"] as string, 
-                SecuritySchemeMapper.Map(security["securityScheme"] as IDictionary<string, object>), 
-                SettingsMapper.Map(security["settings"] as IDictionary<string, object>));
+                SecuritySchemeMapper.Map(security["scheme"] as IDictionary<string, object>));
         }
     }
 }

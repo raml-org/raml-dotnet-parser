@@ -25,7 +25,7 @@ namespace RAML.Parser.Mappers
                 DocumentationMapper.Map(operation["documentation"] as IDictionary<string, object>),
                 StringEnumerationMapper.Map(operation["schemes"] as object[]), StringEnumerationMapper.Map(operation["accepts"] as object[]),
                 StringEnumerationMapper.Map(operation["contentType"] as object[]), RequestMapper.Map(operation["request"] as IDictionary<string, object>),
-                ResponseMapper.Map(operation["responses"] as object[]), SecuritySchemeMapper.Map(operation["security"] as object[]));
+                ResponseMapper.Map(operation["responses"] as object[]), SecurityRequirementMapper.Map(operation["security"] as object[]));
         }
     }
 }

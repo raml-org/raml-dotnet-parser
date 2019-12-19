@@ -2,15 +2,13 @@
 {
     public class ParametrizedSecurityScheme
     {
-        public ParametrizedSecurityScheme(string name, SecurityScheme securityScheme, Settings settings)
+        public ParametrizedSecurityScheme(string name, SecurityScheme securityScheme)
         {
             Name = name;
             SecurityScheme = securityScheme;
-            Settings = settings;
         }
 
         public string Name { get; }
         public SecurityScheme SecurityScheme { get; }
-        public Settings Settings { get; }
     }
 }
