@@ -19,7 +19,9 @@ namespace RAML.Parser.Mappers
             if (security == null)
                 return null;
 
-            return new SecurityScheme(security["name"] as string, security["type"] as string, security["displayName"] as string,
+            var name = security.ContainsKey("name") ? security["name"] as string : null;
+
+            return new SecurityScheme(name, security["type"] as string, security["displayName"] as string,
                 security["description"] as string, ParameterMapper.Map(security["headers"] as object[]),
                 ParameterMapper.Map(security["queryParameters"] as object[]),
                 ResponseMapper.Map(security["responses"] as object[]), SettingsMapper.Map(security["settings"] as IDictionary<string, object>),
