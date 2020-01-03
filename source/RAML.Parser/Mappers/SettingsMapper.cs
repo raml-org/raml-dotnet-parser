@@ -11,12 +11,16 @@ namespace RAML.Parser.Mappers
             if (settings == null)
                 return null;
 
+            IEnumerable<Flow> flows = new List<Flow>();
+            if (settings.ContainsKey("flows"))
+                flows = FlowMapper.Map(settings["flows"] as object[]);
+
             return new Settings(ParameterMapperUtils.Map<string>(settings, "requestTokenUri"), ParameterMapperUtils.Map<string>(settings, "authorizationUri"),
                 ParameterMapperUtils.Map<string>(settings, "tokenCredentialsUri"), 
                 StringEnumerationMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "signatures")), 
                 ParameterMapperUtils.Map<string>(settings, "accessTokenUri"), 
                 StringEnumerationMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "authorizationGrants")), 
-                FlowMapper.Map(settings["flows"] as object[]), ScopeMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "scopes")), 
+                flows, ScopeMapper.Map(ParameterMapperUtils.Map<object[]>(settings, "scopes")), 
                 ParameterMapperUtils.Map<string>(settings, "name"), ParameterMapperUtils.Map<string>(settings, "in"));
         }
     }
