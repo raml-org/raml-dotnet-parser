@@ -19,12 +19,12 @@ namespace ConsoleApp2
         {
             try
             {
-                //RunGeneralTests().Wait();
-                //RunResourceTypesTests();
-                //RunIncludeTests();
-                //RunBankingAccountProcessTests(); // "uses"
-                //RunSpecWithErrorsTests();
-                //RunChinookTests();
+                RunGeneralTests().Wait();
+                RunResourceTypesTests();
+                RunIncludeTests();
+                RunBankingAccountProcessTests(); // "uses"
+                RunSpecWithErrorsTests();
+                RunChinookTests();
                 RunMoviesTests();
                 RunApiWithExamplesTests();
                 RunPestoreJsonTests();
