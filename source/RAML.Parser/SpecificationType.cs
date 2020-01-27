@@ -5,6 +5,8 @@
         RAML,
         RAML08,
         OASJSON,
-        OASYAML
+        OASYAML,
+        OAS3JSON,
+        OAS3YAML
     }
 }

@@ -19,6 +19,7 @@ namespace ConsoleApp2
         {
             try
             {
+                RunOas30Tests();
                 RunGeneralTests().Wait();
                 RunResourceTypesTests();
                 RunIncludeTests();
@@ -55,6 +56,15 @@ namespace ConsoleApp2
             tests.Initialize();
             tests.Endpoints_count();
             tests.Uber_name_check();
+        }
+
+        private static void RunOas30Tests()
+        {
+            var tests = new Oas30Tests();
+            tests.Initialize();
+            tests.Endpoints_count();
+            tests.petstore_name_check();
+            tests.petstore_expanded_check();
         }
 
         private static void RunResourceTypesTests()

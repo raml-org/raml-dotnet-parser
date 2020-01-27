@@ -39,6 +39,9 @@ namespace RAML.Parser
             if (filePath.EndsWith(".raml"))
                 return SpecificationType.RAML;
 
+            if(firstLine.Contains("openapi") && firstLine.Contains("3.0.0"))
+                return DetectOas3Type(filePath);
+
             if (firstLine.Contains("swagger"))
                 return DetectOasType(filePath);
 
@@ -46,7 +49,7 @@ namespace RAML.Parser
             if (secondLine.Contains("swagger"))
                 return DetectOasType(filePath);
 
-            throw new FormatException("Unable to determine format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0");
+            throw new FormatException("Unable to determine format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0 and 3.0");
         }
 
         private static SpecificationType DetectOasType(string filePath)
@@ -57,7 +60,18 @@ namespace RAML.Parser
             if (filePath.EndsWith(".yaml"))
                 return SpecificationType.OASYAML;
 
-            throw new FormatException("Unable to determine OAS format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0");
+            throw new FormatException("Unable to determine OAS format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0 and 3.0");
+        }
+
+        private static SpecificationType DetectOas3Type(string filePath)
+        {
+            if (filePath.EndsWith(".json"))
+                return SpecificationType.OAS3JSON;
+
+            if (filePath.EndsWith(".yaml"))
+                return SpecificationType.OAS3YAML;
+
+            throw new FormatException("Unable to determine OAS 3.0 format, please use overload method and specify type manually. Valid types are RAML and OAS 2.0 and 3.0");
         }
 
         public async Task<AmfModel> Load(SpecificationType type, string filePath)

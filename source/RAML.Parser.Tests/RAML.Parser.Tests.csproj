@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankingAccountProcessTests.cs" />
+    <Compile Include="Oas30Tests.cs" />
     <Compile Include="OasTests.cs" />
     <Compile Include="ResourceTypesTests.cs" />
     <Compile Include="IncludeTests.cs" />
@@ -105,6 +106,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="specs\movies.schema">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\api-with-examples.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\callback-example.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\link-example.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\petstore-expanded.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\petstore.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="specs\oas\3.0\uspto.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="specs\oas\json\api-with-examples.json">
