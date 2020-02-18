@@ -46,6 +46,10 @@ namespace RAML.Parser
                 return DetectOasType(filePath);
 
             var secondLine = await file.ReadLineAsync();
+
+            if (secondLine.Contains("openapi") && secondLine.Contains("3.0.0"))
+                return DetectOas3Type(filePath);
+
             if (secondLine.Contains("swagger"))
                 return DetectOasType(filePath);
 
