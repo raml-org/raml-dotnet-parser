@@ -5,7 +5,7 @@ var parser = require('parser');
 console.log('Start');
 
 try {
-    var filepath = "file:///desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/files/raml1/salesOrders.raml"
+    var filepath = "file:///desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/files/raml1/custom-type-in-uses.raml"
     parser.parse('raml', filepath, function (m) {
         console.log(m);
     });
@@ -13,6 +13,16 @@ try {
 catch(ex){
     console.log(ex);
 }
+
+// try {
+//     var filepath = "file:///desarrollo/mulesoft/raml-dotnet-tools/src/tools/RAML.Tools.Tests/files/raml1/salesOrders.raml"
+//     parser.parse('raml', filepath, function (m) {
+//         console.log(m);
+//     });
+// }
+// catch(ex){
+//     console.log(ex);
+// }
 
 
 // try {
